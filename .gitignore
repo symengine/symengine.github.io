@@ -490,4 +490,5 @@ docs/site/
 # environment.
 Manifest.toml
 
-
+# Project Docs
+gen_docs/
