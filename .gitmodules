@@ -1,3 +1,6 @@
 [submodule "projects/symengine"]
 	path = projects/symengine
 	url = https://github.com/symengine/symengine
+[submodule "docs/docs"]
+	path = docs/docs
+	url = https://github.com/mosra/m.css
