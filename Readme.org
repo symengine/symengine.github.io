@@ -1,0 +1,7 @@
+* About
+This is the source branch for the web-presence of the entire Symengine project.
+** Tooling
+Currently this is built with ~doxygen~ and will eventually grow to incorporate Sphinx as well.
+
+* License
+Currently licensed under the flimsiest of licenses, the CC BY 4.0
