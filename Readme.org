@@ -3,8 +3,7 @@ This is the source branch for the web-presence of the entire Symengine project.
 ** Generation
 The easiest way to run is simply to use:
 #+BEGIN_SRC bash
-nix-shell --run "bash" --pure
-./docs/m.css/documentation/doxygen.py docs/Doxyfile-mcss.cfg
+./docs/Doxygen/m.css/documentation/doxygen.py docs/Doxygen/Doxyfile-mcss.cfg
 #+END_SRC
 ** Tooling
 Currently this is built with ~doxygen~ and will eventually grow to incorporate Sphinx as well.

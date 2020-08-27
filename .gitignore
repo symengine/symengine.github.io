@@ -494,3 +494,4 @@ Manifest.toml
 gen_docs/
 /_build/
 api/
+.envrc
