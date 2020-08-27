@@ -492,3 +492,4 @@ Manifest.toml
 
 # Project Docs
 gen_docs/
+/_build/
