@@ -4,3 +4,6 @@
 [submodule "docs/docs"]
 	path = docs/docs
 	url = https://github.com/mosra/m.css
+[submodule "docs/Doxygen/m.css"]
+	path = docs/Doxygen/m.css
+	url = https://github.com/mosra/m.css
