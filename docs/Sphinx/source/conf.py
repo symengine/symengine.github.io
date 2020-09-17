@@ -29,7 +29,8 @@ author = 'SymEngine Development Team'
 # ones.
 extensions = [
     'breathe',
-    'exhale'
+    'exhale',
+    'coverage'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
