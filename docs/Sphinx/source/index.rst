@@ -10,7 +10,7 @@ Welcome to Symengine's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   api/library_root
 
 Indices and tables
 ==================
