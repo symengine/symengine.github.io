@@ -22,7 +22,7 @@ task :darkServe, [:port] do |task, args|
 end
 
 desc "Build Nix Sphinx, use as nix-shell --run 'rake mkNixDoc' --pure"
-task :mkNixDoc, [:builder] => "mkDoxy" do
+task :mkNixDoc, [:builder] => "mkDoxy" do |task, args|
   args.with_defaults(:builder => "html")
   Dir.chdir(to = File.join(CWD,"docs/Sphinx"))
   sh "sphinx-build source #{OUTDIR} -b #{args.builder}"
