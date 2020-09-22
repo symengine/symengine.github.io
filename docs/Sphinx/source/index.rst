@@ -18,3 +18,9 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+Documentation Coverage
+======================
+`local mirror`_
+
+.. _local mirror: doc_coverage/index.html

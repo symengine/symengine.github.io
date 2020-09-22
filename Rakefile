@@ -4,6 +4,12 @@ require 'rake'
 CWD = File.expand_path(__dir__)
 DOXYFILE = "Doxyfile-syme.cfg"
 OUTDIR = File.join(CWD,"public")
+SPHINXDIR = File.join(CWD,"docs/Sphinx")
+SYMESRC = File.join(CWD,"projects/symengine/symengine")
+DOXXML = File.join(CWD,"docs/Doxygen/gen_docs/xml")
+DOCCOV = File.join(OUTDIR,"doc-coverage.info")
+# Where the genhtml files go
+OUTCOV = File.join(OUTDIR,"doc_coverage")
 
 # Tasks
 task :default => :darkServe
@@ -24,7 +30,7 @@ end
 desc "Build Nix Sphinx, use as nix-shell --run 'rake mkNixDoc' --pure"
 task :mkNixDoc, [:builder] => "mkDoxy" do |task, args|
   args.with_defaults(:builder => "html")
-  Dir.chdir(to = File.join(CWD,"docs/Sphinx"))
+  Dir.chdir(to = SPHINXDIR)
   sh "sphinx-build source #{OUTDIR} -b #{args.builder}"
 end
 
@@ -45,4 +51,20 @@ task :mkSphinx, [:builder] => "mkDoxy" do |task, args|
   Dir.chdir(to = File.join(CWD,"docs/Sphinx"))
   sh "poetry install"
   sh "poetry run sphinx-build source #{OUTDIR} -b #{args.builder}"
+end
+
+desc "Build API Coverage"
+task :mkDocCover, [:runner] => ["mkDoxy"] do |task, args|
+  args.with_defaults(:runner => "poetry")
+  if :runner == "nix"
+    sh "python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}"
+  else
+    sh "poetry install"
+    sh "poetry run python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}"
+  end
+end
+
+desc "Build HTML Coverage Report"
+task :mkDocCovHTML => ["mkDocCover"] do
+  sh "genhtml --no-function-coverage --no-branch-coverage #{DOCCOV} -o #{OUTCOV}"
 end
