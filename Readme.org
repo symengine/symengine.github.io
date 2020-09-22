@@ -1,13 +1,30 @@
 * About
 This is the source branch for the web-presence of the entire Symengine project.
 ** Generation
+The documentation can be generated in a reproducible manner using Nix, or locally in a more accessible manner for non-nix users using ~poetry~.
+*** Automated
 The easiest way to run is simply to use:
 #+BEGIN_SRC bash
-nix-shell --run "bash" --pure
-./docs/m.css/documentation/doxygen.py docs/Doxyfile-mcss.cfg
+./scripts/builder.sh
 #+END_SRC
-** Tooling
-Currently this is built with ~doxygen~ and will eventually grow to incorporate Sphinx as well.
 
+However, this method is meant primarily for Travis.
+*** Poetry
+For hacking on the documentation without using ~nix~ simply work with the ~poetry~ environment. As long as the ~doxygen~ version does not deviate too much from the ~nix~ version, everything will work fine in production.
+#+BEGIN_SRC bash
+poetry install
+poetry shell
+cd docs/Doxygen
+doxygen Doxyfile-mcss.cfg
+cd ../Sphinx
+make html
+mv build/html ../../public
+#+END_SRC
+*** Local Preview
+For testing local changes, ~darkhttpd~ is recommended.
+#+BEGIN_SRC bash
+# After building
+darkhttpd public
+#+END_SRC
 * License
 Currently licensed under the flimsiest of licenses, the CC BY 4.0
