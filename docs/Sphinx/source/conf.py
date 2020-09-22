@@ -30,7 +30,6 @@ author = 'SymEngine Development Team'
 extensions = [
     'breathe',
     'exhale',
-    'myst_parser',
     'myst_nb',
 ]
 
