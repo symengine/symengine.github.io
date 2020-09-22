@@ -8,3 +8,8 @@ doxygen Doxyfile-mcss.cfg
 # Build Sphinx
 cd ../Sphinx
 make html
+mv build/html ../../public
+
+# Local Variables:
+# mode: shell-script
+# End:
