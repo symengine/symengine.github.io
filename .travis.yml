@@ -29,6 +29,6 @@ deploy:
   github_token: $GH_TOKEN # Set in the settings page of your repository, as a secure variable
   keep_history: true
   target_branch: master # Required for user pages
-  fqdn: symengine.org
+  # fqdn: symengine.org
   on:
     branch: src
