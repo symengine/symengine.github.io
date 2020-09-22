@@ -529,6 +529,29 @@ test = ["pytest", "pytest-cov", "html5lib", "typed-ast", "cython"]
 
 [[package]]
 category = "main"
+description = "Use font-awesome icons in SVG form"
+name = "sphinx-fasvg"
+optional = false
+python-versions = "*"
+version = "0.1.3"
+
+[package.dependencies]
+sphinx = ">=2.0.0"
+
+[[package]]
+category = "main"
+description = "A Sphinx-doc theme based on Vuepress"
+name = "sphinx-nervproject-theme"
+optional = false
+python-versions = "*"
+version = "2.0.2"
+
+[package.dependencies]
+sphinx = ">=3.0.0"
+sphinx-fasvg = "*"
+
+[[package]]
+category = "main"
 description = "sphinxcontrib-applehelp is a sphinx extension which outputs Apple help books"
 name = "sphinxcontrib-applehelp"
 optional = false
@@ -653,7 +676,7 @@ python-versions = "*"
 version = "0.5.1"
 
 [metadata]
-content-hash = "16281ecc7d057a0850cb4dce745dd387760917ccbf43cb4b6563002123202a19"
+content-hash = "5224adcf2d496a74a09beb65cc7bb43bf7a77173181f5bd6aeeea03b54916b9e"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -931,6 +954,12 @@ soupsieve = [
 sphinx = [
     {file = "Sphinx-3.2.1-py3-none-any.whl", hash = "sha256:ce6fd7ff5b215af39e2fcd44d4a321f6694b4530b6f2b2109b64d120773faea0"},
     {file = "Sphinx-3.2.1.tar.gz", hash = "sha256:321d6d9b16fa381a5306e5a0b76cd48ffbc588e6340059a729c6fdd66087e0e8"},
+]
+sphinx-fasvg = [
+    {file = "sphinx_fasvg-0.1.3.tar.gz", hash = "sha256:549d96c1edecc3f219d6c82d4914666868ce79f693a99128e9ea926c1aed774c"},
+]
+sphinx-nervproject-theme = [
+    {file = "sphinx_nervproject_theme-2.0.2.tar.gz", hash = "sha256:0f400f356a67e0f00c6ed00de00d0213da793e2f333131670cc764b6e29601b3"},
 ]
 sphinxcontrib-applehelp = [
     {file = "sphinxcontrib-applehelp-1.0.2.tar.gz", hash = "sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58"},
