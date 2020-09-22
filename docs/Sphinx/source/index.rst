@@ -21,6 +21,6 @@ Indices and tables
 
 Documentation Coverage
 ======================
-`local mirror`_
+`Coverxygen Output`_
 
-.. _local mirror: doc_coverage/index.html
+.. _Coverxygen Output: doc_coverage/index.html
