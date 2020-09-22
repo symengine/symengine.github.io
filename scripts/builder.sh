@@ -3,7 +3,7 @@
 
 # Build Doxygen
 cd docs/Doxygen
-doxygen Doxyfile-mcss.cfg
+doxygen Doxyfile-syme.cfg
 
 # Build Sphinx
 cd ../Sphinx
