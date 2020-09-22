@@ -22,9 +22,10 @@ task :darkServe, [:port] do |task, args|
 end
 
 desc "Build Nix Sphinx, use as nix-shell --run 'rake mkNixDoc' --pure"
-task :mkNixDoc => "mkDoxy" do
+task :mkNixDoc, [:builder] => "mkDoxy" do
+  args.with_defaults(:builder => "html")
   Dir.chdir(to = File.join(CWD,"docs/Sphinx"))
-  sh "sphinx-build source #{OUTDIR}"
+  sh "sphinx-build source #{OUTDIR} -b #{args.builder}"
 end
 
 desc "Build site without Nix"
@@ -39,8 +40,9 @@ task :mkDoxy do
 end
 
 desc "Build Sphinx"
-task :mkSphinx => "mkDoxy" do
+task :mkSphinx, [:builder] => "mkDoxy" do |task, args|
+  args.with_defaults(:builder => "html")
   Dir.chdir(to = File.join(CWD,"docs/Sphinx"))
   sh "poetry install"
-  sh "poetry run sphinx-build source #{OUTDIR}"
+  sh "poetry run sphinx-build source #{OUTDIR} -b #{args.builder}"
 end
