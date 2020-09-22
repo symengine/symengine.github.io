@@ -30,7 +30,6 @@ author = 'SymEngine Development Team'
 extensions = [
     'breathe',
     'exhale',
-    'coverage'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -44,9 +43,9 @@ exclude_patterns = []
 # -- Exhale configuration ---------------------------------------------------
 # Setup the breathe extension
 breathe_projects = {
-    "My Project": "./../../Doxygen/gen_docs/xml"
+    "Symengine XML": "./../../Doxygen/gen_docs/xml"
 }
-breathe_default_project = "My Project"
+breathe_default_project = "Symengine XML"
 
  # Setup the exhale extension
 exhale_args = {
