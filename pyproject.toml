@@ -10,9 +10,9 @@ python = "^3.8"
 exhale = "^0.2.3"
 breathe = "^4.20.0"
 nbsphinx = "^0.7.1"
-sphinx-nervproject-theme = "^2.0.2"
-myst-parser = "^0.12.10"
 myst-nb = "^0.10.1"
+sphinx-book-theme = "^0.0.36"
+coverxygen = "^1.5.0"
 
 [tool.poetry.dev-dependencies]
 

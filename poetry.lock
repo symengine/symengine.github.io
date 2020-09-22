@@ -94,7 +94,7 @@ description = "An easy safelist-based HTML-sanitizing tool."
 name = "bleach"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "3.2.0"
+version = "3.2.1"
 
 [package.dependencies]
 packaging = "*"
@@ -107,7 +107,7 @@ description = "Sphinx Doxygen renderer"
 name = "breathe"
 optional = false
 python-versions = "*"
-version = "4.21.0"
+version = "4.22.0"
 
 [package.dependencies]
 Sphinx = ">=3.0,<3.4"
@@ -154,11 +154,27 @@ version = "3.0.4"
 
 [[package]]
 category = "main"
+description = "Composable command line interface toolkit"
+name = "click"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "7.1.2"
+
+[[package]]
+category = "main"
 description = "Cross-platform colored terminal text."
 name = "colorama"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.4.3"
+
+[[package]]
+category = "main"
+description = "Generate doxygen's documentation coverage report"
+name = "coverxygen"
+optional = false
+python-versions = "*"
+version = "1.5.0"
 
 [[package]]
 category = "main"
@@ -451,6 +467,17 @@ Sphinx = ">=2"
 ipywidgets = ">=7.0.0"
 nbconvert = ">=5.5"
 nbformat = "*"
+
+[[package]]
+category = "main"
+description = "Sass for Python: A straightforward binding of libsass for Python."
+name = "libsass"
+optional = false
+python-versions = "*"
+version = "0.20.1"
+
+[package.dependencies]
+six = "*"
 
 [[package]]
 category = "main"
@@ -777,6 +804,17 @@ version = "2.20"
 
 [[package]]
 category = "main"
+description = "Bootstrap-based Sphinx theme from the PyData community"
+name = "pydata-sphinx-theme"
+optional = false
+python-versions = ">=3.5"
+version = "0.3.2"
+
+[package.dependencies]
+sphinx = "*"
+
+[[package]]
+category = "main"
 description = "Pygments is a syntax highlighting package written in Python."
 name = "pygments"
 optional = false
@@ -944,26 +982,26 @@ test = ["pytest", "pytest-cov", "html5lib", "typed-ast", "cython"]
 
 [[package]]
 category = "main"
-description = "Use font-awesome icons in SVG form"
-name = "sphinx-fasvg"
+description = "Jupyter Book: Create an online book with Jupyter Notebooks"
+name = "sphinx-book-theme"
 optional = false
-python-versions = "*"
-version = "0.1.3"
+python-versions = ">=3.6"
+version = "0.0.36"
 
 [package.dependencies]
-sphinx = ">=2.0.0"
+beautifulsoup4 = "*"
+click = "*"
+docutils = ">=0.15"
+libsass = "*"
+pydata-sphinx-theme = ">=0.3.0,<0.4.0"
+pyyaml = "*"
+setuptools = "*"
+sphinx = "*"
 
-[[package]]
-category = "main"
-description = "A Sphinx-doc theme based on Vuepress"
-name = "sphinx-nervproject-theme"
-optional = false
-python-versions = "*"
-version = "2.0.2"
-
-[package.dependencies]
-sphinx = ">=3.0.0"
-sphinx-fasvg = "*"
+[package.extras]
+code_style = ["flake8 (>=3.7.0,<3.8.0)", "black", "pre-commit (1.17.0)"]
+sphinx = ["folium", "numpy", "matplotlib", "ipywidgets", "pandas", "nbclient", "myst-nb (>=0.9.1,<0.10.0)", "sphinx-togglebutton (>=0.2.1)", "sphinx-copybutton", "plotly", "sphinxcontrib-bibtex", "sphinx-thebe"]
+testing = ["coverage", "pytest (>=3.6,<4)", "pytest-cov", "beautifulsoup4", "pytest-regressions"]
 
 [[package]]
 category = "main"
@@ -1176,14 +1214,14 @@ description = "Backport of pathlib-compatible object wrapper for zip files"
 name = "zipp"
 optional = false
 python-versions = ">=3.6"
-version = "3.1.0"
+version = "3.2.0"
 
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
-testing = ["jaraco.itertools", "func-timeout"]
+testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "47c64c5b7e284b5e1fd0f617b4159ed3b0f46132941352d9250dada1b4360ccf"
+content-hash = "a5ada4e4511d4df6f06996b7a4774739b182181d6e67fafc15af0c4033abe338"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -1236,12 +1274,12 @@ beautifulsoup4 = [
     {file = "beautifulsoup4-4.9.1.tar.gz", hash = "sha256:73cc4d115b96f79c7d77c1c7f7a0a8d4c57860d1041df407dd1aae7f07a77fd7"},
 ]
 bleach = [
-    {file = "bleach-3.2.0-py2.py3-none-any.whl", hash = "sha256:769483204d247465c0b001ead257fb86bba6944bce6fe1b6759c812cceb54e3d"},
-    {file = "bleach-3.2.0.tar.gz", hash = "sha256:f9e0205cc57b558c21bdfc11034f9d96b14c4052c25be60885d94f4277c792e0"},
+    {file = "bleach-3.2.1-py2.py3-none-any.whl", hash = "sha256:9f8ccbeb6183c6e6cddea37592dfb0167485c1e3b13b3363bc325aa8bda3adbd"},
+    {file = "bleach-3.2.1.tar.gz", hash = "sha256:52b5919b81842b1854196eaae5ca29679a2f2e378905c346d3ca8227c2c66080"},
 ]
 breathe = [
-    {file = "breathe-4.21.0-py3-none-any.whl", hash = "sha256:d21ccaf5e655fe489c7e34fd8ae4e791fd66b2b556fd91b786146240b5696f34"},
-    {file = "breathe-4.21.0.tar.gz", hash = "sha256:7660afa86f1dae3b19415a41d2a85c9b4a9d8f5cf26d0faa2f98c0715553333e"},
+    {file = "breathe-4.22.0-py3-none-any.whl", hash = "sha256:ab33b33b1e9630d798a4987f88ad93d3dc1ca1d4b56bcbff1d218fbb046246fb"},
+    {file = "breathe-4.22.0.tar.gz", hash = "sha256:b7f3dcbb8e24e94ab314312a292cd832b641e4a64ca4078e697521b55449c78a"},
 ]
 bs4 = [
     {file = "bs4-0.0.1.tar.gz", hash = "sha256:36ecea1fd7cc5c0c6e4a1ff075df26d50da647b75376626cc186e2212886dd3a"},
@@ -1292,9 +1330,16 @@ chardet = [
     {file = "chardet-3.0.4-py2.py3-none-any.whl", hash = "sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"},
     {file = "chardet-3.0.4.tar.gz", hash = "sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"},
 ]
+click = [
+    {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
+    {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
 colorama = [
     {file = "colorama-0.4.3-py2.py3-none-any.whl", hash = "sha256:7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff"},
     {file = "colorama-0.4.3.tar.gz", hash = "sha256:e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"},
+]
+coverxygen = [
+    {file = "coverxygen-1.5.0.tar.gz", hash = "sha256:428a2953e06c378d78672adba75433c6f2af6c143f375725a263c5a47cea636a"},
 ]
 decorator = [
     {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
@@ -1379,6 +1424,21 @@ jupyter-core = [
 jupyter-sphinx = [
     {file = "jupyter_sphinx-0.3.2-py3-none-any.whl", hash = "sha256:301e36d0fb3007bb5802f6b65b60c24990eb99c983332a2ab6eecff385207dc9"},
     {file = "jupyter_sphinx-0.3.2.tar.gz", hash = "sha256:37fc9408385c45326ac79ca0452fbd7ae2bf0e97842d626d2844d4830e30aaf2"},
+]
+libsass = [
+    {file = "libsass-0.20.1-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:4a246e4b88fd279abef8b669206228c92534d96ddcd0770d7012088c408dff23"},
+    {file = "libsass-0.20.1-cp27-cp27m-win32.whl", hash = "sha256:697f0f9fa8a1367ca9ec6869437cb235b1c537fc8519983d1d890178614a8903"},
+    {file = "libsass-0.20.1-cp27-cp27m-win_amd64.whl", hash = "sha256:1b2d415bbf6fa7da33ef46e549db1418498267b459978eff8357e5e823962d35"},
+    {file = "libsass-0.20.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:1521d2a8d4b397c6ec90640a1f6b5529077035efc48ef1c2e53095544e713d1b"},
+    {file = "libsass-0.20.1-cp36-abi3-macosx_10_14_x86_64.whl", hash = "sha256:2ae806427b28bc1bb7cb0258666d854fcf92ba52a04656b0b17ba5e190fb48a9"},
+    {file = "libsass-0.20.1-cp36-abi3-manylinux1_x86_64.whl", hash = "sha256:25ebc2085f5eee574761ccc8d9cd29a9b436fc970546d5ef08c6fa41eb57dff1"},
+    {file = "libsass-0.20.1-cp36-cp36m-win32.whl", hash = "sha256:553e5096414a8d4fb48d0a48f5a038d3411abe254d79deac5e008516c019e63a"},
+    {file = "libsass-0.20.1-cp36-cp36m-win_amd64.whl", hash = "sha256:e64ae2587f1a683e831409aad03ba547c245ef997e1329fffadf7a866d2510b8"},
+    {file = "libsass-0.20.1-cp37-cp37m-win32.whl", hash = "sha256:c9411fec76f480ffbacc97d8188322e02a5abca6fc78e70b86a2a2b421eae8a2"},
+    {file = "libsass-0.20.1-cp37-cp37m-win_amd64.whl", hash = "sha256:a8fd4af9f853e8bf42b1425c5e48dd90b504fa2e70d7dac5ac80b8c0a5a5fe85"},
+    {file = "libsass-0.20.1-cp38-cp38-win32.whl", hash = "sha256:f6852828e9e104d2ce0358b73c550d26dd86cc3a69439438c3b618811b9584f5"},
+    {file = "libsass-0.20.1-cp38-cp38-win_amd64.whl", hash = "sha256:daa98a51086d92aa7e9c8871cf1a8258124b90e2abf4697852a3dca619838618"},
+    {file = "libsass-0.20.1.tar.gz", hash = "sha256:e0e60836eccbf2d9e24ec978a805cd6642fa92515fbd95e3493fee276af76f8a"},
 ]
 lxml = [
     {file = "lxml-4.5.2-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:74f48ec98430e06c1fa8949b49ebdd8d27ceb9df8d3d1c92e1fdc2773f003f20"},
@@ -1527,6 +1587,10 @@ pycparser = [
     {file = "pycparser-2.20-py2.py3-none-any.whl", hash = "sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705"},
     {file = "pycparser-2.20.tar.gz", hash = "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0"},
 ]
+pydata-sphinx-theme = [
+    {file = "pydata-sphinx-theme-0.3.2.tar.gz", hash = "sha256:3920d7689324dd00b96747b61d2bd8968b096ee6e2bec6c7e88253ee302d51c7"},
+    {file = "pydata_sphinx_theme-0.3.2-py3-none-any.whl", hash = "sha256:ec2b5851c3382ba2715040189e1e9e45f1e9a3a290c494fec83121feac1f7e80"},
+]
 pygments = [
     {file = "Pygments-2.7.1-py3-none-any.whl", hash = "sha256:307543fe65c0947b126e83dd5a61bd8acbd84abec11f43caebaf5534cbc17998"},
     {file = "Pygments-2.7.1.tar.gz", hash = "sha256:926c3f319eda178d1bd90851e4317e6d8cdb5e292a3386aac9bd75eca29cf9c7"},
@@ -1643,11 +1707,9 @@ sphinx = [
     {file = "Sphinx-3.2.1-py3-none-any.whl", hash = "sha256:ce6fd7ff5b215af39e2fcd44d4a321f6694b4530b6f2b2109b64d120773faea0"},
     {file = "Sphinx-3.2.1.tar.gz", hash = "sha256:321d6d9b16fa381a5306e5a0b76cd48ffbc588e6340059a729c6fdd66087e0e8"},
 ]
-sphinx-fasvg = [
-    {file = "sphinx_fasvg-0.1.3.tar.gz", hash = "sha256:549d96c1edecc3f219d6c82d4914666868ce79f693a99128e9ea926c1aed774c"},
-]
-sphinx-nervproject-theme = [
-    {file = "sphinx_nervproject_theme-2.0.2.tar.gz", hash = "sha256:0f400f356a67e0f00c6ed00de00d0213da793e2f333131670cc764b6e29601b3"},
+sphinx-book-theme = [
+    {file = "sphinx-book-theme-0.0.36.tar.gz", hash = "sha256:bffaf3dd9099b07f1b628aff9e557e5ca16c71f0c8b4dc84a7a182303ae8b8cf"},
+    {file = "sphinx_book_theme-0.0.36-py3-none-any.whl", hash = "sha256:92deb9e7a01292caaa946e2fb8e4b237e15e464a426b537618ea85eadc2cbf3f"},
 ]
 sphinx-togglebutton = [
     {file = "sphinx-togglebutton-0.2.2.tar.gz", hash = "sha256:61f1149351643de71adf323406ad753935bbdec5790c27344da1ea7baa70a867"},
@@ -1755,6 +1817,6 @@ widgetsnbextension = [
     {file = "widgetsnbextension-3.5.1.tar.gz", hash = "sha256:079f87d87270bce047512400efd70238820751a11d2d8cb137a5a5bdbaf255c7"},
 ]
 zipp = [
-    {file = "zipp-3.1.0-py3-none-any.whl", hash = "sha256:aa36550ff0c0b7ef7fa639055d797116ee891440eac1a56f378e2d3179e0320b"},
-    {file = "zipp-3.1.0.tar.gz", hash = "sha256:c599e4d75c98f6798c509911d08a22e6c021d074469042177c8c86fb92eefd96"},
+    {file = "zipp-3.2.0-py3-none-any.whl", hash = "sha256:43f4fa8d8bb313e65d8323a3952ef8756bf40f9a5c3ea7334be23ee4ec8278b6"},
+    {file = "zipp-3.2.0.tar.gz", hash = "sha256:b52f22895f4cfce194bc8172f3819ee8de7540aa6d873535a8668b730b8b411f"},
 ]
