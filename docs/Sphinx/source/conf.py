@@ -30,6 +30,8 @@ author = 'SymEngine Development Team'
 extensions = [
     'breathe',
     'exhale',
+    'myst_parser',
+    'myst_nb',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
