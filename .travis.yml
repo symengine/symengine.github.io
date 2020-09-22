@@ -14,7 +14,7 @@ script:
 
 before_cache:
   - mkdir -p $HOME/nix.store
-  - nix copy --to file://$HOME/nix.store -f default.nix buildInputs
+  - nix copy --to file://$HOME/nix.store -f shell.nix buildInputs
 
 cache:
   nix: true
@@ -29,6 +29,6 @@ deploy:
   github_token: $GH_TOKEN # Set in the settings page of your repository, as a secure variable
   keep_history: true
   target_branch: master # Required for user pages
-  # fqdn: symengine.org
+  fqdn: symengine.org
   on:
     branch: src
