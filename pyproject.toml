@@ -13,6 +13,7 @@ nbsphinx = "^0.7.1"
 myst-nb = "^0.10.1"
 sphinx-book-theme = "^0.0.36"
 coverxygen = "^1.5.0"
+sphinx-nervproject-theme = "^2.0.2"
 
 [tool.poetry.dev-dependencies]
 

@@ -788,7 +788,7 @@ wcwidth = "*"
 [[package]]
 category = "main"
 description = "Run a subprocess in a pseudo terminal"
-marker = "sys_platform != \"win32\" or os_name != \"nt\" or python_version >= \"3.3\" and sys_platform != \"win32\""
+marker = "python_version >= \"3.3\" and sys_platform != \"win32\" or sys_platform != \"win32\" or os_name != \"nt\" or python_version >= \"3.3\" and sys_platform != \"win32\" and (python_version >= \"3.3\" and sys_platform != \"win32\" or sys_platform != \"win32\")"
 name = "ptyprocess"
 optional = false
 python-versions = "*"
@@ -1002,6 +1002,29 @@ sphinx = "*"
 code_style = ["flake8 (>=3.7.0,<3.8.0)", "black", "pre-commit (1.17.0)"]
 sphinx = ["folium", "numpy", "matplotlib", "ipywidgets", "pandas", "nbclient", "myst-nb (>=0.9.1,<0.10.0)", "sphinx-togglebutton (>=0.2.1)", "sphinx-copybutton", "plotly", "sphinxcontrib-bibtex", "sphinx-thebe"]
 testing = ["coverage", "pytest (>=3.6,<4)", "pytest-cov", "beautifulsoup4", "pytest-regressions"]
+
+[[package]]
+category = "main"
+description = "Use font-awesome icons in SVG form"
+name = "sphinx-fasvg"
+optional = false
+python-versions = "*"
+version = "0.1.3"
+
+[package.dependencies]
+sphinx = ">=2.0.0"
+
+[[package]]
+category = "main"
+description = "A Sphinx-doc theme based on Vuepress"
+name = "sphinx-nervproject-theme"
+optional = false
+python-versions = "*"
+version = "2.0.2"
+
+[package.dependencies]
+sphinx = ">=3.0.0"
+sphinx-fasvg = "*"
 
 [[package]]
 category = "main"
@@ -1221,7 +1244,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "a5ada4e4511d4df6f06996b7a4774739b182181d6e67fafc15af0c4033abe338"
+content-hash = "267222ed8b4b8675e23bd46e6fd5c3dfbedea51bf9bdd2e7dfb24c5510720dce"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -1710,6 +1733,12 @@ sphinx = [
 sphinx-book-theme = [
     {file = "sphinx-book-theme-0.0.36.tar.gz", hash = "sha256:bffaf3dd9099b07f1b628aff9e557e5ca16c71f0c8b4dc84a7a182303ae8b8cf"},
     {file = "sphinx_book_theme-0.0.36-py3-none-any.whl", hash = "sha256:92deb9e7a01292caaa946e2fb8e4b237e15e464a426b537618ea85eadc2cbf3f"},
+]
+sphinx-fasvg = [
+    {file = "sphinx_fasvg-0.1.3.tar.gz", hash = "sha256:549d96c1edecc3f219d6c82d4914666868ce79f693a99128e9ea926c1aed774c"},
+]
+sphinx-nervproject-theme = [
+    {file = "sphinx_nervproject_theme-2.0.2.tar.gz", hash = "sha256:0f400f356a67e0f00c6ed00de00d0213da793e2f333131670cc764b6e29601b3"},
 ]
 sphinx-togglebutton = [
     {file = "sphinx-togglebutton-0.2.2.tar.gz", hash = "sha256:61f1149351643de71adf323406ad753935bbdec5790c27344da1ea7baa70a867"},
