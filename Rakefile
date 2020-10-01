@@ -45,8 +45,15 @@ task :mkDoxy do
   system('doxygen', DOXYFILE)
 end
 
+desc "Build doxyrest"
+task :mkDoxyRest, [:builder] => "mkDoxy" do |task, args|
+  args.with_defaults(:builder => "html")
+  Dir.chdir(to = CWD)
+  sh "nix-shell #{File.join(CWD,"shell.nix")} --run 'doxyrest -c ./docs/doxyrestConf.lua'"
+end
+
 desc "Build Sphinx"
-task :mkSphinx, [:builder] => "mkDoxy" do |task, args|
+task :mkSphinx, [:builder] => ["mkDoxyRest"] do |task, args|
   args.with_defaults(:builder => "html")
   Dir.chdir(to = File.join(CWD,"docs/Sphinx"))
   sh "poetry install"

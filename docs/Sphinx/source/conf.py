@@ -10,8 +10,8 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
+import os
+import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
 
@@ -67,6 +67,11 @@ primary_domain = 'cpp'
 # Tell sphinx what the pygments highlight language should be.
 highlight_language = 'cpp'
 
+# -- Doxyrest Settings -------------------------------------------------
+# Thankfully the same everywhere, nix FTW
+sys.path.insert(1, os.path.abspath('/nix/store/46ay34g83xkx7hp2pf760r21fxy5r3aj-doxyrest/share/doxyrest/sphinx'))
+extensions += ['doxyrest', 'cpplexer']
+exclude_patterns += ['page_index.rst']
 
 # -- Options for HTML output -------------------------------------------------
 

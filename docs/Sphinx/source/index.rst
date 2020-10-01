@@ -10,7 +10,9 @@ Welcome to Symengine's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   api/library_root
+   ..
+      api/library_root
+   gen_doxyrest
 
 Indices and tables
 ==================
