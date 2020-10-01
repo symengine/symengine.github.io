@@ -7,5 +7,5 @@ else
 	start_time=$(date +%s)
 	$1
 	end_time=$(date +%s)
-	echo execution time was $(expr $end_time - $start_time) s.
+	echo execution time was $(($end_time - $start_time)) s and $(bc <<<"scale=3; $(($end_time - $start_time))/60") minutes.
 fi
