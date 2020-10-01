@@ -491,7 +491,7 @@ docs/site/
 Manifest.toml
 
 # Project Docs
-gen_docs/
+gen_*
 /_build/
 api/
 .envrc
