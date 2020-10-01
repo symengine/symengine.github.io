@@ -470,6 +470,17 @@ nbformat = "*"
 
 [[package]]
 category = "main"
+description = "A lexer and codec to work with LaTeX code in Python."
+name = "latexcodec"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.0.1"
+
+[package.dependencies]
+six = ">=1.4.1"
+
+[[package]]
+category = "main"
 description = "Sass for Python: A straightforward binding of libsass for Python."
 name = "libsass"
 optional = false
@@ -698,6 +709,17 @@ test = ["nose", "coverage", "requests", "nose-warnings-filters", "nbval", "nose-
 
 [[package]]
 category = "main"
+description = "Ordered Set."
+name = "oset"
+optional = false
+python-versions = "*"
+version = "0.1.3"
+
+[package.dependencies]
+setuptools = "*"
+
+[[package]]
+category = "main"
 description = "Core utilities for Python packages"
 name = "packaging"
 optional = false
@@ -777,6 +799,32 @@ name = "ptyprocess"
 optional = false
 python-versions = "*"
 version = "0.6.0"
+
+[[package]]
+category = "main"
+description = "A BibTeX-compatible bibliography processor in Python"
+name = "pybtex"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*"
+version = "0.22.2"
+
+[package.dependencies]
+PyYAML = ">=3.01"
+latexcodec = ">=1.0.4"
+six = "*"
+
+[[package]]
+category = "main"
+description = "A docutils backend for pybtex."
+name = "pybtex-docutils"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "0.2.2"
+
+[package.dependencies]
+docutils = ">=0.8"
+pybtex = ">=0.16"
+six = "*"
 
 [[package]]
 category = "main"
@@ -989,6 +1037,20 @@ testing = ["coverage", "pytest (>=3.6,<4)", "pytest-cov", "beautifulsoup4", "pyt
 
 [[package]]
 category = "main"
+description = "Add a copy button to each of your code cells."
+name = "sphinx-copybutton"
+optional = false
+python-versions = "*"
+version = "0.3.0"
+
+[package.dependencies]
+sphinx = ">=1.8"
+
+[package.extras]
+code_style = ["flake8 (>=3.7.0,<3.8.0)", "black", "pre-commit (1.17.0)"]
+
+[[package]]
+category = "main"
 description = "Use font-awesome icons in SVG form"
 name = "sphinx-fasvg"
 optional = false
@@ -1009,6 +1071,21 @@ version = "2.0.2"
 [package.dependencies]
 sphinx = ">=3.0.0"
 sphinx-fasvg = "*"
+
+[[package]]
+category = "main"
+description = "Add a copy button to each of your code cells."
+name = "sphinx-thebe"
+optional = false
+python-versions = "*"
+version = "0.0.7"
+
+[package.dependencies]
+sphinx = ">=1.8"
+
+[package.extras]
+sphinx = ["myst-parser", "sphinx-book-theme", "jupyter-sphinx"]
+testing = ["pytest", "pytest-regressions", "beautifulsoup4"]
 
 [[package]]
 category = "main"
@@ -1038,6 +1115,20 @@ version = "1.0.2"
 [package.extras]
 lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest"]
+
+[[package]]
+category = "main"
+description = "A Sphinx extension for BibTeX style citations."
+name = "sphinxcontrib-bibtex"
+optional = false
+python-versions = "*"
+version = "1.0.0"
+
+[package.dependencies]
+Sphinx = ">=2.0"
+oset = ">=0.1.3"
+pybtex = ">=0.20"
+pybtex-docutils = ">=0.2.0"
 
 [[package]]
 category = "main"
@@ -1228,7 +1319,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "fa2d56fab11bd9e5abd9e35c00fc322f6a2fa71103a3c880f61f0e96a3ac92f3"
+content-hash = "b5829293bfc4dcf946e01d9b96369212cfa3bf67371f96da005609820181d6ea"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -1432,6 +1523,10 @@ jupyter-sphinx = [
     {file = "jupyter_sphinx-0.3.2-py3-none-any.whl", hash = "sha256:301e36d0fb3007bb5802f6b65b60c24990eb99c983332a2ab6eecff385207dc9"},
     {file = "jupyter_sphinx-0.3.2.tar.gz", hash = "sha256:37fc9408385c45326ac79ca0452fbd7ae2bf0e97842d626d2844d4830e30aaf2"},
 ]
+latexcodec = [
+    {file = "latexcodec-2.0.1-py2.py3-none-any.whl", hash = "sha256:c277a193638dc7683c4c30f6684e3db728a06efb0dc9cf346db8bd0aa6c5d271"},
+    {file = "latexcodec-2.0.1.tar.gz", hash = "sha256:2aa2551c373261cefe2ad3a8953a6d6533e68238d180eb4bb91d7964adb3fe9a"},
+]
 libsass = [
     {file = "libsass-0.20.1-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:4a246e4b88fd279abef8b669206228c92534d96ddcd0770d7012088c408dff23"},
     {file = "libsass-0.20.1-cp27-cp27m-win32.whl", hash = "sha256:697f0f9fa8a1367ca9ec6869437cb235b1c537fc8519983d1d890178614a8903"},
@@ -1555,6 +1650,9 @@ notebook = [
     {file = "notebook-6.1.4-py3-none-any.whl", hash = "sha256:07b6e8b8a61aa2f780fe9a97430470485bc71262bc5cae8521f1441b910d2c88"},
     {file = "notebook-6.1.4.tar.gz", hash = "sha256:687d01f963ea20360c0b904ee7a37c3d8cda553858c8d6e33fd0afd13e89de32"},
 ]
+oset = [
+    {file = "oset-0.1.3.tar.gz", hash = "sha256:4c1fd7dec96eeff9d3260995a8e37f9f415d0bdb79975f57824e68716ac8f904"},
+]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
     {file = "packaging-20.4.tar.gz", hash = "sha256:4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8"},
@@ -1585,6 +1683,14 @@ prompt-toolkit = [
 ptyprocess = [
     {file = "ptyprocess-0.6.0-py2.py3-none-any.whl", hash = "sha256:d7cc528d76e76342423ca640335bd3633420dc1366f258cb31d05e865ef5ca1f"},
     {file = "ptyprocess-0.6.0.tar.gz", hash = "sha256:923f299cc5ad920c68f2bc0bc98b75b9f838b93b599941a6b63ddbc2476394c0"},
+]
+pybtex = [
+    {file = "pybtex-0.22.2-py2.py3-none-any.whl", hash = "sha256:9ce2ce13d8d4f5a8d3848463f58167dbbbe75a53511f1088eaa6197637cdf8cf"},
+    {file = "pybtex-0.22.2.tar.gz", hash = "sha256:00816e5f8570609d8ce3360cd23916bd3e50428a3508127578fdb4dc2b731c1c"},
+]
+pybtex-docutils = [
+    {file = "pybtex-docutils-0.2.2.tar.gz", hash = "sha256:ea90935da188a0f4de2fe6b32930e185c33a0e306154322ccc12e519ebb5fa7d"},
+    {file = "pybtex_docutils-0.2.2-py2.py3-none-any.whl", hash = "sha256:4beb8c36f4f4a5a3f437cc2ff7dea8c1c7fe655d79c1229cb432af141884875b"},
 ]
 pycparser = [
     {file = "pycparser-2.20-py2.py3-none-any.whl", hash = "sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705"},
@@ -1714,11 +1820,19 @@ sphinx-book-theme = [
     {file = "sphinx-book-theme-0.0.36.tar.gz", hash = "sha256:bffaf3dd9099b07f1b628aff9e557e5ca16c71f0c8b4dc84a7a182303ae8b8cf"},
     {file = "sphinx_book_theme-0.0.36-py3-none-any.whl", hash = "sha256:92deb9e7a01292caaa946e2fb8e4b237e15e464a426b537618ea85eadc2cbf3f"},
 ]
+sphinx-copybutton = [
+    {file = "sphinx-copybutton-0.3.0.tar.gz", hash = "sha256:4becad3a1e7c50211f1477e34fd4b6d027680e1612f497cb5b88cf85bccddaaa"},
+    {file = "sphinx_copybutton-0.3.0-py3-none-any.whl", hash = "sha256:4cd06afd0588aa43eba968bfc6105e1ec6546c50a51f880af1d89afaebc6fb58"},
+]
 sphinx-fasvg = [
     {file = "sphinx_fasvg-0.1.3.tar.gz", hash = "sha256:549d96c1edecc3f219d6c82d4914666868ce79f693a99128e9ea926c1aed774c"},
 ]
 sphinx-nervproject-theme = [
     {file = "sphinx_nervproject_theme-2.0.2.tar.gz", hash = "sha256:0f400f356a67e0f00c6ed00de00d0213da793e2f333131670cc764b6e29601b3"},
+]
+sphinx-thebe = [
+    {file = "sphinx-thebe-0.0.7.tar.gz", hash = "sha256:93276ea247aee09ccf96db6c750bbb62d8cbaaf23b67af18cd2417b7086f76fb"},
+    {file = "sphinx_thebe-0.0.7-py3-none-any.whl", hash = "sha256:101345b4c822ad07857555f9cf422f29dc5039411f814dcab9880cd18a9e473a"},
 ]
 sphinx-togglebutton = [
     {file = "sphinx-togglebutton-0.2.2.tar.gz", hash = "sha256:61f1149351643de71adf323406ad753935bbdec5790c27344da1ea7baa70a867"},
@@ -1727,6 +1841,10 @@ sphinx-togglebutton = [
 sphinxcontrib-applehelp = [
     {file = "sphinxcontrib-applehelp-1.0.2.tar.gz", hash = "sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58"},
     {file = "sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl", hash = "sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a"},
+]
+sphinxcontrib-bibtex = [
+    {file = "sphinxcontrib-bibtex-1.0.0.tar.gz", hash = "sha256:629612b001f86784669d65e662377a482052decfd9a0a17c46860878eef7b9e0"},
+    {file = "sphinxcontrib_bibtex-1.0.0-py3-none-any.whl", hash = "sha256:bebc2cba91e838f808c49dbf5735812525a11221a9b134fa4cc366990f85c864"},
 ]
 sphinxcontrib-devhelp = [
     {file = "sphinxcontrib-devhelp-1.0.2.tar.gz", hash = "sha256:ff7f1afa7b9642e7060379360a67e9c41e8f3121f2ce9164266f61b9f4b338e4"},

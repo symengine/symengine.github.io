@@ -31,6 +31,13 @@ extensions = [
     # 'breathe',
     # 'exhale',
     'myst_nb',
+    "sphinx_copybutton",
+    "sphinx_togglebutton",
+    "sphinxcontrib.bibtex",
+    "sphinx_thebe",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.viewcode",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -40,6 +47,22 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
+
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3.8", None),
+    "sphinx": ("https://www.sphinx-doc.org/en/3.x", None),
+}
+nitpick_ignore = [
+    ("py:class", "docutils.nodes.document"),
+    ("py:class", "docutils.parsers.rst.directives.body.Sidebar"),
+]
+
+numfig = True
+
+myst_admonition_enable = True
+myst_deflist_enable = True
+myst_url_schemes = ("http", "https", "mailto")
+panels_add_bootstrap_css = False
 
 # -- Exhale configuration ---------------------------------------------------
 # Setup the breathe extension
@@ -71,7 +94,7 @@ highlight_language = 'cpp'
 # Thankfully the same everywhere, nix FTW
 sys.path.insert(1, os.path.abspath('/nix/store/46ay34g83xkx7hp2pf760r21fxy5r3aj-doxyrest/share/doxyrest/sphinx'))
 extensions += ['doxyrest', 'cpplexer']
-exclude_patterns += ['page_index.rst']
+# exclude_patterns += ['page_index.rst']
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -79,8 +102,13 @@ exclude_patterns += ['page_index.rst']
 # a list of builtin themes.
 #
 # html_theme = 'nervproject'
-html_theme = 'sphinx_book_theme'
 # html_theme = 'pyramid'
+html_theme = 'sphinx_book_theme'
+# -- Sphinx Book Theme Settings
+html_theme_options = {
+    "repository_url": "https://github.com/symengine/symengine.github.io",
+    "use_issues_button": True,
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
