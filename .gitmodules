@@ -4,3 +4,6 @@
 [submodule "docs/doxyrest"]
 	path = docs/doxyrest
 	url = https://github.com/vovkos/doxyrest
+[submodule "projects/bindings/python"]
+	path = projects/bindings/python
+	url = https://github.com/symengine/symengine.py
