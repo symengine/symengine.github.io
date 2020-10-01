@@ -28,8 +28,8 @@ author = 'SymEngine Development Team'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'breathe',
-    'exhale',
+    # 'breathe',
+    # 'exhale',
     'myst_nb',
 ]
 
@@ -43,23 +43,23 @@ exclude_patterns = []
 
 # -- Exhale configuration ---------------------------------------------------
 # Setup the breathe extension
-breathe_projects = {
-    "Symengine XML": "./../../Doxygen/gen_docs/xml"
-}
-breathe_default_project = "Symengine XML"
+# breathe_projects = {
+#     "Symengine XML": "./../../Doxygen/gen_docs/xml"
+# }
+# breathe_default_project = "Symengine XML"
 
- # Setup the exhale extension
-exhale_args = {
-    # These arguments are required
-    "containmentFolder":     "./api",
-    "rootFileName":          "library_root.rst",
-    "rootFileTitle":         "Library API",
-    "doxygenStripFromPath":  "..",
-    # Suggested optional arguments
-    "createTreeView":        True,
-    # TIP: if using the sphinx-bootstrap-theme, you need
-    # "treeViewIsBootstrap": True,
-}
+#  # Setup the exhale extension
+# exhale_args = {
+#     # These arguments are required
+#     "containmentFolder":     "./api",
+#     "rootFileName":          "library_root.rst",
+#     "rootFileTitle":         "Library API",
+#     "doxygenStripFromPath":  "..",
+#     # Suggested optional arguments
+#     "createTreeView":        True,
+#     # TIP: if using the sphinx-bootstrap-theme, you need
+#     # "treeViewIsBootstrap": True,
+# }
 
 # Tell sphinx what the primary language being documented is.
 primary_domain = 'cpp'
@@ -79,10 +79,11 @@ exclude_patterns += ['page_index.rst']
 # a list of builtin themes.
 #
 # html_theme = 'nervproject'
-# html_theme = 'sphinx_book_theme'
-html_theme = 'pyramid'
+html_theme = 'sphinx_book_theme'
+# html_theme = 'pyramid'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
