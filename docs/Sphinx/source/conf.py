@@ -103,10 +103,9 @@ primary_domain = 'cpp'
 highlight_language = 'cpp'
 
 # -- Doxyrest Settings -------------------------------------------------
-# Thankfully the same everywhere, nix FTW
-sys.path.insert(1, os.path.abspath('/nix/store/46ay34g83xkx7hp2pf760r21fxy5r3aj-doxyrest/share/doxyrest/sphinx'))
+sys.path.insert(1, os.path.abspath('../../doxyrest/sphinx'))
 extensions += ['doxyrest', 'cpplexer']
-# exclude_patterns += ['page_index.rst']
+exclude_patterns += ['page_index.rst']
 
 # -- Options for HTML output -------------------------------------------------
 
