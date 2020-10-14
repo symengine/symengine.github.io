@@ -12,7 +12,9 @@
 #
 import os
 import sys
-# sys.path.insert(0, os.path.abspath('.'))
+
+# -- Python Bindings
+sys.path.insert(0, os.path.abspath('../../../projects/bindings/python/build'))
 
 
 # -- Project information -----------------------------------------------------
