@@ -1,6 +1,5 @@
 # Adapted from https://raw.githubusercontent.com/kaushalmodi/ox-hugo/master/.travis.yml
 language: nix
-sudo: true
 
 before_install:
   - sudo mkdir -p /etc/nix
@@ -15,7 +14,7 @@ before_script:
   - sudo mkdir -p /etc/nix && echo 'sandbox = true' | sudo tee /etc/nix/nix.conf
 
 script:
-  - nix-shell --run "rake mkNixDoc" --show-trace --verbose --pure
+  - rake mkDocs[html,nix]
 
 before_cache:
   - mkdir -p $HOME/nix.store
