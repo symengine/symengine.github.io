@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.abspath('../../../projects/bindings/python/build'))
 project = 'Symengine'
 copyright = '2020, SymEngine Development Team'
 author = 'SymEngine Development Team'
+master_doc = "index"
 
 
 # -- General configuration ---------------------------------------------------
