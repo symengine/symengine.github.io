@@ -51,10 +51,10 @@ task :darkServe, [:port, :runner] do |task, args|
 end
 
 desc "Build full site documentation"
-task :mkDocs, [:builder, :port, :runner] do |taks, args| 
+task :mkDocs, [:builder, :runner] do |taks, args| 
   args.with_defaults(:builder => "html", :port => "1337", :runner => "system")
   task(:mkSphinx).invoke(args.builder, args.runner)
-  task(:darkServe).invoke(args.port)
+  # task(:darkServe).invoke(args.port)
 end
 
 desc "Build doxygen"
