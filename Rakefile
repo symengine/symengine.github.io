@@ -51,10 +51,10 @@ task :darkServe, [:port, :runner] do |task, args|
 end
 
 desc "Build full site documentation"
-task :mkDocs, [:port, :runner] do |taks, args| 
+task :mkDocs, [:builder, :port, :runner] do |taks, args| 
   args.with_defaults(:builder => "html", :port => "1337", :runner => "system")
-  Rake::Task["mkSphinx"].invoke args[:runner]
-  Rake::Task["darkServe"].invoke args[:port]
+  task(:mkSphinx).invoke(args.builder, args.runner)
+  task(:darkServe).invoke(args.port)
 end
 
 desc "Build doxygen"
@@ -64,7 +64,7 @@ task :mkDoxy, [:runner] do |task, args|
   if args.runner == "system" then
     system('doxygen', DOXYFILE)
   elsif args.runner == "nix" then
-    sh "nix-shell #{NIXSHELL} --run 'doxygen #{DOXYFILE}' --pure"
+    sh "nix-shell #{NIXSHELL} --run 'doxygen #{DOXYFILE}'"
   else
     raise RunnerException.new
   end
@@ -93,12 +93,18 @@ end
 desc "Build Sphinx"
 task :mkSphinx, [:builder, :runner] => ["mkDoxyRest"] do |task, args|
   args.with_defaults(:builder => "html", :runner => "system")
-  Dir.chdir(to = File.join(CWD, SPHINXDIR))
+  Dir.chdir(to = SPHINXDIR)
   if args.runner == "system" then
     sh "poetry install"
     sh "poetry run sphinx-build source #{OUTDIR} -b #{args.builder}"
   elsif args.runner == "nix" then
-    sh "nix-shell #{NIXSHELL} --run 'sphinx-build source #{OUTDIR} -b #{args.builder}'"
+    begin
+      sh "nix-shell #{NIXSHELL} --run 'sphinx-build source #{OUTDIR} -b #{args.builder}'"
+    rescue
+      puts "Handling the case where nix errors out by rescuing with poetry"
+      sh "poetry install"
+      sh "poetry run sphinx-build source #{OUTDIR} -b #{args.builder}"
+    end 
   else
     raise RunnerException.new
   end
@@ -111,7 +117,7 @@ task :mkDocCover, [:runner] => ["mkDoxy"] do |task, args|
     sh "poetry install"
     sh "poetry run python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}"
   elsif args.runner == "nix" then
-    sh "nix-shell #{NIXSHELL} --run 'python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}' --pure"
+    sh "nix-shell #{NIXSHELL} --run 'python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}'"
   else
     raise RunnerException.new
   end
