@@ -18,6 +18,13 @@ sphinx-togglebutton = "^0.2.2"
 sphinx-thebe = "^0.0.7"
 sphinxcontrib-bibtex = "^1.0.0"
 cython = "^0.29.21"
+jupyter = "^1.0.0"
+jupyterlab = "^2.2.8"
+jupyterlab-git = "^0.22.1"
+poetry2conda = "^0.3.0"
+
+[tool.poetry2conda]
+name = "symedocs.yml"
 
 [tool.poetry.dev-dependencies]
 
