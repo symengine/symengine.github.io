@@ -15,7 +15,7 @@ OUTCOV = File.join(OUTDIR,"doc_coverage")
 
 # Exception
 class RunnerException < StandardError
-  def initialize(msg="Undefined runner, supports nix and system (with poetry)", exception_type="custom")
+  def initialize(msg="Undefined runner, supports nix and system (with conda)", exception_type="custom")
     @exception_type = exception_type
     super(msg)
   end
@@ -61,12 +61,16 @@ desc "Build doxygen"
 task :mkDoxy, [:runner] do |task, args| 
   args.with_defaults(:runner => "system")
   Dir.chdir(to = File.join(CWD,"docs/Doxygen"))
-  if args.runner == "system" then
-    system('doxygen', DOXYFILE)
-  elsif args.runner == "nix" then
-    sh "nix-shell #{NIXSHELL} --run 'doxygen #{DOXYFILE}'"
+  if ENV['dev']=="True" then
+    puts "Skipping doxygen API generation as dev is \"True\""
   else
-    raise RunnerException.new
+    if args.runner == "system" then
+      system('doxygen', DOXYFILE)
+    elsif args.runner == "nix" then
+      sh "nix-shell #{NIXSHELL} --run 'doxygen #{DOXYFILE}'"
+    else
+      raise RunnerException.new
+    end
   end
 end
 
@@ -74,19 +78,34 @@ desc "Build doxyrest"
 task :mkDoxyRest, [:builder, :runner] => "mkDoxy" do |task, args|
   args.with_defaults(:builder => "html", :runner => "system")
   Dir.chdir(to = CWD)
-  if args.runner == "system" then
-    if find_executable 'doxyrest' then
-      sh "doxyrest -c ./docs/doxyrestConf.lua"
-    elsif find_executable 'nix' then
-      puts "System has no doxyrest, trying nix"
-      sh "nix-shell #{NIXSHELL} --run 'doxyrest -c #{CWD}/docs/doxyrestConf.lua'"
-    else
-      raise ExecException.new
-    end
-  elsif args.runner == "nix" then
-    sh "nix-shell #{NIXSHELL} --run 'doxyrest -c #{CWD}/docs/doxyrestConf.lua'"
+  if ENV['dev']=="True" then
+    puts "Skipping doxyrest API generation as dev is \"True\""
   else
-    raise RunnerException.new
+    if args.runner == "system" then
+      if find_executable 'doxyrest' then
+        sh "doxyrest -c ./docs/doxyrestConf.lua"
+      elsif find_executable 'nix' then
+        begin
+          puts "System has no doxyrest, trying nix"
+          sh "nix-shell #{NIXSHELL} --run 'doxyrest -c #{CWD}/docs/doxyrestConf.lua'"
+        rescue
+          puts "Falling back to conda"
+          sh "conda run doxyrest -c #{CWD}/docs/doxyrestConf.lua"
+        end
+      else
+        raise ExecException.new
+      end
+    elsif args.runner == "nix" then
+      begin
+        puts "System has no doxyrest, trying nix"
+        sh "nix-shell #{NIXSHELL} --run 'doxyrest -c #{CWD}/docs/doxyrestConf.lua'"
+      rescue
+        puts "Falling back to conda"
+        sh "conda run doxyrest -c #{CWD}/docs/doxyrestConf.lua"
+      end
+    else
+      raise RunnerException.new
+    end
   end
 end
 
@@ -95,15 +114,23 @@ task :mkSphinx, [:builder, :runner] => ["mkDoxyRest"] do |task, args|
   args.with_defaults(:builder => "html", :runner => "system")
   Dir.chdir(to = SPHINXDIR)
   if args.runner == "system" then
-    sh "poetry install"
-    sh "poetry run sphinx-build source #{OUTDIR} -b #{args.builder}"
+    begin
+      sh "conda env create -f #{CWD}/symedocs.yml"
+    rescue
+      sh "conda env update -f #{CWD}/symedocs.yml"
+    end
+    sh "conda run sphinx-build source #{OUTDIR} -b #{args.builder}"
   elsif args.runner == "nix" then
     begin
       sh "nix-shell #{NIXSHELL} --run 'sphinx-build source #{OUTDIR} -b #{args.builder}'"
     rescue
-      puts "Handling the case where nix errors out by rescuing with poetry"
-      sh "poetry install"
-      sh "poetry run sphinx-build source #{OUTDIR} -b #{args.builder}"
+      puts "Handling the case where nix errors out by rescuing with conda"
+      begin
+        sh "conda env create -f #{CWD}/symedocs.yml"
+      rescue
+        sh "conda env update -f #{CWD}/symedocs.yml"
+      end
+      sh "conda run sphinx-build source #{OUTDIR} -b #{args.builder}"
     end 
   else
     raise RunnerException.new
@@ -114,8 +141,12 @@ desc "Build API Coverage"
 task :mkDocCover, [:runner] => ["mkDoxy"] do |task, args|
   args.with_defaults(:runner => "system")
   if args.runner == "system" then
-    sh "poetry install"
-    sh "poetry run python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}"
+    begin
+      sh "conda env create -f #{CWD}/symedocs.yml"
+    rescue
+      sh "conda env update -f #{CWD}/symedocs.yml"
+    end
+    sh "conda run python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}"
   elsif args.runner == "nix" then
     sh "nix-shell #{NIXSHELL} --run 'python3 -m coverxygen --xml-dir #{DOXXML} --src-dir #{SYMESRC} --output #{DOCCOV}'"
   else
