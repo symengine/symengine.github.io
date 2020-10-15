@@ -5,13 +5,4 @@ let
   customPython = pkgs.poetry2nix.mkPoetryEnv { projectDir = ./.; };
   doxyrest =
     pkgs.callPackage ./nix/pkgs/doxyrest.nix { pythonEnv = customPython; };
-in pkgs.mkShell {
-  buildInputs = with pkgs; [
-    doxygen
-    customPython
-    rake
-    lcov
-    darkhttpd
-    doxyrest
-  ];
-}
+in pkgs.mkShell { buildInputs = with pkgs; [ doxygen rake lcov darkhttpd ]; }

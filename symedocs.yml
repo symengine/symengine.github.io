@@ -19,6 +19,7 @@ dependencies:
   - xtensor
   - symengine
   - pip
+  - doxyrest
   - pip:
       - sphinx-nervproject-theme
       - coverxygen
