@@ -58,9 +58,9 @@ desc "Serve site with darkhttpd"
 task :darkServe, [:port, :runner] do |task, args|
   args.with_defaults(:port => "1337", :runner => "system")
   if args.runner == "system"
-    sh "darkhttpd #{OUTPUB} --port #{args.port}"
+    sh "darkhttpd #{CWD} --port #{args.port}"
   elsif args.runner == "nix"
-    sh "nix-shell #{NIXSHELL} --run 'darkhttpd #{OUTPUB} --port #{args.port}'"
+    sh "nix-shell #{NIXSHELL} --run 'darkhttpd #{CWD} --port #{args.port}'"
   else
     raise RunnerException.new
   end
