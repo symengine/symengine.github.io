@@ -15,13 +15,12 @@ tree
 
 ## Tutorial Contributions
 
-Ensure the `conda` environment is setup. For working on tutorial contributions, it is not always desirable rebuild the API documentation (which can take up 2 minutes). The environment variable `dev` can be set to prevent them from being rebuilt.
+Ensure the `conda` environment is setup. The task for the tutorials are under a separate `Rakefile` namespace, that is, the `tut:` space.
 
 ```bash
 conda activate symedocs
-export dev="True"
 rake clean
-bundle exec filewatcher "docs/Sphinx/source/**/*.{md,py}" "rake mkDocs[html,nix]"
+bundle exec filewatcher "docs/tutorials/Sphinx/**/*.{md,py}" "rake tut:mkDocs[html,nix]"
 ```
 
 In another terminal, it is possible to run the development server so as to view the changes as they occur.
