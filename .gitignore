@@ -493,9 +493,8 @@ Manifest.toml
 # Project Docs
 gen_*
 /_build/
-api/
 .envrc
 public/
 jupyter_execute/
-/.jupyter_cache/
+.jupyter_cache/
 *.ipynb
