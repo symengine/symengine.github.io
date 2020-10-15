@@ -31,7 +31,8 @@ before_script:
 script:
   - conda env create -f symedocs.yml
   - conda activate symedocs
-  - rake mkDocs[html,nix]
+  - rake api:mkDocs[html,nix]
+  - rake tut:mkDocs[html,nix]
 
 before_cache:
   - mkdir -p $HOME/nix.store
