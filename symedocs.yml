@@ -22,4 +22,5 @@ dependencies:
   - doxyrest
   - pip:
       - sphinx-nervproject-theme
+      - jupyter-book
       - coverxygen
