@@ -62,6 +62,11 @@ nitpick_ignore = [
 
 numfig = True
 
+mathjax_config = {
+    'extensions': ['tex2jax.js'],
+    'jax': ['input/TeX', 'output/HTML-CSS'],
+}
+
 # MyST and MyST-NB configuration ---------------------------------------------------
 
 myst_dmath_enable = True
@@ -69,13 +74,14 @@ myst_dmath_allow_labels = True
 myst_dmath_allow_space = True
 myst_dmath_allow_digits = True
 myst_deflist_enable = True
+myst_update_mathjax = True
 # Non-default
 myst_amsmath_enable = True
 myst_admonition_enable = True
 myst_url_schemes = ("http", "https", "mailto")
 panels_add_bootstrap_css = False
 # NB stuff
-jupyter_cache = "./jupCache"
+jupyter_execute_notebooks = "cache"
 
 # -- Exhale configuration ---------------------------------------------------
 # Setup the breathe extension
