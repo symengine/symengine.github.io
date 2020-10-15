@@ -496,3 +496,5 @@ gen_*
 api/
 .envrc
 public/
+jupyter_execute/
+/.jupyter_cache/
