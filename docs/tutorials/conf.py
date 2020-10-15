@@ -13,13 +13,9 @@
 import os
 import sys
 
-# -- Python Bindings
-sys.path.insert(0, os.path.abspath('../../../projects/bindings/python/build'))
-
-
 # -- Project information -----------------------------------------------------
 
-project = 'Symengine'
+project = 'Symengine Tutorials'
 copyright = '2020, SymEngine Development Team'
 author = 'SymEngine Development Team'
 master_doc = "index"
@@ -31,8 +27,6 @@ master_doc = "index"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    # 'breathe',
-    # 'exhale',
     'myst_nb',
     "sphinx_copybutton",
     "sphinx_togglebutton",
@@ -54,6 +48,7 @@ exclude_patterns = []
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3.8", None),
     "sphinx": ("https://www.sphinx-doc.org/en/3.x", None),
+    "symengineAPI": ("../../public/api", None)
 }
 nitpick_ignore = [
     ("py:class", "docutils.nodes.document"),
@@ -82,45 +77,18 @@ myst_url_schemes = ("http", "https", "mailto")
 panels_add_bootstrap_css = False
 # NB stuff
 jupyter_execute_notebooks = "cache"
-
-# -- Exhale configuration ---------------------------------------------------
-# Setup the breathe extension
-# breathe_projects = {
-#     "Symengine XML": "./../../Doxygen/gen_docs/xml"
-# }
-# breathe_default_project = "Symengine XML"
-
-#  # Setup the exhale extension
-# exhale_args = {
-#     # These arguments are required
-#     "containmentFolder":     "./api",
-#     "rootFileName":          "library_root.rst",
-#     "rootFileTitle":         "Library API",
-#     "doxygenStripFromPath":  "..",
-#     # Suggested optional arguments
-#     "createTreeView":        True,
-#     # TIP: if using the sphinx-bootstrap-theme, you need
-#     # "treeViewIsBootstrap": True,
-# }
-
+ 
 # Tell sphinx what the primary language being documented is.
 primary_domain = 'cpp'
 
 # Tell sphinx what the pygments highlight language should be.
 highlight_language = 'cpp'
 
-# -- Doxyrest Settings -------------------------------------------------
-sys.path.insert(1, os.path.abspath('../../doxyrest/sphinx'))
-extensions += ['doxyrest', 'cpplexer']
-exclude_patterns += ['page_index.rst']
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
-# html_theme = 'nervproject'
-# html_theme = 'pyramid'
+
 html_theme = 'sphinx_book_theme'
 # -- Sphinx Book Theme Settings
 html_theme_options = {
@@ -132,4 +100,3 @@ html_theme_options = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-

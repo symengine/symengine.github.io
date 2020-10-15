@@ -1,9 +1,9 @@
 -- Specify input and output paths:
 
-OUTPUT_FILE = "docs/Sphinx/source/gen_doxyrest/index.rst"
-INPUT_FILE = "docs/Doxygen/gen_docs/xml/index.xml"
-FRAME_FILE = "docs/doxyrest/frame/cfamily/index.rst.in"
-FRAME_DIR_LIST = { "docs/doxyrest/frame/cfamily", "docs/doxyrest/frame/common" }
+OUTPUT_FILE = "docs/api/Sphinx/gen_doxyrest/index.rst"
+INPUT_FILE = "docs/api/Doxygen/gen_docs/xml/index.xml"
+FRAME_FILE = "docs/api/doxyrest/frame/cfamily/index.rst.in"
+FRAME_DIR_LIST = { "docs/api/doxyrest/frame/cfamily", "docs/api/doxyrest/frame/common" }
 
 -- Usually, Doxygen-based documentation has a main page (created with
 -- the \mainpage directive). If that's the case, force-include
