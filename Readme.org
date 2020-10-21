@@ -1,30 +1,30 @@
 * About
 This is the source branch for the web-presence of the entire Symengine project.
-** Generation
-The documentation can be generated in a reproducible manner using Nix, or locally in a more accessible manner for non-nix users using ~poetry~.
-*** Automated
-The easiest way to run is simply to use:
-#+BEGIN_SRC bash
-./scripts/builder.sh
-#+END_SRC
+** Tutorial Contributions
+To start working on tutorials, the following three-terminal workflow is recommended.
+*** Setup
+For the first terminal, we will instantiate a ~jupyter~ server.
+#+begin_src bash
+conda env create -f symedocs.yml
+conda activate symedocs
+conda shell jupyter lab
+#+end_src
 
-However, this method is meant primarily for Travis.
-*** Poetry
-For hacking on the documentation without using ~nix~ simply work with the ~poetry~ environment. As long as the ~doxygen~ version does not deviate too much from the ~nix~ version, everything will work fine in production.
-#+BEGIN_SRC bash
-poetry install
-poetry shell
-cd docs/Doxygen
-doxygen Doxyfile-mcss.cfg
-cd ../Sphinx
-make html
-mv build/html ../../public
-#+END_SRC
-*** Local Preview
-For testing local changes, ~darkhttpd~ is recommended.
-#+BEGIN_SRC bash
-# After building
-darkhttpd public
-#+END_SRC
+In another terminal, you can and should set up a file-watching task.
+
+#+begin_src bash
+bundle exec filewatcher "docs/Sphinx/source/**/*.{md,py}" "rake tut:mkDocs[html,nix]"
+#+end_src
+
+For the final terminal, we will spin up a server for the output.
+#+begin_src bash
+rake darkServe
+#+end_src
+
+In case you have cloned the repo for the first time, and are modifying an existing tutorial, note that the ~ipynb~ files need to be created.
+#+begin_src bash
+cd docs/tutorials
+conda run "jupytext --to ipynb firststeps.md"
+#+end_src
 * License
 Currently licensed under the flimsiest of licenses, the CC BY 4.0

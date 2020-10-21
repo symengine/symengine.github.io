@@ -6,11 +6,33 @@ before_install:
   - echo "substituters = https://cache.nixos.org/ file://$HOME/nix.store" | sudo tee -a /etc/nix/nix.conf > /dev/null
   - echo 'require-sigs = false' | sudo tee -a /etc/nix/nix.conf > /dev/null
 
+install:
+  - bundle
+  # We do this conditionally because it saves us some downloading if the
+  # version is the same.
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+    wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
+
+  # Replace dep1 dep2 ... with your dependencies
+
 before_script:
   - sudo mkdir -p /etc/nix && echo 'sandbox = true' | sudo tee /etc/nix/nix.conf
 
 script:
-  - nix-shell --run "rake mkNixDoc" --show-trace --verbose --pure
+  - conda env create -f symedocs.yml
+  - conda activate symedocs
+  - rake api:mkDocs[html,nix]
+  - rake tut:mkDocs[html,nix]
 
 before_cache:
   - mkdir -p $HOME/nix.store
