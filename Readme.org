@@ -7,7 +7,7 @@ For the first terminal, we will instantiate a ~jupyter~ server.
 #+begin_src bash
 conda env create -f symedocs.yml
 conda activate symedocs
-conda shell jupyter lab
+jupyter lab
 #+end_src
 
 In another terminal, you can and should set up a file-watching task.

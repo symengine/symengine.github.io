@@ -14,12 +14,14 @@ dependencies:
   - jupyter>=1.0.0,<2.0.0
   - jupyterlab>=2.2.8,<3.0.0
   - jupyterlab-git>=0.22.1,<0.23.0
+  - jupyter_nbextensions_configurator
   - jupytext
   - xeus-cling
   - xtensor
   - symengine
   - pip
   - doxyrest
+  - ld_impl_linux-64=2.35=h769bd43_9 # A bugfix for https://github.com/ContinuumIO/anaconda-issues/issues/11603#issuecomment-586124255
   - pip:
       - sphinx-nervproject-theme
       - coverxygen
