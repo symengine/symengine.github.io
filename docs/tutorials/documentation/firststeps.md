@@ -13,9 +13,12 @@ kernelspec:
 ---
 
 # First Steps
+
 This is meant to be a gentle introduction to the `symengine` C++ library.
+
 ## Working with Expressions
-We will start by inspecting the use of :ref:`Expression <doxid-class_sym_engine_1_1_expression>`.
+
+We will start by inspecting the use of {ref}`Expression <doxid-class_sym_engine_1_1_expression>`.
 
 ```{code-cell}
 #include <symengine/expression.h>
@@ -27,7 +30,7 @@ Expression x("x");
 ```
 
 ```{code-cell}
-auto ex = pow(x+sqrt(Expression(2)), 5);
+auto ex = pow(x+sqrt(Expression(2)), 6);
 ex
 ```
 

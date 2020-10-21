@@ -66,6 +66,11 @@ task :darkServe, [:port, :runner] do |task, args|
   end
 end
 
+# Maybe a better browsersync setup
+# Generate notebooks <-> markdown
+# https://github.com/executablebooks/sphinx-autobuild
+# https://github.com/executablebooks/MyST-Parser/issues/263
+
 namespace "api" do
   desc "Build full API documentation"
   task :mkDocs, [:builder, :runner] do |taks, args|
