@@ -28,3 +28,10 @@ In another terminal, it is possible to run the development server so as to view 
 ```bash
 rake darkServe
 ```
+
+Run the task to convert notebooks to markdown, or recall the manual option:
+
+```bash
+jupytext --to ipynb firststeps.md
+jupytext mynotebook.ipynb --to myst
+```
