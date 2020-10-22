@@ -20,10 +20,10 @@ DOXLUA = File.join(BASEAPI, "doxyrestConf.lua")
 # Coverage
 OUTCOV = File.join(OUTAPI, "doc_coverage")
 DOCCOV = File.join(OUTAPI, "doc-coverage.info")
-# Tutorials
-BASETUT = File.join(CWD, "docs/tutorials")
-GENTUT = File.join(BASETUT, "_build")
-OUTTUT = File.join(CWD, "public", "tut")
+# Wiki
+BASEWIKI = File.join(CWD, "docs/wiki")
+GENWIKI = File.join(BASEWIKI, "_build")
+OUTWIKI = File.join(CWD, "public", "wiki")
 
 # Exception
 class RunnerException < StandardError
@@ -53,7 +53,7 @@ task :clean do
   rm_rf "docs/api/Doxygen/gen_docs"
   rm_rf "docs/api/Sphinx/build"
   rm_rf "docs/api/Sphinx/gen_doxyrest"
-  rm_rf "docs/tutorials/_build"
+  rm_rf "docs/wiki/_build"
 end
 
 desc "Serve site with darkhttpd"
@@ -166,32 +166,32 @@ namespace "api" do
   end
 end
 
-# Tutorials
+# Wiki 
 
-namespace "tut" do
-  desc "Build full tutorials"
+namespace "wiki" do
+  desc "Build full wiki"
   task :mkDocs, [:builder, :runner] do |taks, args|
     args.with_defaults(:builder => "html", :runner => "system")
-    Rake::Task["tut:mkSphinx"].invoke(args.builder, args.runner)
+    Rake::Task["wiki:mkSphinx"].invoke(args.builder, args.runner)
   end
-  desc "Build Tutorials with Sphinx"
+  desc "Build wiki with jupyter-book"
   task :mkSphinx, [:builder, :runner] do |task, args|
     args.with_defaults(:builder => "html", :runner => "system")
     if args.runner == "system"
-      sh "conda run jupyter-book build #{BASETUT} --builder #{args.builder}"
+      sh "conda run jupyter-book build #{BASEWIKI} --builder #{args.builder}"
     elsif args.runner == "nix"
       begin
-        sh "nix-shell #{NIXSHELL} --run 'jupyter-book build #{BASETUT} -b #{args.builder}'"
+        sh "nix-shell #{NIXSHELL} --run 'jupyter-book build #{BASEWIKI} -b #{args.builder}'"
       rescue
         puts "Handling the case where nix errors out by rescuing with conda"
-        sh "conda run jupyter-book build #{BASETUT} --builder #{args.builder}"
+        sh "conda run jupyter-book build #{BASEWIKI} --builder #{args.builder}"
       end
     else
       raise RunnerException.new
     end
     puts "Moving files to the right location"
-    Dir.glob(File.join(GENTUT,"html","*")).each do|file|
-      FileUtils.move file, File.join(OUTTUT, File.basename(file))
+    Dir.glob(File.join(GENWIKI,"html","*")).each do|file|
+      FileUtils.move file, File.join(OUTWIKI, File.basename(file))
     end
   end
 end

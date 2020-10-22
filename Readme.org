@@ -1,7 +1,7 @@
 * About
 This is the source branch for the web-presence of the entire Symengine project.
-** Tutorial Contributions
-To start working on tutorials, the following three-terminal workflow is recommended.
+** Wiki Contributions
+To start working on the wiki, the following three-terminal workflow is recommended.
 *** Setup
 For the first terminal, we will instantiate a ~jupyter~ server.
 #+begin_src bash
@@ -13,7 +13,7 @@ jupyter lab
 In another terminal, you can and should set up a file-watching task.
 
 #+begin_src bash
-bundle exec filewatcher "docs/Sphinx/source/**/*.{md,py}" "rake tut:mkDocs[html,nix]"
+bundle exec filewatcher "docs/Sphinx/source/**/*.{md,py}" "rake wiki:mkDocs[html,nix]"
 #+end_src
 
 For the final terminal, we will spin up a server for the output.
@@ -23,7 +23,7 @@ rake darkServe
 
 In case you have cloned the repo for the first time, and are modifying an existing tutorial, note that the ~ipynb~ files need to be created.
 #+begin_src bash
-cd docs/tutorials
+cd docs/wiki
 conda run "jupytext --to ipynb firststeps.md"
 #+end_src
 * License

@@ -13,14 +13,14 @@ tree
 
 ## API Contributions
 
-## Tutorial Contributions
+## Wiki Contributions
 
-Ensure the `conda` environment is setup. The task for the tutorials are under a separate `Rakefile` namespace, that is, the `tut:` space.
+Ensure the `conda` environment is setup. The task for the wiki contributions are under a separate `Rakefile` namespace, that is, the `tut:` space.
 
 ```bash
 conda activate symedocs
 rake clean
-bundle exec filewatcher "docs/tutorials/Sphinx/**/*.{md,py}" "rake tut:mkDocs[html,nix]"
+bundle exec filewatcher "docs/wiki/Sphinx/**/*.{md,py}" "rake tut:mkDocs[html,nix]"
 ```
 
 In another terminal, it is possible to run the development server so as to view the changes as they occur.
