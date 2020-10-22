@@ -7,7 +7,7 @@ group :iruby do
   gem 'iruby'
   gem 'irb'
   gem 'cztop'
-  gem 'rbczmq'
+  # gem 'rbczmq' # Kills irb for a bit
 end
 
 group :pry do
