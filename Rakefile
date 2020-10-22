@@ -1,5 +1,6 @@
 require "rake"
 require "mkmf" # for find_executable
+require "fileutils" # Cross Platform
 
 #############
 # Variables #
@@ -21,6 +22,7 @@ OUTCOV = File.join(OUTAPI, "doc_coverage")
 DOCCOV = File.join(OUTAPI, "doc-coverage.info")
 # Tutorials
 BASETUT = File.join(CWD, "docs/tutorials")
+GENTUT = File.join(BASETUT, "_build")
 OUTTUT = File.join(CWD, "public", "tut")
 
 # Exception
@@ -51,7 +53,7 @@ task :clean do
   rm_rf "docs/api/Doxygen/gen_docs"
   rm_rf "docs/api/Sphinx/build"
   rm_rf "docs/api/Sphinx/gen_doxyrest"
-  rm_rf "docs/tutorials/Sphinx/build"
+  rm_rf "docs/tutorials/_build"
 end
 
 desc "Serve site with darkhttpd"
@@ -176,16 +178,18 @@ namespace "tut" do
   task :mkSphinx, [:builder, :runner] do |task, args|
     args.with_defaults(:builder => "html", :runner => "system")
     if args.runner == "system"
-      sh "conda run sphinx-build #{BASETUT} #{OUTTUT} -b #{args.builder}"
+      sh "conda run jupyter-book build #{BASETUT} --builder #{args.builder}"
     elsif args.runner == "nix"
       begin
-        sh "nix-shell #{NIXSHELL} --run 'sphinx-build #{BASETUT} #{OUTTUT} -b #{args.builder}'"
+        sh "nix-shell #{NIXSHELL} --run 'jupyter-book build #{BASETUT} -b #{args.builder}'"
       rescue
         puts "Handling the case where nix errors out by rescuing with conda"
-        sh "conda run sphinx-build #{BASETUT} #{OUTTUT} -b #{args.builder}"
+        sh "conda run jupyter-book build #{BASETUT} --builder #{args.builder}"
       end
     else
       raise RunnerException.new
     end
+    puts "Moving files to the right location"
+    sh "mv #{File.join(GENTUT,'html')}/* #{OUTTUT} -f"
   end
 end
