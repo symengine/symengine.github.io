@@ -190,6 +190,8 @@ namespace "tut" do
       raise RunnerException.new
     end
     puts "Moving files to the right location"
-    sh "mv #{File.join(GENTUT,'html')}/* #{OUTTUT} -f"
+    Dir.glob(File.join(GENTUT,"html","*")).each do|file|
+      FileUtils.move file, File.join(OUTTUT, File.basename(file))
+    end
   end
 end

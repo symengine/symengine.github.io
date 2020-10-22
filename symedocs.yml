@@ -5,7 +5,6 @@ dependencies:
   - python>=3.8,<4.0
   - breathe>=4.20.0,<5.0.0
   - myst-nb>=0.10.1,<0.11.0
-  - sphinx-book-theme>=0.0.36,<0.0.37
   - sphinx-copybutton>=0.3.0,<0.4.0
   - sphinx-togglebutton>=0.2.2,<0.3.0
   - sphinx-thebe>=0.0.7,<0.0.8
@@ -22,6 +21,10 @@ dependencies:
   - pip
   - doxyrest
   - ld_impl_linux-64=2.35=h769bd43_9 # A bugfix for https://github.com/ContinuumIO/anaconda-issues/issues/11603#issuecomment-586124255
+  - sphinx
+  - pandas
+  - matplotlib
   - pip:
       - sphinx-nervproject-theme
       - coverxygen
+      - jupyter-book
