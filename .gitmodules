@@ -7,3 +7,12 @@
 [submodule "projects/bindings/python"]
 	path = projects/bindings/python
 	url = https://github.com/symengine/symengine.py
+[submodule "projects/bindings/ruby"]
+	path = projects/bindings/ruby
+	url = https://github.com/symengine/symengine.rb
+[submodule "projects/bindings/haskell"]
+	path = projects/bindings/haskell
+	url = https://github.com/symengine/symengine.hs
+[submodule "projects/bindings/julia"]
+	path = projects/bindings/julia
+	url = https://github.com/symengine/symengine.jl
