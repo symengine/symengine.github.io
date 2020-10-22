@@ -190,6 +190,8 @@ namespace "wiki" do
       raise RunnerException.new
     end
     puts "Moving files to the right location"
+    FileUtils.mkdir_p OUTWIKI
+    # sh "cp -rf #{File.join(GENWIKI,"html")}/* #{OUTWIKI}"
     Dir.glob(File.join(GENWIKI,"html","*")).each do|file|
       FileUtils.move file, File.join(OUTWIKI, File.basename(file))
     end
