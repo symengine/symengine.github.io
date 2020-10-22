@@ -492,7 +492,7 @@ Manifest.toml
 
 # Project Docs
 gen_*
-/_build/
+_build/
 .envrc
 public/
 jupyter_execute/
