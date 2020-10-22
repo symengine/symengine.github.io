@@ -53,6 +53,10 @@
         - file: contrib/api/rb
         - file: contrib/api/jl
 # TODO
-# Make landing page
+# Make landing page (logo?)
+# BENCHMARKS!!
+# Open PR
 # Link docs correctly (set build system)
+# Build all the APIs (currently Py and C++ only)
 # Add thebe
+# Skip ruby, open issue, keep placeholder
