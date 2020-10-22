@@ -2,10 +2,53 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 #
 - file: intro
-- file: content
-  sections:
-    - file: markdown
-    - file: notebooks
-    - file: firststeps
-    - file: docsetup
-    - file: install
+- part: Installation
+  chapters:
+    - file: inst/cpp
+      sections:
+        - file: inst/cppLib
+        - file: inst/cppXeus
+    - file: inst/bindings
+- part: Usage
+  chapters:
+    - file: use/cpp/ind
+      title: "C++ Core"
+      sections:
+        - file: use/cpp/matrices
+        - file: use/cpp/expressions
+        - file: use/cpp/finitediff
+        - file: use/cpp/ntheory
+        - file: use/cpp/polynomials
+    - file: use/cpp/cs/caseStudy_1
+    - file: use/py/ind
+      title: "Python Bindings"
+      sections:
+        - file: use/py/matrices
+        - file: use/py/expressions
+        - file: use/py/finitediff
+        - file: use/py/ntheory
+        - file: use/py/polynomials
+    - file: use/py/cs/caseStudy_1
+    - file: use/rb/ind
+      title: "Ruby Bindings"
+      sections:
+        - file: use/rb/matrices
+        - file: use/rb/expressions
+        - file: use/rb/finitediff
+        - file: use/rb/ntheory
+        - file: use/rb/polynomials
+    - file: use/rb/cs/caseStudy_1
+- part: Contributing
+  chapters:
+    - file: contrib/documentation
+      sections:
+        - file: contrib/tutorials
+        - file: contrib/apidocs
+    - file: contrib/cpp/ind
+      sections:
+        - file: contrib/cpp/style
+    - file: contrib/apiBindings
+      sections:
+        - file: contrib/api/py
+        - file: contrib/api/rb
+        - file: contrib/api/jl
