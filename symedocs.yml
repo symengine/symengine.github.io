@@ -18,6 +18,7 @@ dependencies:
   - xeus-cling
   - xtensor
   - symengine
+  - python-symengine
   - pip
   - doxyrest
   - ld_impl_linux-64=2.35=h769bd43_9 # A bugfix for https://github.com/ContinuumIO/anaconda-issues/issues/11603#issuecomment-586124255
