@@ -14,7 +14,6 @@ OUTPUB = File.join(CWD, "public")
 # Wiki
 BASEWIKI = File.join(CWD, "docs/wiki")
 GENWIKI = File.join(BASEWIKI, "_build")
-OUTWIKI = File.join(CWD, "public", "wiki")
 
 # Exception
 class RunnerException < StandardError
@@ -85,10 +84,10 @@ namespace "wiki" do
       raise RunnerException.new
     end
     puts "Moving files to the right location"
-    FileUtils.mkdir_p OUTWIKI
-    # sh "cp -rf #{File.join(GENWIKI,"html")}/* #{OUTWIKI}"
+    FileUtils.mkdir_p OUTPUB
+    # sh "cp -rf #{File.join(GENWIKI,"html")}/* #{OUTPUB}"
     Dir.glob(File.join(GENWIKI,"html","*")).each do|file|
-      FileUtils.move file, File.join(OUTWIKI, File.basename(file))
+      FileUtils.move file, File.join(OUTPUB, File.basename(file))
     end
   end
 end
