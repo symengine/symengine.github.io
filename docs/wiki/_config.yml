@@ -42,5 +42,5 @@ sphinx:
         - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
         - null
       symengineAPI:
-        - "../../public/api"
+        - https://symengine.github.io/api-docs/
         - null
