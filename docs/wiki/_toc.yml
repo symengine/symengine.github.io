@@ -4,14 +4,14 @@
 - file: intro
 - part: Installation
   chapters:
-    - file: inst/cpp
+    - file: inst/install
       sections:
         - file: inst/cppLib
         - file: inst/cppXeus
     - file: inst/bindings
 - part: Usage
   chapters:
-    - file: use/cpp/ind
+    - file: use/cpp/firststeps
       title: "C++ Core"
       sections:
         - file: use/cpp/matrices
@@ -40,7 +40,7 @@
     - file: use/rb/cs/caseStudy_1
 - part: Contributing
   chapters:
-    - file: contrib/documentation
+    - file: contrib/docsetup
       sections:
         - file: contrib/tutorials
         - file: contrib/apidocs
