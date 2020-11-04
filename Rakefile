@@ -83,9 +83,10 @@ namespace "wiki" do
     else
       raise RunnerException.new
     end
-    puts "Moving files to the right location"
+    puts "Moving files to the right location..."
     FileUtils.mkdir_p OUTPUB
-    # sh "cp -rf #{File.join(GENWIKI,"html")}/* #{OUTPUB}"
+    puts "... Also preventing trigger happy gh-pages rubbish"
+    sh "touch #{OUTPUB}/.nojekyll"
     Dir.glob(File.join(GENWIKI,"html","*")).each do|file|
       FileUtils.move file, File.join(OUTPUB, File.basename(file))
     end
