@@ -1,13 +1,3 @@
----
-jupytext:
-  formats: ipynb,md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
----
-
 # Symengine Wiki
 
 The user-wiki for the Symengine project.
