@@ -14,6 +14,13 @@ OUTPUB = File.join(CWD, "public")
 # Wiki
 BASEWIKI = File.join(CWD, "docs/wiki")
 GENWIKI = File.join(BASEWIKI, "_build")
+# Files
+docFiles = FileList['docs/**/*.md'] do |fl| 
+    fl.exclude do |f| 
+      `git ls-files #{f}`.empty?
+    end
+end
+ 
 
 # Exception
 class RunnerException < StandardError
@@ -53,6 +60,13 @@ task :darkServe, [:port, :runner] do |task, args|
   else
     raise RunnerException.new
   end
+end
+
+desc "Generate all the notebooks from markdown"
+task :genJup => docFiles.ext(".ipynb")
+
+rule ".ipynb" => ".md" do |t|
+  sh "jupytext --to ipynb #{File.join(CWD,t.source)}"
 end
 
 # Maybe a better browsersync setup
