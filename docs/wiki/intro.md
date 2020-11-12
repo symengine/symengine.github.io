@@ -10,7 +10,7 @@ You may be looking for the [API documentation instead](https://symengine.github.
 
 In order to run these tutorials locally, the following setup is suggested:
 
-```{code-cell} bash
+```bash
 # First run
 conda env create -f symedocs.yml
 # On pulls and syncs
@@ -25,7 +25,7 @@ rake genJup
 
 The simplest way is to now spin up the `jupyter-server` and navigate through the `use/` folders.
 
-```{code-cell} bash
+```bash
 # In an activated environment
 jupyter-server
 ```
