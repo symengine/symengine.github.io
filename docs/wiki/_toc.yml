@@ -14,7 +14,7 @@
     - file: use/cpp/firststeps
       title: "C++ Core"
       sections:
-        - file: use/cpp/matrices
+        - file: use/cpp/Matrices
         - file: use/cpp/expressions
         - file: use/cpp/finitediff
         - file: use/cpp/ntheory
