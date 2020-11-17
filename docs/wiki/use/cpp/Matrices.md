@@ -15,8 +15,6 @@ kernelspec:
 # Matrices
 
 ```{code-cell}
-#include <chrono>
-#include <xcpp/xdisplay.hpp>
 #include <symengine/parser.h>
 
 #include <symengine/matrix.h>
@@ -27,7 +25,9 @@ kernelspec:
 ```
 
 ## Base Elements
+
 We will need a set of basic elements to cover a reasonable set of operations. Namely we would like:
+
 - Two Matrices (A,B)
 - A Vector (X)
 
@@ -53,14 +53,16 @@ B.__str__()
 ```
 
 ## Basic Operations
+
 The key thing to remember that as a `C++` library, we need to pre-allocated variable sizes and types. Furthermore, the unary operators are **not** overloaded, so we will call functions for each of the standard operations. The general form of each of these is:
 
-**operation**(*term1*,*term2*,**output**)
+**operation**(_term1_,_term2_,**output**)
 
 +++
 
 ## Addition
-For 
+
+For
 
 ```{code-cell}
 // Addition
@@ -70,6 +72,7 @@ C.__str__()
 ```
 
 ## Gaussian Elimination
+
 One of the main use-cases for any library with matrices is the ability to perform Gaussian elimination. We will consider an example from the literature {cite}`nakosFractionfreeAlgorithmsLinear1997`.
 
 ```{code-cell}
@@ -86,4 +89,5 @@ B.__str__()
 ```
 
 ```{bibliography} ../../references.bib
+
 ```
