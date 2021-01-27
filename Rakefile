@@ -101,6 +101,7 @@ namespace "site" do
     FileUtils.mkdir_p OUTPUB
     puts "... Also preventing trigger happy gh-pages rubbish"
     sh "touch #{OUTPUB}/.nojekyll"
+    sh "echo symengine.org > #{OUTPUB}/CNAME"
     Dir.glob(File.join(GENSITE,"html","*")).each do|file|
       FileUtils.move file, File.join(OUTPUB, File.basename(file))
     end
