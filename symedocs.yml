@@ -20,6 +20,7 @@ dependencies:
   - symengine
   - python-symengine
   - sphinx-autobuild
+  - sphinx-sitemap
   - rb-bundler
   - pip
   - doxyrest
@@ -29,3 +30,4 @@ dependencies:
   - matplotlib
   - pip:
       - sphinx-library
+      - sphinx-proof
