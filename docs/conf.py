@@ -25,7 +25,6 @@ extensions = [
     "sphinx.ext.githubpages",  # Puts the .nojekyll and CNAME files
     "sphinx_proof",  # Future proofing
     "sphinx_copybutton",  # Let there be plagiarism!
-    "sphinx_sitemap",  # Always a good idea
     "sphinxcontrib.bibtex", # References!
     "sphinx_togglebutton",  # Toggles reduce clutter
     "myst_nb" # All the myst we need
