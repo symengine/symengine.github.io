@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C++ Style Guide &#8212; Symengine Documentation 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://symengine.org/design/style_guide.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+ 
+
+<link rel="stylesheet" id="sphinx-library-type" href="../_static/library/type-book.css" type="text/css" />
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=0.9" />
+<script>
+  mobile_menu_content = "";
+  function toggleMenu() {
+    var div = document.getElementsByClassName("document").item(0);
+    var btn = document.getElementById("menu-toggler");
+    if(div.classList.contains("mobile-show")) {
+      div.classList.remove("mobile-show");
+      btn.innerHTML = mobile_menu_content;
+    }
+    else {
+      div.classList.add("mobile-show");
+      mobile_menu_content = btn.innerHTML;
+      btn.innerHTML = btn.getAttribute("data-open");
+    }
+  }
+</script>
+  </head>
+<body class="sepia">
+<div class="document">
+
+  
+  <nav class="mobile-menu" role="navigation">
+    
+  <button type="button" id="menu-toggler" onclick="toggleMenu();"
+    data-open="× Close">≡ Menu</button>
+  <a href="../index.html">Symengine Documentation</a>
+  <noscript>
+    <div>
+      JavaScript is required to open/close mobile menu.
+    </div>
+  </noscript>
+  </nav>
+  
+
+  
+  <nav class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    
+
+
+<h1 class="logo ">
+  <a href="../index.html">Symengine Documentation</a>
+</h1>
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<h3>Links</h3>
+<ul>
+  
+  <li class="toctree-l1"><a href="https://github.com/Symengine/symengine.github.io">Github</a></li>
+  
+</ul>
+<h3>Contents</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inst/install.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../use/cpp/firststeps.html">C++ Usage</a></li>
+</ul>
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">C++ Style Guide</a><ul>
+<li><a class="reference internal" href="#whitespace">Whitespace</a></li>
+<li><a class="reference internal" href="#pointers">Pointers</a><ul>
+<li><a class="reference internal" href="#declaration">Declaration</a></li>
+<li><a class="reference internal" href="#initialization">Initialization</a></li>
+<li><a class="reference internal" href="#freeing">Freeing</a></li>
+<li><a class="reference internal" href="#passing-to-from-functions">Passing To/From Functions</a></li>
+<li><a class="reference internal" href="#casting">Casting</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#namespaces">Namespaces</a></li>
+</ul>
+</li>
+</ul>
+<script>
+  function toggleMode(theme) {
+    document.body.className = theme;
+    localStorage.setItem("sphinx-library-mode", theme);
+  }
+  var theme = localStorage.getItem("sphinx-library-mode");
+  if(theme !== null)
+    toggleMode(theme);
+</script>
+<h3>Reading Mode</h3>
+
+<button type="button" onclick="toggleMode('light');">Light</button>
+<button type="button" onclick="toggleMode('sepia');">Sepia</button>
+<button type="button" onclick="toggleMode('dark');">Dark</button>
+
+<noscript>
+  <div>
+    JavaScript is required to toggle reading modes.
+  </div>
+</noscript>
+  </nav>
+  <div class="documentwrapper">
+    <nav class="related breadcrumbs" role="navigation">
+  <a class="nav-item" href="../index.html">Index</a>
+  <span class="delim"> &#187;</span>
+  <span class="nav-item">C++ Style Guide</span>
+    </nav>
+    
+
+    <main class="body" role="main" id="main">
+      
+  <div class="section" id="c-style-guide">
+<h1>C++ Style Guide<a class="headerlink" href="#c-style-guide" title="Permalink to this headline">¶</a></h1>
+<p>Please follow these guidelines when submitting patches.</p>
+<div class="section" id="whitespace">
+<h2>Whitespace<a class="headerlink" href="#whitespace" title="Permalink to this headline">¶</a></h2>
+<p>Use 4 spaces. Format <code class="docutils literal notranslate"><span class="pre">if</span></code> as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if (d.find(t) == d.end()) {
+    d[t] = coef;
+} else {
+    d[t] = d[t] + coef;
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="pointers">
+<h2>Pointers<a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h2>
+<p>Never use raw C++ pointers and never use the raw <code class="docutils literal notranslate"><span class="pre">new</span></code> and <code class="docutils literal notranslate"><span class="pre">delete</span></code>. Always use
+the smart pointers provided by <code class="docutils literal notranslate"><span class="pre">symengine_rcp.h</span></code> (depending on
+WITH_SYMENGINE_RCP, those are either Teuchos::RCP, or our own, faster
+implementation), i.e. <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> and <code class="docutils literal notranslate"><span class="pre">RCP</span></code> (and do not use the <code class="docutils literal notranslate"><span class="pre">.get()</span></code> method, only
+the <code class="docutils literal notranslate"><span class="pre">.ptr()</span></code> method). In Debug mode, the pointers are 100% safe, i.e. no matter
+how you use them the code will not segfault, but instead raise a nice exception
+if a pointer becomes dangling or null. In Release mode, the <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> is as fast as
+a raw pointer and <code class="docutils literal notranslate"><span class="pre">RCP</span></code> is a lot faster, but no checks are done (so the code
+can segfault).</p>
+<div class="section" id="declaration">
+<h3>Declaration<a class="headerlink" href="#declaration" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> files you can declare:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>using SymEngine::RCP;
+using SymEngine::Ptr;
+using SymEngine::outArg;
+using SymEngine::make_rcp;
+using SymEngine::rcp_dynamic_cast;
+</pre></div>
+</div>
+<p>and then just use <code class="docutils literal notranslate"><span class="pre">RCP</span></code> or <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">.h</span></code> header files use the full name like <code class="docutils literal notranslate"><span class="pre">SymEngine::RCP</span></code> or <code class="docutils literal notranslate"><span class="pre">SymEngine::Ptr</span></code>.</p>
+</div>
+<div class="section" id="initialization">
+<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<p>Initialize as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Basic&gt; x  = make_rcp&lt;Symbol&gt;(&quot;x&quot;);
+</pre></div>
+</div>
+<p>Never call the naked <code class="docutils literal notranslate"><span class="pre">new</span></code>, nor use the naked <code class="docutils literal notranslate"><span class="pre">rcp</span></code>. If available, use the
+factory functions, e.g. in this case <code class="docutils literal notranslate"><span class="pre">symbol()</span></code> as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Basic&gt; x  = symbol(&quot;x&quot;);
+</pre></div>
+</div>
+<p>This does the same thing (internally it calls <code class="docutils literal notranslate"><span class="pre">make_rcp</span></code>), but it is easier to
+use.</p>
+</div>
+<div class="section" id="freeing">
+<h3>Freeing<a class="headerlink" href="#freeing" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">RCP</span></code> pointer is released automatically. You never call the naked <code class="docutils literal notranslate"><span class="pre">delete</span></code>.</p>
+</div>
+<div class="section" id="passing-to-from-functions">
+<h3>Passing To/From Functions<a class="headerlink" href="#passing-to-from-functions" title="Permalink to this headline">¶</a></h3>
+<p>Use C++ references for objects that you are <strong>not</strong> passing around. If the object
+is <em>not</em> modified, use <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">A</span> <span class="pre">&amp;a</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;const Integer&gt; gcd(const Integer &amp;a, const Integer &amp;b)
+{
+    integer_class g;
+    mp_gcd(g, a.as_integer_class(), b.as_integer_class());
+    return integer(std::move(g));
+}
+</pre></div>
+</div>
+<p>If it <em>is</em> modified, use <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&amp;a</span></code> (see the first argument):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>void Add::dict_add_term(umap_basic_num &amp;d, const RCP&lt;Integer&gt; &amp;coef,
+        const RCP&lt;Basic&gt; &amp;t)
+{
+    if (d.find(t) == d.end()) {
+        d[t] = coef;
+    } else {
+        d[t] = d[t] + coef;
+    }
+}
+</pre></div>
+</div>
+<p>If the objects <strong>are</strong> passed around, you have to use <code class="docutils literal notranslate"><span class="pre">RCP</span></code>. You also need to
+use <code class="docutils literal notranslate"><span class="pre">RCP</span></code> whenever you call some function that uses <code class="docutils literal notranslate"><span class="pre">RCP</span></code>.</p>
+<p>Declare functions with two input arguments (and one return value) as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;const Basic&gt; multiply(const RCP&lt;const Basic&gt; &amp;a,
+        const RCP&lt;const Basic&gt; &amp;b)
+{
+    ...
+    return make_rcp&lt;const Integer&gt;(1);
+}
+</pre></div>
+</div>
+<p>Functions with one input and two output arguments are declared:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>void as_coef_term(const RCP&lt;const Basic&gt; &amp;self,
+    const Ptr&lt;RCP&lt;const Integer&gt;&gt; &amp;coef,
+    const Ptr&lt;RCP&lt;const Basic&gt;&gt; &amp;term)
+{
+    ...
+    *coef = make_rcp&lt;const Integer&gt;(1);
+    *term = self
+    ...
+}
+</pre></div>
+</div>
+<p>and used as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Integer&gt; coef;
+RCP&lt;Basic&gt; t;
+as_coef_term(b, outArg(coef), outArg(t));
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">SymEngine</span></code> objects are always immutable, so you always declare them as <code class="docutils literal notranslate"><span class="pre">const</span></code>.
+And <code class="docutils literal notranslate"><span class="pre">RCP</span></code> is only used with <code class="docutils literal notranslate"><span class="pre">SymEngine</span></code>’s objects, so you always use <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">RCP&lt;const</span> <span class="pre">Integer&gt;</span> <span class="pre">&amp;i</span></code>. But if the <code class="docutils literal notranslate"><span class="pre">Integer</span></code> was somehow mutable (it’s not in
+<code class="docutils literal notranslate"><span class="pre">SymEngine</span></code>), you would use <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">RCP&lt;Integer&gt;</span> <span class="pre">&amp;i</span></code>.</p>
+<p>For returning objects from functions, simply declare the return type as <code class="docutils literal notranslate"><span class="pre">RCP&lt;const</span> <span class="pre">Basic&gt;</span></code> as shown above.</p>
+</div>
+<div class="section" id="casting">
+<h3>Casting<a class="headerlink" href="#casting" title="Permalink to this headline">¶</a></h3>
+<p>You can use dynamic cast as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Basic&gt; tmp;
+RCP&lt;Integer&gt; coef;
+coef = rcp_dynamic_cast&lt;Integer&gt;(tmp);
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h2>
+<p>Never use “implicit imports”: <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">std;</span></code>.</p>
+<p>In cpp files, either use the full name of the symbol (e.g. <code class="docutils literal notranslate"><span class="pre">SymEngine::RCP</span></code>),
+or use “explicit import” as follows: <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">SymEngine::RCP;</span></code>.</p>
+<p>In header files, always use the full name (never import symbols there).</p>
+</div>
+</div>
+
+
+    </main>
+    <nav class="related bottom" role="navigation">
+  <div class="clear"></div>
+    </nav>
+    
+
+  </div>
+
+  <div class="clear"></div>
+</div>
+<footer class="footer" role="contentinfo">
+    &copy; Copyright 2021, Symengine Development Team.
+  
+  Created using <a href="http://sphinx-doc.org/">Sphinx</a> with
+  <a href="https://github.com/vsalvino/sphinx-library">Library</a> theme.
+  
+  <a href="../_sources/design/style_guide.md.txt" rel="nofollow">Page source</a>
+</footer>
+  </body>
+</html>

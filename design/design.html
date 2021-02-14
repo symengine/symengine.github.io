@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design &#8212; Symengine Documentation 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://symengine.org/design/design.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+ 
+
+<link rel="stylesheet" id="sphinx-library-type" href="../_static/library/type-book.css" type="text/css" />
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=0.9" />
+<script>
+  mobile_menu_content = "";
+  function toggleMenu() {
+    var div = document.getElementsByClassName("document").item(0);
+    var btn = document.getElementById("menu-toggler");
+    if(div.classList.contains("mobile-show")) {
+      div.classList.remove("mobile-show");
+      btn.innerHTML = mobile_menu_content;
+    }
+    else {
+      div.classList.add("mobile-show");
+      mobile_menu_content = btn.innerHTML;
+      btn.innerHTML = btn.getAttribute("data-open");
+    }
+  }
+</script>
+  </head>
+<body class="sepia">
+<div class="document">
+
+  
+  <nav class="mobile-menu" role="navigation">
+    
+  <button type="button" id="menu-toggler" onclick="toggleMenu();"
+    data-open="× Close">≡ Menu</button>
+  <a href="../index.html">Symengine Documentation</a>
+  <noscript>
+    <div>
+      JavaScript is required to open/close mobile menu.
+    </div>
+  </noscript>
+  </nav>
+  
+
+  
+  <nav class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    
+
+
+<h1 class="logo ">
+  <a href="../index.html">Symengine Documentation</a>
+</h1>
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<h3>Links</h3>
+<ul>
+  
+  <li class="toctree-l1"><a href="https://github.com/Symengine/symengine.github.io">Github</a></li>
+  
+</ul>
+<h3>Contents</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inst/install.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../use/cpp/firststeps.html">C++ Usage</a></li>
+</ul>
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">Design</a><ul>
+<li><a class="reference internal" href="#symengine-is-used-in-different-languages">SymEngine is used in different languages</a></li>
+<li><a class="reference internal" href="#reference-counted-pointers">Reference Counted Pointers</a><ul>
+<li><a class="reference internal" href="#teuchos-rcp">Teuchos <code class="docutils literal notranslate"><span class="pre">RCP</span></code></a></li>
+<li><a class="reference internal" href="#ptr-and-rcp"><code class="docutils literal notranslate"><span class="pre">Ptr</span></code> and <code class="docutils literal notranslate"><span class="pre">RCP</span></code></a></li>
+<li><a class="reference internal" href="#uniqueptr"><code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code></a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#object-creation-and-is-canonical">Object creation and <code class="docutils literal notranslate"><span class="pre">is_canonical()</span></code></a></li>
+<li><a class="reference internal" href="#operator-overloading">Operator Overloading</a></li>
+</ul>
+</li>
+</ul>
+<script>
+  function toggleMode(theme) {
+    document.body.className = theme;
+    localStorage.setItem("sphinx-library-mode", theme);
+  }
+  var theme = localStorage.getItem("sphinx-library-mode");
+  if(theme !== null)
+    toggleMode(theme);
+</script>
+<h3>Reading Mode</h3>
+
+<button type="button" onclick="toggleMode('light');">Light</button>
+<button type="button" onclick="toggleMode('sepia');">Sepia</button>
+<button type="button" onclick="toggleMode('dark');">Dark</button>
+
+<noscript>
+  <div>
+    JavaScript is required to toggle reading modes.
+  </div>
+</noscript>
+  </nav>
+  <div class="documentwrapper">
+    <nav class="related breadcrumbs" role="navigation">
+  <a class="nav-item" href="../index.html">Index</a>
+  <span class="delim"> &#187;</span>
+  <span class="nav-item">Design</span>
+    </nav>
+    
+
+    <main class="body" role="main" id="main">
+      
+  <div class="section" id="design">
+<h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
+<p>Summary of our design decisions and some pointers to the literature.</p>
+<div class="section" id="symengine-is-used-in-different-languages">
+<h2>SymEngine is used in different languages<a class="headerlink" href="#symengine-is-used-in-different-languages" title="Permalink to this headline">¶</a></h2>
+<p>The C++ SymEngine library doesn’t care about SymPy objects at all. We are just trying to implement things in some maintainable way, currently we settled on using <code class="docutils literal notranslate"><span class="pre">Basic</span></code>, <code class="docutils literal notranslate"><span class="pre">Mul</span></code>, <code class="docutils literal notranslate"><span class="pre">Pow</span></code>, … hierarchy and implement most functionality using the visitor pattern or single dispatch, so <code class="docutils literal notranslate"><span class="pre">Basic</span></code> doesn’t need many methods. We are keeping an option to perhaps do things differently if they turn out to be faster. Either way though, this shouldn’t matter at all for how it is actually used from Python, Ruby or Julia.</p>
+<p>Let’s talk about just Python: the wrappers are in the <a class="reference external" href="https://github.com/symengine/symengine.py">symengine.py project</a>. They are implemented using Cython, and they are free to introduce any kind of classes (including SymPy’s <code class="docutils literal notranslate"><span class="pre">Expr</span></code> or Sage’s <code class="docutils literal notranslate"><span class="pre">Expression</span></code> if needed), and the point of the wrappers is to make sure that things work out of the box from SymPy and Sage. The only job of the C++ SymEngine library is to ensure that the library’s C++ API is implemented in such a way so that the wrappers can be written to do what they need. For example, we could easily introduce SymPy’s <code class="docutils literal notranslate"><span class="pre">Expr</span></code> into the wrappers, by simply introducing the <code class="docutils literal notranslate"><span class="pre">Expr</span></code> class and make all the other classes subclass from it instead of from <code class="docutils literal notranslate"><span class="pre">Basic</span></code>.</p>
+<p>That was the reason we split the wrappers, so now in the (pure) C++ <code class="docutils literal notranslate"><span class="pre">symengine/symengine</span></code> repository, we only have to worry about speed, correctness, maintainability and a usable API, and we can concentrate on these things without worrying or even testing any kind of wrappers. In the wrappers (<code class="docutils literal notranslate"><span class="pre">symengine/symengine.py</span></code>, or <code class="docutils literal notranslate"><span class="pre">.jl</span></code>, <code class="docutils literal notranslate"><span class="pre">.rb</span></code>), we simply just use the C++ (or C) API and the only thing we care is so that the (Python) wrapper can be used from sympy/Sage (and we test that in the test suite), and that it doesn’t introduce unnecessary overhead in terms of speed. Ruby or Julia wrappers then care about interoperability with other libraries in those languages.</p>
+<ul class="simple">
+<li><p>https://github.com/symengine/symengine.py</p></li>
+<li><p>https://github.com/symengine/symengine.rb</p></li>
+<li><p>https://github.com/symengine/SymEngine.jl</p></li>
+</ul>
+</div>
+<div class="section" id="reference-counted-pointers">
+<h2>Reference Counted Pointers<a class="headerlink" href="#reference-counted-pointers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="teuchos-rcp">
+<h3>Teuchos <code class="docutils literal notranslate"><span class="pre">RCP</span></code><a class="headerlink" href="#teuchos-rcp" title="Permalink to this headline">¶</a></h3>
+<p>Memory management is handled by RCP (reference counted pointers) from
+<code class="docutils literal notranslate"><span class="pre">Trilinos</span></code> (module <code class="docutils literal notranslate"><span class="pre">Teuchos</span></code>). We have copied the relevant files into
+<code class="docutils literal notranslate"><span class="pre">src/teuchos</span></code>, so no external dependency is needed.  Brief code snippets of the
+most frequent operations are given in our <a class="reference internal" href="style_guide.html"><span class="doc std std-doc">C++ Style
+Guide</span></a>, this is useful to consult if you are unsure about
+the syntax.  In order to understand how it works under the hood, read
+<a class="reference external" href="https://docs.trilinos.org/dev/packages/teuchos/doc/html/RefCountPtrBeginnersGuideSAND.pdf">Teuchos::RCP Beginner’s
+Guide</a> (pdf).
+Finally, more thorough exposition is given in <a class="reference external" href="https://docs.trilinos.org/dev/packages/teuchos/doc/html/TeuchosMemoryManagementSAND.pdf">Teuchos C++ Memory Management
+Classes, Idioms, and Related Topics — The Complete
+Reference</a>
+(pdf).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Teuchos</span></code>’ RCP implements reference counting of objects, exactly like Python
+works. When an object runs out of scope, its reference count is decreased. When
+it is copied, its reference count is increased. When reference count goes to
+zero, it is deallocated. This all happens automatically, so as long as our C++
+Style Guide is followed, things just work.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE=Debug</span></code> is set in our <code class="docutils literal notranslate"><span class="pre">CMake</span></code> (the default), then
+<code class="docutils literal notranslate"><span class="pre">Teuchos</span></code> is compiled with debugging support, which means that as long as you
+follow our C++ Style Guide, the C++ code should never segfault (since you never
+access raw pointers that could segfault and Teuchos raises a nice exception with
+full stack trace if there is any problem, very similar to Python). Use this mode
+when developing.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE=Release</span></code>, then <code class="docutils literal notranslate"><span class="pre">Teuchos</span></code> is compiled without debugging
+support, which means that all pointer operations become either as fast as raw
+pointers, or very close. As such, there is pretty much zero overhead. However,
+in this mode, the program can segfault if you access memory incorrectly. This
+segfault however would be prevented if <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE=Debug</span></code>, so always use
+the Debug build to test your code, only when all tests pass you can enable
+Release mode.</p>
+<p>The Trilinos RCP pointers as described above are only used when
+<code class="docutils literal notranslate"><span class="pre">WITH_SYMENGINE_RCP=OFF</span></code> is set in <code class="docutils literal notranslate"><span class="pre">CMake</span></code>. The default option is
+<code class="docutils literal notranslate"><span class="pre">WITH_SYMENGINE_RCP=ON</span></code>, which uses our own implementation of <code class="docutils literal notranslate"><span class="pre">RCP</span></code> (see
+<code class="docutils literal notranslate"><span class="pre">src/symengine_rcp.h</span></code>). Our implementation is faster, but it only implements a
+subset of all the functionality and it requires all our objects to have a
+<code class="docutils literal notranslate"><span class="pre">refcount_</span></code> variable. Otherwise the usage of our RCP is identical to
+<code class="docutils literal notranslate"><span class="pre">Teuchos::RCP</span></code>, and Travis-CI tests both implementations of RCP to make sure
+the code works with both.</p>
+</div>
+<div class="section" id="ptr-and-rcp">
+<h3><code class="docutils literal notranslate"><span class="pre">Ptr</span></code> and <code class="docutils literal notranslate"><span class="pre">RCP</span></code><a class="headerlink" href="#ptr-and-rcp" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">RCP</span></code> has an overhead with every assignment (refcount increase/decrease). You can get access to the inner pointer as <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> (just call <code class="docutils literal notranslate"><span class="pre">.ptr()</span></code>), which has the same performance as raw pointer in Release mode, yet it is 100% safe in Debug mode (i.e. if the original <code class="docutils literal notranslate"><span class="pre">RCP</span></code> gets out of scope, the object deallocated, then the <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> becomes dangling, but you get a nice exception in Debug mode if you try to access it —- in Release mode it will segfault or have undefined behavior, just like raw pointers). The idea is that for non-owning access — i.e. typically you just want to read some term in Add, we should be passing around <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>, not <code class="docutils literal notranslate"><span class="pre">RCP</span></code> (which has the extra refcount increase/decrease, which is a waste since we do not plan to own it). This we can implement already in <code class="docutils literal notranslate"><span class="pre">SymEngine</span></code>.</p>
+</div>
+<div class="section" id="uniqueptr">
+<h3><code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code><a class="headerlink" href="#uniqueptr" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> has a performance just like raw pointers + manual new/delete, so there is no reason to use manual new/delete and raw pointers, one should use <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code>. One issue with <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> is that if you get access to the raw pointer using <code class="docutils literal notranslate"><span class="pre">.get()</span></code>, then it will segfault if it becomes dangling (i.e. there are no Debug time checks implemented in the standard library for this because it returns a raw pointer, not a <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>). This can however be fixed by writing a new class <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> that returns <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> instead of raw pointer if you want to pass it around and is 100% Debug time checked, so it can’t segfault in Debug mode. I am implementing it in https://github.com/certik/trilinos/pull/1, it’s a bit of work since it needs to work with custom deallocators and be a drop-in replacement for <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code>. But it will get done. The beauty of this new <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> is that together with <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>, there is no need to ever use manual new/delete and raw pointers. <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> has the same performance in Release mode, yet it is 100% safe in Debug mode. It’s great.</p>
+<p>However, the issue is that even manual new/delete (or the equivalent <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code>) is slow, so we want to avoid it, or only do it as little as possible. I am still thinking if we could perhaps use <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RCP</span></code>. It would mean that for example, the <code class="docutils literal notranslate"><span class="pre">Add</span></code> container would deallocate its contents (i.e. instead of having a hashtable full of RCP, it would have a hashtable full of <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code>), and if you access a given term, you either get just a <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> (thus very fast, but could become dangling if <code class="docutils literal notranslate"><span class="pre">Add</span></code> goes out of scope — which would be Debug time checked, so no segfault, but in Release it would segfault, and for example if one does it at runtime in Python in Release mode, it would segfault, so one would have to make sure this is not exposed to the user), or you need to make a copy. For example, if you create some symbols and then use them in expressions, then currently we just pass around <code class="docutils literal notranslate"><span class="pre">RCP</span></code>, i.e. reference counted pointers to the original symbol. With the new approach, we would need to make a copy. Since we do not want to copy the <code class="docutils literal notranslate"><span class="pre">std::string</span></code> from inside Symbol, we want to store the symbols in some kind of table, and only pass a simple reference to the table (and also we need to deallocate things from the table if they are not used anymore). In other words, we just reinvented <code class="docutils literal notranslate"><span class="pre">RCP</span></code> again. So for Symbols, it seems it wouldn’t have many benefits. It might have some benefit for classes like <code class="docutils literal notranslate"><span class="pre">Add</span></code>. If they internally use <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code>, we can do an optimization in Release mode and store the contents directly in the hashtable (i.e. no pointers at all), and still pass around the <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> to other code (i.e in Debug mode it would use <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code>, thus we would make sure that things are not dangling, and in Release mode we just pass around <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>, with the performance of a raw pointer, to the internal array), that way we avoid new/delete. Also with this one can do custom allocator, i.e. allocate a chunk of memory for the hashtable, and just do placement new. I played with this, and surprisingly, the performance wasn’t much different to <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> (for smaller objects it was a bit faster, but for larger objects — remember they are stored by value now — it was even slower). Also the creation of <code class="docutils literal notranslate"><span class="pre">RCP</span></code> vs <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> was almost the same fast a well. The reason is that a simple refcount initialization is negligible in terms of time compared to the <code class="docutils literal notranslate"><span class="pre">new</span></code> call. What is slow is if you pass around <code class="docutils literal notranslate"><span class="pre">RCP</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>, because raw pointer (which is what <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> is in Release mode) is much faster than a refcount increase/decrease.  We should still investigate if we can get rid of new/delete using the approaches from this paragraph.</p>
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion:<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We should pass around <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RCP</span></code> whenever possible, and we can do this right away.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> (after it is implemented) whenever possible instead of <code class="docutils literal notranslate"><span class="pre">RCP</span></code> — though most places in <code class="docutils literal notranslate"><span class="pre">SymEngine</span></code> seem to require <code class="docutils literal notranslate"><span class="pre">RCP</span></code>. But we should keep this in mind, there might still be one or two places where <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> is the way to go.</p></li>
+<li><p>Never use raw new/delete and never use raw pointers (use <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> + <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>, and if it is not sufficient, use the slower <code class="docutils literal notranslate"><span class="pre">RCP</span></code> + <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>).</p></li>
+<li><p>Never pass pointers to some internal data — pass <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> and have it Debug time checked by using <code class="docutils literal notranslate"><span class="pre">UniquePtr</span></code> in Debug mode, and use the data directly in Release mode</p></li>
+</ul>
+<p>As an example of the last point, e.g. to give access to an internal <code class="docutils literal notranslate"><span class="pre">std::map</span></code> (as a pointer, so that the map is not copied), here is how to do it:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="cp">#ifdef DEBUG_MODE</span>
+    <span class="n">UniquePtr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+<span class="cp">#else</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+<span class="cp">#endif</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">get_access</span><span class="p">()</span> <span class="p">{</span>
+<span class="cp">#ifdef DEBUG_MODE</span>
+        <span class="k">return</span> <span class="n">m</span><span class="p">.</span><span class="n">ptr</span><span class="p">();</span>
+<span class="cp">#else</span>
+        <span class="k">return</span> <span class="nf">ptrFromRef</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+<span class="cp">#endif</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>That way, in debug mode, you can catch dangling references but in the optimized mode it is optimally fast.</p>
+</div>
+</div>
+<div class="section" id="object-creation-and-is-canonical">
+<h2>Object creation and <code class="docutils literal notranslate"><span class="pre">is_canonical()</span></code><a class="headerlink" href="#object-creation-and-is-canonical" title="Permalink to this headline">¶</a></h2>
+<p>Classes like <code class="docutils literal notranslate"><span class="pre">Add</span></code>, <code class="docutils literal notranslate"><span class="pre">Mul</span></code>, <code class="docutils literal notranslate"><span class="pre">Pow</span></code> are initialized through their constructor using their internal representation. <code class="docutils literal notranslate"><span class="pre">Add</span></code>, <code class="docutils literal notranslate"><span class="pre">Mul</span></code> have a <code class="docutils literal notranslate"><span class="pre">coeff</span></code> and <code class="docutils literal notranslate"><span class="pre">dict</span></code>, while <code class="docutils literal notranslate"><span class="pre">Pow</span></code> has <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">exp</span></code>. There are restrictions on what <code class="docutils literal notranslate"><span class="pre">coeff</span></code> and <code class="docutils literal notranslate"><span class="pre">dict</span></code> can be (for example <code class="docutils literal notranslate"><span class="pre">coeff</span></code> cannot be zero in <code class="docutils literal notranslate"><span class="pre">Mul</span></code>, and if <code class="docutils literal notranslate"><span class="pre">Mul</span></code> is used inside <code class="docutils literal notranslate"><span class="pre">Add</span></code>, then <code class="docutils literal notranslate"><span class="pre">Mul</span></code>’s coeff must be one, etc.). All these restrictions are checked when <code class="docutils literal notranslate"><span class="pre">SYMENGINE_ASSERT</span></code> is enabled inside the constructors using the <code class="docutils literal notranslate"><span class="pre">is_canonical()</span></code> method. That way, you don’t have to worry about creating <code class="docutils literal notranslate"><span class="pre">Add</span></code>/<code class="docutils literal notranslate"><span class="pre">Mul</span></code>/<code class="docutils literal notranslate"><span class="pre">Pow</span></code> with wrong arguments, as it will be caught by the tests. In the Release mode no checks are done, so you can construct <code class="docutils literal notranslate"><span class="pre">Add</span></code>/<code class="docutils literal notranslate"><span class="pre">Mul</span></code>/<code class="docutils literal notranslate"><span class="pre">Pow</span></code> very quickly. The idea is that depending on the algorithm, you sometimes know that things are already canonical, so you simply pass it directly to <code class="docutils literal notranslate"><span class="pre">Add</span></code>/<code class="docutils literal notranslate"><span class="pre">Mul</span></code>/<code class="docutils literal notranslate"><span class="pre">Pow</span></code> and you avoid expensive type checking and canonicalization. At the same time, you need to make sure that tests are still running with <code class="docutils literal notranslate"><span class="pre">SYMENGINE_ASSERT</span></code> enabled, so that <code class="docutils literal notranslate"><span class="pre">Add</span></code>/<code class="docutils literal notranslate"><span class="pre">Mul</span></code>/<code class="docutils literal notranslate"><span class="pre">Pow</span></code> is never in an inconsistent state.</p>
+<p>The philosophy of symengine is that you impose as many restrictions in <code class="docutils literal notranslate"><span class="pre">is_canonical()</span></code> for each class as you can (and only check that in Debug mode), so that inside the class you can assume all those things and call faster algorithms (e.g. in <code class="docutils literal notranslate"><span class="pre">Rational</span></code> you know it’s not an integer, so you don’t need to worry about that special case, at the same time if you have an integer, you are forced to use the <code class="docutils literal notranslate"><span class="pre">Integer</span></code> class, thus automatically using faster algorithms for just integers). Then the idea is to use the information about the algorithm to construct arguments of the symengine classes in canonical form and then call the constructor without any checks.</p>
+<p>For cases where you can’t or don’t want to bother constructing in canonical form, we provide high-level functions like <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">mul</span></code>, <code class="docutils literal notranslate"><span class="pre">pow</span></code>, <code class="docutils literal notranslate"><span class="pre">rational</span></code>, where you just provide arguments that are not necessarily in canonical form, and these functions will check and simplify. E.g. <code class="docutils literal notranslate"><span class="pre">add(x,</span> <span class="pre">x)</span></code> will check and simplify to <code class="docutils literal notranslate"><span class="pre">Mul(2,</span> <span class="pre">x)</span></code>, e.g. you never have the instance <code class="docutils literal notranslate"><span class="pre">Add(x,</span> <span class="pre">x)</span></code>. In the same spirit, <code class="docutils literal notranslate"><span class="pre">rational(2,</span> <span class="pre">1)</span></code> will check and convert to <code class="docutils literal notranslate"><span class="pre">Integer(2)</span></code>, e.g. you never have <code class="docutils literal notranslate"><span class="pre">Rational(2,</span> <span class="pre">1)</span></code>.</p>
+<p>Summary: always try to construct objects directly using their constructors and all the knowledge that you have for the given algorithm, that way things will be very fast. If you want slower but simpler code, you can use the <code class="docutils literal notranslate"><span class="pre">add()</span></code>, <code class="docutils literal notranslate"><span class="pre">mul()</span></code>, <code class="docutils literal notranslate"><span class="pre">pow()</span></code>, <code class="docutils literal notranslate"><span class="pre">rational()</span></code> functions that perform general and possibly slow canonicalization first.</p>
+</div>
+<div class="section" id="operator-overloading">
+<h2>Operator Overloading<a class="headerlink" href="#operator-overloading" title="Permalink to this headline">¶</a></h2>
+<p>Ideally, we would like to be able to do:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Basic&gt; x  = make_rcp&lt;Symbol&gt;(&quot;x&quot;);
+RCP&lt;Basic&gt; y  = make_rcp&lt;Symbol&gt;(&quot;y&quot;);
+RCP&lt;Basic&gt; r = (x + y) + (y + x);
+std::cout &lt;&lt; r &lt;&lt; std::endl;
+</pre></div>
+</div>
+<p>But the problem is, that the <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> operations must be defined on the <code class="docutils literal notranslate"><span class="pre">RCP</span></code> objects.
+However, just as you should not redefine what <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">+</span> <span class="pre">double</span></code> is, you should not try to redefine operator overloading for an existing type (<code class="docutils literal notranslate"><span class="pre">RCP</span></code>). We can override operators for <code class="docutils literal notranslate"><span class="pre">Basic</span></code> objects, like so:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>((*x) + (*y)) + ((*y) + (*x))
+</pre></div>
+</div>
+<p>But here the problem is that the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator only gets access to <code class="docutils literal notranslate"><span class="pre">Basic</span></code>, but it needs access to <code class="docutils literal notranslate"><span class="pre">RCP&lt;Basic&gt;</span></code>
+for memory management. In order to allow for operator overloaded types that use dynamic memory allocation, we will need to create our own “handle” classes. It is hard to write a handle class in C++ that are const-correct and clean and simple to use for most C++ developers. It can be done, but it is very hard, especially since
+we care about performance. In our opinion, we are better off writing such a layer in Python.
+An example of handle classes is [2] — it is non-const correct, but should give the ok performance.</p>
+<p>Solution: using non-member non-friend functions is much more clear and much cleaner:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>add(add(x, y), add(y, x))
+</pre></div>
+</div>
+<p>The function signature of <code class="docutils literal notranslate"><span class="pre">add</span></code> is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inline RCP&lt;Basic&gt; add(const RCP&lt;Basic&gt; &amp;a, const RCP&lt;Basic&gt; &amp;b);
+</pre></div>
+</div>
+<p>For more complicated expressions, instead of <code class="docutils literal notranslate"><span class="pre">add</span></code>, we might also consider
+using the naming scheme proposed in [1]. Another advantage of this approach is
+that compiler errors are much easier to understand since it either finds
+our function or it does not, while when overloading operators of our templated
+classes (and RCP), any mistake typically results in pages of compiler errors in
+gcc.</p>
+<p>The Python wrappers then just call this <code class="docutils literal notranslate"><span class="pre">add</span></code> function and provide natural mathematical syntax <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">+</span> <span class="pre">(y</span> <span class="pre">+</span> <span class="pre">x)</span></code> at the Python level.</p>
+<p>[1] https://docs.trilinos.org/dev/packages/thyra/doc/html/LinearAlgebraFunctionConvention.pdf</p>
+<p>[2] http://www.math.ttu.edu/~kelong/Playa/html/</p>
+</div>
+</div>
+
+
+    </main>
+    <nav class="related bottom" role="navigation">
+  <div class="clear"></div>
+    </nav>
+    
+
+  </div>
+
+  <div class="clear"></div>
+</div>
+<footer class="footer" role="contentinfo">
+    &copy; Copyright 2021, Symengine Development Team.
+  
+  Created using <a href="http://sphinx-doc.org/">Sphinx</a> with
+  <a href="https://github.com/vsalvino/sphinx-library">Library</a> theme.
+  
+  <a href="../_sources/design/design.md.txt" rel="nofollow">Page source</a>
+</footer>
+  </body>
+</html>

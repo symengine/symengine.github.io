@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Documentation &#8212; Symengine Documentation 0.0.1 documentation</title>
+    <title>Design Details &#8212; Symengine Documentation 0.0.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://symengine.org/contrib/docsetup.html" />
+    <link rel="canonical" href="https://symengine.org/design/index.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
  
@@ -90,15 +90,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../inst/install.html">Installation Instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../use/cpp/firststeps.html">C++ Usage</a></li>
 </ul>
-
-<h3>Page Contents</h3>
-<ul>
-<li><a class="reference internal" href="#">Documentation</a><ul>
-<li><a class="reference internal" href="#local-setup">Local Setup</a></li>
-<li><a class="reference internal" href="#contributions">Contributions</a></li>
-</ul>
-</li>
-</ul>
 <script>
   function toggleMode(theme) {
     document.body.className = theme;
@@ -124,36 +115,31 @@
     <nav class="related breadcrumbs" role="navigation">
   <a class="nav-item" href="../index.html">Index</a>
   <span class="delim"> &#187;</span>
-  <span class="nav-item">Documentation</span>
+  <span class="nav-item">Design Details</span>
     </nav>
     
 
     <main class="body" role="main" id="main">
       
-  <div class="section" id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
-<p>This section describes the workflow used for generating, testing, and contributing to the documentation.</p>
-<div class="section" id="local-setup">
-<h2>Local Setup<a class="headerlink" href="#local-setup" title="Permalink to this headline">¶</a></h2>
-<p>The generation of the docs depends primarily on <code class="docutils literal notranslate"><span class="pre">miniconda</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tree
-.
-</pre></div>
-</div>
-</div>
-<div class="section" id="contributions">
-<h2>Contributions<a class="headerlink" href="#contributions" title="Permalink to this headline">¶</a></h2>
-<p>Ensure the <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment is setup. The task for the wiki contributions are under a separate <code class="docutils literal notranslate"><span class="pre">Rakefile</span></code> namespace, that is, the <code class="docutils literal notranslate"><span class="pre">tut:</span></code> space.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate symedocs
-rake clean
-rake writeDocs
-</pre></div>
-</div>
-<p>Run the task to convert notebooks to markdown, or recall the manual option:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupytext --to ipynb firststeps.md
-jupytext mynotebook.ipynb --to myst
-</pre></div>
-</div>
+  <div class="section" id="design-details">
+<h1>Design Details<a class="headerlink" href="#design-details" title="Permalink to this headline">¶</a></h1>
+<p>This section of the documentation has been imported from the main C++ repository.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Motivation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="design.html#symengine-is-used-in-different-languages">SymEngine is used in different languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#reference-counted-pointers">Reference Counted Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#object-creation-and-is-canonical">Object creation and <code class="docutils literal notranslate"><span class="pre">is_canonical()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#operator-overloading">Operator Overloading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="style_guide.html">Style Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="style_guide.html#whitespace">Whitespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style_guide.html#pointers">Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style_guide.html#namespaces">Namespaces</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -174,7 +160,7 @@ jupytext mynotebook.ipynb --to myst
   Created using <a href="http://sphinx-doc.org/">Sphinx</a> with
   <a href="https://github.com/vsalvino/sphinx-library">Library</a> theme.
   
-  <a href="../_sources/contrib/docsetup.md.txt" rel="nofollow">Page source</a>
+  <a href="../_sources/design/index.md.txt" rel="nofollow">Page source</a>
 </footer>
   </body>
 </html>
