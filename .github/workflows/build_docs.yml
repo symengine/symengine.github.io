@@ -26,7 +26,7 @@ jobs:
           python-version: 3.9
           auto-activate-base: false
       - name: Build
-        run: conda run rake site:mkDocs[html,conda]
+        run: sphinx-build docs ./public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
