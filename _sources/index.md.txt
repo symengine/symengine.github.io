@@ -43,6 +43,7 @@ jupyter-server
 :maxdepth: 2
 :hidden:
 :titlesonly:
+Design <design/index>
 Installation Instructions <inst/install>
 C++ Usage <use/cpp/firststeps>
 ```
