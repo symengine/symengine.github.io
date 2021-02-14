@@ -11,8 +11,6 @@ tree
 .
 ```
 
-## API Contributions
-
 ## Wiki Contributions
 
 Ensure the `conda` environment is setup. The task for the wiki contributions are under a separate `Rakefile` namespace, that is, the `tut:` space.
