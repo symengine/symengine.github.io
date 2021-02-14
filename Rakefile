@@ -13,7 +13,7 @@ OUTPUB = File.join(CWD, "public")
 # Site
 BASESITE = File.join(CWD, "docs")
 # Files
-docFiles = FileList['docs/**/*.md'] do |fl| 
+docFiles = FileList['docs/**/*.myst.md'] do |fl|
     fl.exclude do |f| 
       `git ls-files #{f}`.empty?
     end
@@ -61,7 +61,7 @@ desc "Generate all the notebooks from markdown"
 task :genJup => docFiles.ext(".ipynb")
 
 rule ".ipynb" => ".md" do |t|
-  sh "jupytext --to ipynb #{File.join(CWD,t.source)}"
+  sh "jupytext --from myst --to ipynb #{File.join(CWD,t.source)}"
 end
 
 # Generate notebooks <-> markdown

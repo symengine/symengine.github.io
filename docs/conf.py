@@ -32,6 +32,9 @@ extensions = [
     "myst_nb" # All the myst we need
 ]
 
+# Allowed Files
+source_suffix = ['.md', '.rst']
+
 # Sitemap Config
 html_baseurl = "https://symengine.org/"
 html_extra_path = ['robots.txt']
@@ -55,7 +58,7 @@ bibtex_bibfiles = ["references.bib"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['*.ipynb']
 
 # -- Library Theme Settings ------------------------------------------
 # Sidebars
