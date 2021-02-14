@@ -26,12 +26,14 @@ extensions = [
     "sphinx_proof",  # Future proofing
     "sphinx_copybutton",  # Let there be plagiarism!
     "sphinxcontrib.bibtex", # References!
+    "sphinx_sitemap", # Sitemaps are not part of the theme
     "sphinx_togglebutton",  # Toggles reduce clutter
     "myst_nb" # All the myst we need
 ]
 
 # Sitemap Config
 html_baseurl = "https://symengine.org/"
+html_extra_path = ['robots.txt']
 
 # MathJax Configuration
 mathjax_config = {
