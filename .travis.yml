@@ -1,55 +1,31 @@
-# Adapted from https://raw.githubusercontent.com/kaushalmodi/ox-hugo/master/.travis.yml
-language: nix
-
-before_install:
-  - sudo mkdir -p /etc/nix
-  - echo "substituters = https://cache.nixos.org/ file://$HOME/nix.store" | sudo tee -a /etc/nix/nix.conf > /dev/null
-  - echo 'require-sigs = false' | sudo tee -a /etc/nix/nix.conf > /dev/null
-
+language: python
+python:
+  # We don't actually use the Travis Python, but this keeps it organized.
+  - "3.9"
 install:
-  - bundle
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-    wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   - bash miniconda.sh -b -p $HOME/miniconda
   - source "$HOME/miniconda/etc/profile.d/conda.sh"
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
-  # Useful for debugging any issues with conda
   - conda info -a
-
-  # Replace dep1 dep2 ... with your dependencies
-
-before_script:
-  - sudo mkdir -p /etc/nix && echo 'sandbox = true' | sudo tee /etc/nix/nix.conf
-
-script:
   - conda env create -f symedocs.yml
   - conda activate symedocs
-  - rake site:mkDocs[html,nix]
+  - bundle
 
-before_cache:
-  - mkdir -p $HOME/nix.store
-  - nix copy --to file://$HOME/nix.store -f shell.nix buildInputs
-
-cache:
-  nix: true
-  directories:
-    - /home/travis/build/symengine/symengine.github.io/.tmp/
-    - $HOME/nix.store
+script:
+  - rake site:mkDocs[html,conda]
 
 deploy:
   provider: pages
   local_dir: ./public/
   skip_cleanup: true
-  github_token: $GH_TOKEN # Set in the settings page of your repository, as a secure variable
+  github_token: $GH_TOKEN
   keep_history: true
-  # target_branch: master # Required for user pages
+  target_branch: gh-pages
   fqdn: symengine.org
   on:
     branch: sources

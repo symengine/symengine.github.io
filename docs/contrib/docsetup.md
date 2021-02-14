@@ -4,27 +4,21 @@ This section describes the workflow used for generating, testing, and contributi
 
 ## Local Setup
 
-The generation of the docs depends primarily on `miniconda`, with some partial support for `nix`.
+The generation of the docs depends primarily on `miniconda`.
 
 ```bash
 tree
 .
 ```
 
-## Wiki Contributions
+## Contributions
 
 Ensure the `conda` environment is setup. The task for the wiki contributions are under a separate `Rakefile` namespace, that is, the `tut:` space.
 
 ```bash
 conda activate symedocs
 rake clean
-bundle exec filewatcher "docs/wiki/Sphinx/**/*.{md,py}" "rake tut:mkDocs[html,nix]"
-```
-
-In another terminal, it is possible to run the development server so as to view the changes as they occur.
-
-```bash
-rake darkServe
+rake writeDocs
 ```
 
 Run the task to convert notebooks to markdown, or recall the manual option:

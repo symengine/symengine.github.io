@@ -1,7 +1,7 @@
 * About
 This is the source branch for the web-presence of the entire Symengine project.
 ** Contributions
-To start working on this site, the following three-terminal workflow is recommended.
+To start working on this site, the following workflow is recommended.
 *** Setup
 For the first terminal, we will instantiate a ~jupyter~ server.
 #+begin_src bash
@@ -10,15 +10,10 @@ conda activate symedocs
 jupyter lab
 #+end_src
 
-In another terminal, you can and should set up a file-watching task.
+In another terminal, you can and should set up a file-watching task with a server to visualize the completed docs.
 
 #+begin_src bash
-bundle exec filewatcher "docs/Sphinx/source/**/*.{md,py}" "rake site:mkDocs[html,nix]"
-#+end_src
-
-For the final terminal, we will spin up a server for the output.
-#+begin_src bash
-rake darkServe
+sphinx-autobuild docs public
 #+end_src
 
 In case you have cloned the repo for the first time, and are modifying an existing tutorial, note that the ~ipynb~ files need to be created.
