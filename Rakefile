@@ -79,7 +79,7 @@ namespace "site" do
   task :mkSphinx, [:builder, :runner] do |task, args|
     args.with_defaults(:builder => "html", :runner => "conda")
     if args.runner == "conda"
-      sh "conda run sphinx-build #{BASESITE} #{OUTPUB} --builder #{args.builder}"
+      sh "conda run sphinx-build #{BASESITE} #{OUTPUB} -b #{args.builder}"
     else
       raise RunnerException.new
     end
