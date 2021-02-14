@@ -27,6 +27,7 @@ extensions = [
     "sphinx_copybutton",  # Let there be plagiarism!
     "sphinxcontrib.bibtex", # References!
     "sphinx_sitemap", # Sitemaps are not part of the theme
+    "sphinx_dust", # Review documentation
     "sphinx_togglebutton",  # Toggles reduce clutter
     "myst_nb" # All the myst we need
 ]

@@ -30,4 +30,5 @@ dependencies:
   - pip:
       - sphinx-library
       - sphinx-proof
+      - sphinx-dust
       - sphinx-sitemap

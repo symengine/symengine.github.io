@@ -37,3 +37,9 @@ ex
 ```{code-cell}
 expand(ex)
 ```
+
+```{reviewer-meta}
+:written-on: "2020-08-27"
+:proofread-on: "2021-01-20"
+:dust-days-limit: 60
+```
