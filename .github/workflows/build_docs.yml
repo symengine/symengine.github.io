@@ -1,0 +1,35 @@
+name: Build Documentation
+
+on:
+  push:
+    branches: [ sources ]
+  pull_request:
+    branches: [ sources ]
+  schedule:
+    - cron: "0 0 */1 * *"
+
+jobs:
+  build_docs:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive" # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: symedocs
+          environment-file: symedocs.yml
+          python-version: 3.9
+          auto-activate-base: false
+      - name: Build
+        run: conda run rake site:mkDocs[html,conda]
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_branch: gh-pages
+          publish_dir: ./public
