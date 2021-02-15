@@ -114,5 +114,8 @@ html_theme = 'library'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+language = 'en'
+html_js_files = ['language_data.js']
+
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "monokai"
