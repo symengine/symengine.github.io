@@ -72,7 +72,7 @@ The content is to be written in [Markedly Structured Text](https://myst-parser.r
 Files which are meant to be **executed**; that is those which are tangled with `jupytext` **must have** the `.myst.md` extension.
 
 ```{warning}
-Failure to specify the extension in the YAML header under the `text_representation` key in each `.myst.md` file **will cause unexpected behavior**
+Failure to specify the extension in the YAML headers in each `.myst.md` file **will cause unexpected behavior**
 ```
 
 #### Interactivity
