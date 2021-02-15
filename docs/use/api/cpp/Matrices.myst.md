@@ -66,16 +66,45 @@ The key thing to remember that as a `C++` library, we need to pre-allocated vari
 
 +++
 
-## Addition
+### Matrix-Matrix
 
-For
+#### Addition
+The addition of two dense matrices is carried out as expected.
+
+\begin{align*}
+\mathbf{A}+\mathbf{B} & = \begin{bmatrix}
+ a_{11} & a_{12} & \cdots & a_{1n} \\
+ a_{21} & a_{22} & \cdots & a_{2n} \\
+ \vdots & \vdots & \ddots & \vdots \\
+ a_{m1} & a_{m2} & \cdots & a_{mn} \\
+\end{bmatrix} +
+
+\begin{bmatrix}
+ b_{11} & b_{12} & \cdots & b_{1n} \\
+ b_{21} & b_{22} & \cdots & b_{2n} \\
+ \vdots & \vdots & \ddots & \vdots \\
+ b_{m1} & b_{m2} & \cdots & b_{mn} \\
+\end{bmatrix} \\
+& = \begin{bmatrix}
+ a_{11} + b_{11} & a_{12} + b_{12} & \cdots & a_{1n} + b_{1n} \\
+ a_{21} + b_{21} & a_{22} + b_{22} & \cdots & a_{2n} + b_{2n} \\
+ \vdots & \vdots & \ddots & \vdots \\
+ a_{m1} + b_{m1} & a_{m2} + b_{m2} & \cdots & a_{mn} + b_{mn} \\
+\end{bmatrix} \\
+\end{align*}
 
 ```{code-cell}
-// Addition
 SymEngine::DenseMatrix C = SymEngine::DenseMatrix(2, 2);
 add_dense_dense(A, B,C);
 C.__str__()
 ```
+
+#### Multiplication
+
++++
+
+### Matrix-Scalar
+#### Addition
 
 ## Gaussian Elimination
 
@@ -125,7 +154,6 @@ For `SymEngine` this has been implemented recently as the `element_mul_matrix` f
 SymEngine::DenseMatrix D = SymEngine::DenseMatrix(2, 2);
 // B.elementwise_mul_matrix(A, D);
 ```
-
 
 ```{bibliography} references.bib
 ```
