@@ -498,3 +498,4 @@ public/
 jupyter_execute/
 .jupyter_cache/
 *.ipynb
+notebooks/
