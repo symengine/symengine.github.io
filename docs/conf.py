@@ -1,11 +1,11 @@
 # -- Project information -----------------------------------------------------
 
-project = 'Symengine Documentation'
+project = 'Symengine'
 copyright = '2021, Symengine Development Team'
 author = 'Symengine Development Team'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = 'latest'
 
 
 # -- General configuration ---------------------------------------------------
