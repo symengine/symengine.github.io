@@ -248,3 +248,4 @@ dependencies:
     - beautifulsoup4==4.9.3
     - soupsieve==2.2
     - sphinx-dust==1.2.4
+    - sphinx-proof==0.0.3
