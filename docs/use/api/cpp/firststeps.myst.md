@@ -12,7 +12,7 @@ kernelspec:
   name: xcpp17
 ---
 
-# First Steps
+# First Steps [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/symengine/symengine.github.io/sources?filepath=docs%2Fuse%2Fapi%2Fcpp%2Ffirststeps.myst.md)
 
 This is meant to be a gentle introduction to the `symengine` C++ library.
 

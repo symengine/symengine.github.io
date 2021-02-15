@@ -79,7 +79,7 @@ html_theme_options = {
     "reading_mode": "sepia",
     "typography": "book",
     "extra_links": {
-        "Github": "https://github.com/Symengine/symengine.github.io",
+        "Github": "https://github.com/Symengine",
     },
 }
 # -- MyST --------------------------------------------------------------
