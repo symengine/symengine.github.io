@@ -249,3 +249,4 @@ dependencies:
     - soupsieve==2.2
     - sphinx-dust==1.2.4
     - sphinx-proof==0.0.3
+    - sphinx-library==1.1.2
