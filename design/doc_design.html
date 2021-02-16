@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation Design &#8212; Symengine latest documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://symengine.org/design/doc_design.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ Style Guide" href="style_guide.html" />
+    <link rel="prev" title="Design" href="design.html" />
+ 
+
+<link rel="stylesheet" id="sphinx-library-type" href="../_static/library/type-book.css" type="text/css" />
+<link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=0.9" />
+<script>
+  mobile_menu_content = "";
+  function toggleMenu() {
+    var div = document.getElementsByClassName("document").item(0);
+    var btn = document.getElementById("menu-toggler");
+    if(div.classList.contains("mobile-show")) {
+      div.classList.remove("mobile-show");
+      btn.innerHTML = mobile_menu_content;
+    }
+    else {
+      div.classList.add("mobile-show");
+      mobile_menu_content = btn.innerHTML;
+      btn.innerHTML = btn.getAttribute("data-open");
+    }
+  }
+</script>
+  </head>
+<body class="sepia">
+<div class="document">
+
+  
+  <nav class="mobile-menu" role="navigation">
+    
+  <button type="button" id="menu-toggler" onclick="toggleMenu();"
+    data-open="× Close">≡ Menu</button>
+  <a href="../index.html">Symengine</a>
+  <noscript>
+    <div>
+      JavaScript is required to open/close mobile menu.
+    </div>
+  </noscript>
+  </nav>
+  
+
+  
+  <nav class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    
+
+
+<h1 class="logo ">
+  <a href="../index.html">Symengine</a>
+</h1>
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<h3>Links</h3>
+<ul>
+  
+  <li class="toctree-l1"><a href="https://github.com/Symengine">Github</a></li>
+  
+</ul>
+<h3>Contents</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../use/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inst/index.html">Production Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Design and Core Principles</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="design.html">Library Design Motivation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Documentation Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style_guide.html">C++ Style Guide</a></li>
+</ul>
+</li>
+</ul>
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">Documentation Design</a><ul>
+<li><a class="reference internal" href="#goals">Goals</a></li>
+<li><a class="reference internal" href="#decisions">Decisions</a><ul>
+<li><a class="reference internal" href="#no-versioning">No Versioning</a></li>
+<li><a class="reference internal" href="#review-tutorials">Review Tutorials</a></li>
+<li><a class="reference internal" href="#doc-warnings-are-errors">Doc Warnings are Errors</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation">Implementation</a><ul>
+<li><a class="reference internal" href="#ci-and-hosting">CI and Hosting</a></li>
+<li><a class="reference internal" href="#api-bindings">API Bindings</a></li>
+<li><a class="reference internal" href="#main-site">Main Site</a><ul>
+<li><a class="reference internal" href="#build-system">Build System</a></li>
+<li><a class="reference internal" href="#content-and-syntax">Content and Syntax</a></li>
+<li><a class="reference internal" href="#interactivity">Interactivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+</li>
+</ul>
+<script>
+  function toggleMode(theme) {
+    document.body.className = theme;
+    localStorage.setItem("sphinx-library-mode", theme);
+  }
+  var theme = localStorage.getItem("sphinx-library-mode");
+  if(theme !== null)
+    toggleMode(theme);
+</script>
+<h3>Reading Mode</h3>
+
+<button type="button" onclick="toggleMode('light');">Light</button>
+<button type="button" onclick="toggleMode('sepia');">Sepia</button>
+<button type="button" onclick="toggleMode('dark');">Dark</button>
+
+<noscript>
+  <div>
+    JavaScript is required to toggle reading modes.
+  </div>
+</noscript>
+  </nav>
+  <div class="documentwrapper">
+    <nav class="related breadcrumbs" role="navigation">
+  <a class="nav-item" href="../index.html">Index</a>
+  <span class="delim"> &#187;</span>
+  <a class="nav-item" href="index.html">Design Details</a>
+  <span class="delim"> &#187;</span>
+  <span class="nav-item">Documentation Design</span>
+    </nav>
+    
+
+    <main class="body" role="main" id="main">
+      
+  <div class="section" id="documentation-design">
+<h1>Documentation Design<a class="headerlink" href="#documentation-design" title="Permalink to this headline">¶</a></h1>
+<p>As befitting a project of SymEngine’s scope, a discussion of the documentation design is appropriate. The overall design is spread across multiple repositories, but unified under a single domain.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not covered in this design document are the <strong>manual</strong> benchmarking requirements, and the project todo strategy</p>
+</div>
+<div class="section" id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
+<p>The documentation goals are:</p>
+<ul class="simple">
+<li><p>Link to the API documentation when appropriate</p></li>
+<li><p>Allow each language binding to build and control the API documentation builds</p></li>
+<li><p>Supplement the existing channels of communication</p></li>
+</ul>
+<p>In particular, the third point means that there is to be a clear separation of content between the User Wiki, the API documentation, and the main site.</p>
+</div>
+<div class="section" id="decisions">
+<h2>Decisions<a class="headerlink" href="#decisions" title="Permalink to this headline">¶</a></h2>
+<p>These decisions codify the guiding principles of the documentation.</p>
+<div class="section" id="no-versioning">
+<h3>No Versioning<a class="headerlink" href="#no-versioning" title="Permalink to this headline">¶</a></h3>
+<p>Search engines are typically thrown by versions, e.g. CMake and its documentation setup; and since backward compatibility is not necessarily guaranteed, there is no point hosting multiple versions.</p>
+<p>However, only the latest stable set of bindings are to be described here; that is; those published with the official distribution system, <code class="docutils literal notranslate"><span class="pre">conda</span></code>.</p>
+</div>
+<div class="section" id="review-tutorials">
+<h3>Review Tutorials<a class="headerlink" href="#review-tutorials" title="Permalink to this headline">¶</a></h3>
+<p>The contents of the tutorials (the ones linked from the <a class="reference external" href="https://symengine.org">organization site</a>) are built with sphinx-dust to ensure that they are checked routinely; every <span class="math notranslate nohighlight">\(60\)</span> days by default.</p>
+</div>
+<div class="section" id="doc-warnings-are-errors">
+<h3>Doc Warnings are Errors<a class="headerlink" href="#doc-warnings-are-errors" title="Permalink to this headline">¶</a></h3>
+<p>The documentation is built weekly, as discussed in the next section; and all warnings are treated as errors.</p>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ci-and-hosting">
+<h3>CI and Hosting<a class="headerlink" href="#ci-and-hosting" title="Permalink to this headline">¶</a></h3>
+<p>All builds are through isolated <a class="reference external" href="https://github.com/features/actions">Github Actions</a> jobs and hosted with <a class="reference external" href="https://pages.github.com/">Github Pages</a>. The documentation is rebuilt weekly on a <code class="docutils literal notranslate"><span class="pre">cron</span></code> job, and also tested for each pull request and push for the API and the main site.</p>
+</div>
+<div class="section" id="api-bindings">
+<h3>API Bindings<a class="headerlink" href="#api-bindings" title="Permalink to this headline">¶</a></h3>
+<p>Given the separation of concerns; each language binding is built in the most native fashion; currently this means the tools</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p><strong>Language</strong></p></th>
+<th class="text-align:right head"><p><strong>Tool</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">C++</span></code></p></td>
+<td class="text-align:right"><p><a class="reference external" href="https://www.doxygen.nl/">Doxygen</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">R</span></code></p></td>
+<td class="text-align:right"><p><a class="reference external" href="https://pkgdown.r-lib.org/">pkgdown</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">Python</span></code></p></td>
+<td class="text-align:right"><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">Julia</span></code></p></td>
+<td class="text-align:right"><p><a class="reference external" href="https://juliadocs.github.io/Documenter.jl/stable/">Documenter.jl</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, to ensure cross-linking of references; the <code class="docutils literal notranslate"><span class="pre">C++</span></code> outputs are additionally parsed with parsed with <a class="reference external" href="https://www.sphinx-doc.org/en/master/">sphinx</a> using <a class="reference external" href="https://github.com/vovkos/doxyrest">doxyrest</a>.</p>
+</div>
+<div class="section" id="main-site">
+<h3>Main Site<a class="headerlink" href="#main-site" title="Permalink to this headline">¶</a></h3>
+<p>The main site is meant to serve as an entry point to new users.</p>
+<div class="section" id="build-system">
+<h4>Build System<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h4>
+<p>The site is to be built in production with the <code class="docutils literal notranslate"><span class="pre">rake</span></code> tasks provided; though for local development other methods and helpers are provided.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Several common errors can be caught with the <code class="docutils literal notranslate"><span class="pre">prePub</span></code> task</p>
+</div>
+</div>
+<div class="section" id="content-and-syntax">
+<h4>Content and Syntax<a class="headerlink" href="#content-and-syntax" title="Permalink to this headline">¶</a></h4>
+<p>The content is to be written in <a class="reference external" href="https://myst-parser.readthedocs.io/">Markedly Structured Text</a> or <code class="docutils literal notranslate"><span class="pre">myST</span></code>, which is a super-set of <a class="reference external" href="https://commonmark.org/">CommonMark markdown</a> and has additional extensions for Jupyter Notebooks (with <a class="reference external" href="https://myst-nb.readthedocs.io/en/latest/">myST-NB</a> and <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">jupytext</a>) and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructured Text</a>.</p>
+<p>Files which are meant to be <strong>executed</strong>; that is those which are tangled with <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> <strong>must have</strong> the <code class="docutils literal notranslate"><span class="pre">.myst.md</span></code> extension.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Failure to specify the extension in the YAML headers in each <code class="docutils literal notranslate"><span class="pre">.myst.md</span></code> file <strong>will cause unexpected behavior</strong></p>
+</div>
+</div>
+<div class="section" id="interactivity">
+<h4>Interactivity<a class="headerlink" href="#interactivity" title="Permalink to this headline">¶</a></h4>
+<p>Every tutorial must be accompanied by the following:</p>
+<dl class="simple myst">
+<dt>Binder Button <a class="reference external" href="https://mybinder.org/v2/gh/Symengine/symengine.github.io/sources"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></dt><dd><p>The launch in binder is to populated manually and placed on the first heading of the file and should point to the appropriate <code class="docutils literal notranslate"><span class="pre">myst.md</span></code> file which is on the <code class="docutils literal notranslate"><span class="pre">sources</span></code> branch</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.binder/environment.yml</span></code> must be kept in sync with the <code class="docutils literal notranslate"><span class="pre">symedocs.yml</span></code> file</p>
+</div>
+<dl class="simple myst">
+<dt>Colab Button <a class="reference external" href="https://colab.research.google.com/github/Symengine/symengine.github.io/notebooks"><img alt="Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></dt><dd><p>The launch button, like the binder button above should point to the appropriate file, which in this case is the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file on the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> branch</p>
+</dd>
+<dt>Local Button <a class="reference external" href="https://symengine.org/use/tutorial.html"><img alt="Local Installation" src="https://img.shields.io/badge/Local-Instructions-orange" /></a></dt><dd><p>This button is required, and should direct the user to the <a class="reference internal" href="../use/tutorial.html"><span class="doc std std-doc">tutorial follow along instructions</span></a></p>
+</dd>
+</dl>
+<p>Furthermore, the tutorials <strong>are to be proofread</strong> every <span class="math notranslate nohighlight">\(60\)</span> days, otherwise the <code class="docutils literal notranslate"><span class="pre">cron</span></code> builds will start to fail.</p>
+</div>
+</div>
+</div>
+<div class="section" id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
+<p>Apart from the tireless efforts of the core development team and volunteers; part of the documentation process was supported over the course of the 2020 Season of Docs.</p>
+<div class="note admonition">
+<p class="admonition-title">Review</p>
+<p>Written on 14 February 2021, proofread on 16 February 2021</p>
+</div>
+</div>
+</div>
+
+
+    </main>
+    <nav class="related bottom" role="navigation">
+  <a class="prev" href="design.html" title="Previous">
+    &larr; Design
+  </a>
+  <a class="next" href="style_guide.html" title="Next">
+    C++ Style Guide &rarr;
+  </a>
+  <div class="clear"></div>
+    </nav>
+    
+
+  </div>
+
+  <div class="clear"></div>
+</div>
+<footer class="footer" role="contentinfo">
+    &copy; Copyright 2021, Symengine Development Team.
+  
+  Created using <a href="http://sphinx-doc.org/">Sphinx</a> with
+  <a href="https://github.com/vsalvino/sphinx-library">Library</a> theme.
+  
+  <a href="../_sources/design/doc_design.md.txt" rel="nofollow">Page source</a>
+</footer>
+  </body>
+</html>

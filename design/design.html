@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design &#8212; Symengine Documentation 0.0.1 documentation</title>
+    <title>Design &#8212; Symengine latest documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
@@ -17,7 +17,7 @@
     <link rel="canonical" href="https://symengine.org/design/design.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="C++ Style Guide" href="style_guide.html" />
+    <link rel="next" title="Documentation Design" href="doc_design.html" />
     <link rel="prev" title="Design Details" href="index.html" />
  
 
@@ -49,7 +49,7 @@
     
   <button type="button" id="menu-toggler" onclick="toggleMenu();"
     data-open="× Close">≡ Menu</button>
-  <a href="../index.html">Symengine Documentation</a>
+  <a href="../index.html">Symengine</a>
   <noscript>
     <div>
       JavaScript is required to open/close mobile menu.
@@ -64,7 +64,7 @@
 
 
 <h1 class="logo ">
-  <a href="../index.html">Symengine Documentation</a>
+  <a href="../index.html">Symengine</a>
 </h1>
 
 
@@ -84,18 +84,19 @@
 <h3>Links</h3>
 <ul>
   
-  <li class="toctree-l1"><a href="https://github.com/Symengine/symengine.github.io">Github</a></li>
+  <li class="toctree-l1"><a href="https://github.com/Symengine">Github</a></li>
   
 </ul>
 <h3>Contents</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Design</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Design Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="style_guide.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../use/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inst/index.html">Production Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Design and Core Principles</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Library Design Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_design.html">Documentation Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style_guide.html">C++ Style Guide</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../inst/install.html">Installation Instructions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../use/cpp/firststeps.html">C++ Usage</a></li>
 </ul>
 
 <h3>Page Contents</h3>
@@ -156,9 +157,9 @@
 <p>Let’s talk about just Python: the wrappers are in the <a class="reference external" href="https://github.com/symengine/symengine.py">symengine.py project</a>. They are implemented using Cython, and they are free to introduce any kind of classes (including SymPy’s <code class="docutils literal notranslate"><span class="pre">Expr</span></code> or Sage’s <code class="docutils literal notranslate"><span class="pre">Expression</span></code> if needed), and the point of the wrappers is to make sure that things work out of the box from SymPy and Sage. The only job of the C++ SymEngine library is to ensure that the library’s C++ API is implemented in such a way so that the wrappers can be written to do what they need. For example, we could easily introduce SymPy’s <code class="docutils literal notranslate"><span class="pre">Expr</span></code> into the wrappers, by simply introducing the <code class="docutils literal notranslate"><span class="pre">Expr</span></code> class and make all the other classes subclass from it instead of from <code class="docutils literal notranslate"><span class="pre">Basic</span></code>.</p>
 <p>That was the reason we split the wrappers, so now in the (pure) C++ <code class="docutils literal notranslate"><span class="pre">symengine/symengine</span></code> repository, we only have to worry about speed, correctness, maintainability and a usable API, and we can concentrate on these things without worrying or even testing any kind of wrappers. In the wrappers (<code class="docutils literal notranslate"><span class="pre">symengine/symengine.py</span></code>, or <code class="docutils literal notranslate"><span class="pre">.jl</span></code>, <code class="docutils literal notranslate"><span class="pre">.rb</span></code>), we simply just use the C++ (or C) API and the only thing we care is so that the (Python) wrapper can be used from sympy/Sage (and we test that in the test suite), and that it doesn’t introduce unnecessary overhead in terms of speed. Ruby or Julia wrappers then care about interoperability with other libraries in those languages.</p>
 <ul class="simple">
-<li><p>https://github.com/symengine/symengine.py</p></li>
-<li><p>https://github.com/symengine/symengine.rb</p></li>
-<li><p>https://github.com/symengine/SymEngine.jl</p></li>
+<li><p><a class="reference external" href="https://github.com/symengine/symengine.py">https://github.com/symengine/symengine.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/symengine/symengine.rb">https://github.com/symengine/symengine.rb</a></p></li>
+<li><p><a class="reference external" href="https://github.com/symengine/SymEngine.jl">https://github.com/symengine/SymEngine.jl</a></p></li>
 </ul>
 </div>
 <div class="section" id="reference-counted-pointers">
@@ -283,8 +284,8 @@ our function or it does not, while when overloading operators of our templated
 classes (and RCP), any mistake typically results in pages of compiler errors in
 gcc.</p>
 <p>The Python wrappers then just call this <code class="docutils literal notranslate"><span class="pre">add</span></code> function and provide natural mathematical syntax <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">+</span> <span class="pre">(y</span> <span class="pre">+</span> <span class="pre">x)</span></code> at the Python level.</p>
-<p>[1] https://docs.trilinos.org/dev/packages/thyra/doc/html/LinearAlgebraFunctionConvention.pdf</p>
-<p>[2] http://www.math.ttu.edu/~kelong/Playa/html/</p>
+<p>[1] <a class="reference external" href="https://docs.trilinos.org/dev/packages/thyra/doc/html/LinearAlgebraFunctionConvention.pdf">https://docs.trilinos.org/dev/packages/thyra/doc/html/LinearAlgebraFunctionConvention.pdf</a></p>
+<p>[2] <a class="reference external" href="http://www.math.ttu.edu/~kelong/Playa/html/">http://www.math.ttu.edu/~kelong/Playa/html/</a></p>
 </div>
 </div>
 
@@ -294,8 +295,8 @@ gcc.</p>
   <a class="prev" href="index.html" title="Previous">
     &larr; Design Details
   </a>
-  <a class="next" href="style_guide.html" title="Next">
-    C++ Style Guide &rarr;
+  <a class="next" href="doc_design.html" title="Next">
+    Documentation Design &rarr;
   </a>
   <div class="clear"></div>
     </nav>

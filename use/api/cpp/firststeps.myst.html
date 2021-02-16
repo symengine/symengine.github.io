@@ -1,27 +1,28 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>First Steps &#8212; Symengine Documentation 0.0.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/library/library.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <title>First Steps &#8212; Symengine latest documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/library/library.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://symengine.org/use/cpp/firststeps.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Installation" href="../../inst/install.html" />
+    <link rel="canonical" href="https://symengine.org/use/api/cpp/firststeps.myst.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Installations and Integration" href="../../../inst/index.html" />
+    <link rel="prev" title="C++ Usage" href="index.html" />
  
 
-<link rel="stylesheet" id="sphinx-library-type" href="../../_static/library/type-book.css" type="text/css" />
-<link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+<link rel="stylesheet" id="sphinx-library-type" href="../../../_static/library/type-book.css" type="text/css" />
+<link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=0.9" />
 <script>
   mobile_menu_content = "";
@@ -48,7 +49,7 @@
     
   <button type="button" id="menu-toggler" onclick="toggleMenu();"
     data-open="× Close">≡ Menu</button>
-  <a href="../../index.html">Symengine Documentation</a>
+  <a href="../../../index.html">Symengine</a>
   <noscript>
     <div>
       JavaScript is required to open/close mobile menu.
@@ -63,7 +64,7 @@
 
 
 <h1 class="logo ">
-  <a href="../../index.html">Symengine Documentation</a>
+  <a href="../../../index.html">Symengine</a>
 </h1>
 
 
@@ -73,7 +74,7 @@
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
+    <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
@@ -83,19 +84,23 @@
 <h3>Links</h3>
 <ul>
   
-  <li class="toctree-l1"><a href="https://github.com/Symengine/symengine.github.io">Github</a></li>
+  <li class="toctree-l1"><a href="https://github.com/Symengine">Github</a></li>
   
 </ul>
 <h3>Contents</h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../design/index.html">Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../inst/install.html">Installation Instructions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html">Following Along</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">API Exploration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inst/index.html">Production Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design/index.html">Design and Core Principles</a></li>
 </ul>
 
 <h3>Page Contents</h3>
 <ul>
-<li><a class="reference internal" href="#">First Steps</a><ul>
+<li><a class="reference internal" href="#">First Steps </a><ul>
 <li><a class="reference internal" href="#working-with-expressions">Working with Expressions</a></li>
 </ul>
 </li>
@@ -123,7 +128,13 @@
   </nav>
   <div class="documentwrapper">
     <nav class="related breadcrumbs" role="navigation">
-  <a class="nav-item" href="../../index.html">Index</a>
+  <a class="nav-item" href="../../../index.html">Index</a>
+  <span class="delim"> &#187;</span>
+  <a class="nav-item" href="../../index.html">Use Cases</a>
+  <span class="delim"> &#187;</span>
+  <a class="nav-item" href="../index.html">API Exploration</a>
+  <span class="delim"> &#187;</span>
+  <a class="nav-item" href="index.html">C++ Usage</a>
   <span class="delim"> &#187;</span>
   <span class="nav-item">First Steps</span>
     </nav>
@@ -131,12 +142,12 @@
 
     <main class="body" role="main" id="main">
       
-  <div class="section" id="first-steps">
-<h1>First Steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="first-steps-binder">
+<h1>First Steps <a class="reference external" href="https://mybinder.org/v2/gh/symengine/symengine.github.io/sources?filepath=docs%2Fuse%2Fapi%2Fcpp%2Ffirststeps.myst.md"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a><a class="headerlink" href="#first-steps-binder" title="Permalink to this headline">¶</a></h1>
 <p>This is meant to be a gentle introduction to the <code class="docutils literal notranslate"><span class="pre">symengine</span></code> C++ library.</p>
 <div class="section" id="working-with-expressions">
 <h2>Working with Expressions<a class="headerlink" href="#working-with-expressions" title="Permalink to this headline">¶</a></h2>
-<p>We will start by inspecting the use of <span class="xref std std-ref">Expression</span>.</p>
+<p>We will start by inspecting the use of <a class="reference external" href="https://symengine.org/api-docs/api/class_sym_engine_1_1_expression.html#class_sym_engine_1_1_expression" title="(in Symengine API)"><span class="xref std std-ref">Expression</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;symengine/expression.h&gt;</span><span class="cp"></span>
@@ -175,14 +186,21 @@
 \[8 + 24 \sqrt{2} x + 40 \sqrt{2} x^3 + 6 \sqrt{2} x^5 + 60 x^2 + 30 x^4 + x^6\]</div>
 </div>
 </div>
+<div class="note admonition">
+<p class="admonition-title">Review</p>
+<p>Written on 27 August 2020, proofread on 20 January 2021</p>
+</div>
 </div>
 </div>
 
 
     </main>
     <nav class="related bottom" role="navigation">
-  <a class="prev" href="../../inst/install.html" title="Previous">
-    &larr; Installation
+  <a class="prev" href="index.html" title="Previous">
+    &larr; C++ Usage
+  </a>
+  <a class="next" href="../../../inst/index.html" title="Next">
+    Installations and Integration &rarr;
   </a>
   <div class="clear"></div>
     </nav>
@@ -198,7 +216,7 @@
   Created using <a href="http://sphinx-doc.org/">Sphinx</a> with
   <a href="https://github.com/vsalvino/sphinx-library">Library</a> theme.
   
-  <a href="../../_sources/use/cpp/firststeps.md.txt" rel="nofollow">Page source</a>
+  <a href="../../../_sources/use/api/cpp/firststeps.myst.md.txt" rel="nofollow">Page source</a>
 </footer>
   </body>
 </html>

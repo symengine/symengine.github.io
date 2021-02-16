@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Symengine &#8212; Symengine Documentation 0.0.1 documentation</title>
+    <title>Site Rationale &#8212; Symengine latest documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/library/library.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
@@ -17,7 +17,7 @@
     <link rel="canonical" href="https://symengine.org/index.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Design Details" href="design/index.html" />
+    <link rel="next" title="Use Cases" href="use/index.html" />
  
 
 <link rel="stylesheet" id="sphinx-library-type" href="_static/library/type-book.css" type="text/css" />
@@ -48,7 +48,7 @@
     
   <button type="button" id="menu-toggler" onclick="toggleMenu();"
     data-open="× Close">≡ Menu</button>
-  <a href="#">Symengine Documentation</a>
+  <a href="#">Symengine</a>
   <noscript>
     <div>
       JavaScript is required to open/close mobile menu.
@@ -63,7 +63,7 @@
 
 
 <h1 class="logo ">
-  <a href="#">Symengine Documentation</a>
+  <a href="#">Symengine</a>
 </h1>
 
 
@@ -83,24 +83,27 @@
 <h3>Links</h3>
 <ul>
   
-  <li class="toctree-l1"><a href="https://github.com/Symengine/symengine.github.io">Github</a></li>
+  <li class="toctree-l1"><a href="https://github.com/Symengine">Github</a></li>
   
 </ul>
 <h3>Contents</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="design/index.html">Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inst/install.html">Installation Instructions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="use/cpp/firststeps.html">C++ Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inst/index.html">Production Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design/index.html">Design and Core Principles</a></li>
 </ul>
 
 <h3>Page Contents</h3>
 <ul>
-<li><a class="reference internal" href="#">Symengine</a><ul>
-<li><a class="reference internal" href="#generating-tutorials">Generating Tutorials</a><ul>
-<li><a class="reference internal" href="#running">Running</a></li>
+<li><a class="reference internal" href="#">Site Rationale</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#api-documentation">API Documentation</a></li>
+<li><a class="reference internal" href="#other-resources">Other Resources</a></li>
+<li><a class="reference internal" href="#licenses">Licenses</a><ul>
+<li><a class="reference internal" href="#symengine-license-mit">Symengine </a></li>
+<li><a class="reference internal" href="#documentation-cc-by-4-0">Documentation </a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#other-resources">Other Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -129,45 +132,56 @@
     <nav class="related breadcrumbs" role="navigation">
   <a class="nav-item" href="#">Index</a>
   <span class="delim"> &#187;</span>
-  <span class="nav-item">Symengine</span>
+  <span class="nav-item">Site Rationale</span>
     </nav>
     
 
     <main class="body" role="main" id="main">
       
-  <div class="section" id="symengine">
-<h1>Symengine<a class="headerlink" href="#symengine" title="Permalink to this headline">¶</a></h1>
-<p>The virtual home of the Symengine project.</p>
+  <div class="section" id="site-rationale">
+<h1>Site Rationale<a class="headerlink" href="#site-rationale" title="Permalink to this headline">¶</a></h1>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You may be looking for the <a class="reference external" href="https://symengine.github.io/api-docs/index.html">C++ API documentation instead</a></p>
+<p>You may be looking for a particular language’s <a class="reference external" href="#api-documentation">API documentation instead</a></p>
 </div>
-<div class="section" id="generating-tutorials">
-<h2>Generating Tutorials<a class="headerlink" href="#generating-tutorials" title="Permalink to this headline">¶</a></h2>
-<p>In order to run these tutorials locally, the following setup is suggested [<a class="footnote-reference brackets" href="#id2" id="id1">2</a>]:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># First run</span>
-conda env create -f symedocs.yml
-<span class="c1"># On pulls and syncs</span>
-conda env update -f symedocs.yml
-<span class="c1"># Activate</span>
-conda activate symedocs
-<span class="c1"># Generate ipynb</span>
-rake genJup
-</pre></div>
+<p>SymEngine is a fast symbolic manipulation library, written in C++. The core
+focus of this site is to introduce the features of the library through practical
+examples. The site is laid out in a largely linear fashion, with the tutorials preceding the discussion on integrating with build systems for production code.</p>
+<p>To follow along, proceed to the <a class="reference internal" href="use/index.html"><span class="doc std std-doc">tutorial setup instructions</span></a>.</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="use/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="use/tutorial.html">Following Along</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use/api/index.html">API Exploration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inst/index.html">Production Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inst/install.html">Build Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="design/index.html">Design and Core Principles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="design/design.html">Library Design Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/doc_design.html">Documentation Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/style_guide.html">C++ Style Guide</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="section" id="running">
-<h3>Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h3>
-<p>The simplest way is to now spin up the <code class="docutils literal notranslate"><span class="pre">jupyter-server</span></code> and navigate through the <code class="docutils literal notranslate"><span class="pre">use/</span></code> folders.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># In an activated environment</span>
-jupyter-server
-</pre></div>
 </div>
-</div>
+<div class="section" id="api-documentation">
+<h2>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://symengine.github.io/api-docs">C++ API Documentation</a></p></li>
+<li><p><a class="reference external" href="https://symengine.github.io/symengine.py">Python Bindings</a></p></li>
+<li><p><a class="reference external" href="https://symengine.github.io/symengine.jl">Julia Bindings</a></p></li>
+<li><p><a class="reference external" href="https://symengine.github.io/symengine.R">R Bindings</a></p></li>
+</ul>
 </div>
 <div class="section" id="other-resources">
 <h2>Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://symengine.github.io/api-docs">API Documentation</a></p></li>
 <li><p><a class="reference external" href="https://groups.google.com/g/symengine">Mailing List</a></p></li>
 <li><p><a class="reference external" href="https://github.com/symengine/symengine/wiki">GH Wiki</a></p></li>
 <li><p><a class="reference external" href="https://gitter.im/symengine/symengine?at=53ac6f80b7f5a3321716c7eb">Gitter</a></p></li>
@@ -175,22 +189,29 @@ jupyter-server
 <ul class="simple">
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-<div class="toctree-wrapper compound">
 </div>
-<hr class="docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
-<dd><p>To <strong>add</strong> to the documentation, see the <span class="xref std std-ref">contributing</span> details</p>
-</dd>
-</dl>
+<div class="section" id="licenses">
+<h2>Licenses<a class="headerlink" href="#licenses" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="symengine-license-mit">
+<h3>Symengine <a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a><a class="headerlink" href="#symengine-license-mit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>All <code class="docutils literal notranslate"><span class="pre">symengine</span></code> core code and language bindings are licensed under <a class="reference external" href="https://mit-license.org/">the MIT license</a></p></li>
+<li><p>Some third party code packages adapted from the Tilinos package are licensed under a <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-clause license</a></p></li>
+</ul>
+</div>
+<div class="section" id="documentation-cc-by-4-0">
+<h3>Documentation <a class="reference external" href="http://creativecommons.org/licenses/by/4.0/"><img alt="CC BY 4.0" src="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg" /></a><a class="headerlink" href="#documentation-cc-by-4-0" title="Permalink to this headline">¶</a></h3>
+<p>The documentation is licensed under a <a class="reference external" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<p><a class="reference external" href="http://creativecommons.org/licenses/by/4.0/"><img alt="CC BY 4.0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+</div>
 </div>
 </div>
 
 
     </main>
     <nav class="related bottom" role="navigation">
-  <a class="next" href="design/index.html" title="Next">
-    Design Details &rarr;
+  <a class="next" href="use/index.html" title="Next">
+    Use Cases &rarr;
   </a>
   <div class="clear"></div>
     </nav>

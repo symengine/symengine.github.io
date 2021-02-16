@@ -10,9 +10,9 @@ Let's talk about just Python: the wrappers are in the [symengine.py project](htt
 
 That was the reason we split the wrappers, so now in the (pure) C++ `symengine/symengine` repository, we only have to worry about speed, correctness, maintainability and a usable API, and we can concentrate on these things without worrying or even testing any kind of wrappers. In the wrappers (`symengine/symengine.py`, or `.jl`, `.rb`), we simply just use the C++ (or C) API and the only thing we care is so that the (Python) wrapper can be used from sympy/Sage (and we test that in the test suite), and that it doesn't introduce unnecessary overhead in terms of speed. Ruby or Julia wrappers then care about interoperability with other libraries in those languages.
 
-* https://github.com/symengine/symengine.py
-* https://github.com/symengine/symengine.rb
-* https://github.com/symengine/SymEngine.jl
+* [https://github.com/symengine/symengine.py](https://github.com/symengine/symengine.py)
+* <https://github.com/symengine/symengine.rb>
+* <https://github.com/symengine/SymEngine.jl>
 
 ## Reference Counted Pointers
 
@@ -147,7 +147,7 @@ gcc.
 The Python wrappers then just call this `add` function and provide natural mathematical syntax `(x + y) + (y + x)` at the Python level.
 
 
-[1] https://docs.trilinos.org/dev/packages/thyra/doc/html/LinearAlgebraFunctionConvention.pdf
+[1] <https://docs.trilinos.org/dev/packages/thyra/doc/html/LinearAlgebraFunctionConvention.pdf>
 
-[2] http://www.math.ttu.edu/~kelong/Playa/html/
+[2] <http://www.math.ttu.edu/~kelong/Playa/html/>
 

@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation &#8212; Symengine Documentation 0.0.1 documentation</title>
+    <title>Installation &#8212; Symengine latest documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
@@ -17,8 +17,8 @@
     <link rel="canonical" href="https://symengine.org/inst/install.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="First Steps" href="../use/cpp/firststeps.html" />
-    <link rel="prev" title="C++ Style Guide" href="../design/style_guide.html" />
+    <link rel="next" title="Design Details" href="../design/index.html" />
+    <link rel="prev" title="Installations and Integration" href="index.html" />
  
 
 <link rel="stylesheet" id="sphinx-library-type" href="../_static/library/type-book.css" type="text/css" />
@@ -49,7 +49,7 @@
     
   <button type="button" id="menu-toggler" onclick="toggleMenu();"
     data-open="× Close">≡ Menu</button>
-  <a href="../index.html">Symengine Documentation</a>
+  <a href="../index.html">Symengine</a>
   <noscript>
     <div>
       JavaScript is required to open/close mobile menu.
@@ -64,7 +64,7 @@
 
 
 <h1 class="logo ">
-  <a href="../index.html">Symengine Documentation</a>
+  <a href="../index.html">Symengine</a>
 </h1>
 
 
@@ -84,14 +84,17 @@
 <h3>Links</h3>
 <ul>
   
-  <li class="toctree-l1"><a href="https://github.com/Symengine/symengine.github.io">Github</a></li>
+  <li class="toctree-l1"><a href="https://github.com/Symengine">Github</a></li>
   
 </ul>
 <h3>Contents</h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Instructions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../use/cpp/firststeps.html">C++ Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../use/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Production Usage</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Build Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design and Core Principles</a></li>
 </ul>
 
 <h3>Page Contents</h3>
@@ -126,6 +129,8 @@
     <nav class="related breadcrumbs" role="navigation">
   <a class="nav-item" href="../index.html">Index</a>
   <span class="delim"> &#187;</span>
+  <a class="nav-item" href="index.html">Installations and Integration</a>
+  <span class="delim"> &#187;</span>
   <span class="nav-item">Installation</span>
     </nav>
     
@@ -147,11 +152,19 @@
 <p>We will start with a discussion on replicating the Jupyter setup which is used for the Binder interactive samples on the website.</p>
 <div class="section" id="jupyter-setup">
 <h2>Jupyter Setup<a class="headerlink" href="#jupyter-setup" title="Permalink to this headline">¶</a></h2>
-<p>This is the simplest aspect of this guide, as it is automated and requires only <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda, which can be obtained here</a><a class="footnote-reference brackets" href="#id2" id="id1">2</a>. Once this is obtained and activated, the setup involves a setup and update step.</p>
+<p>This is the simplest aspect of this guide, as it is automated and requires only <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda, which can be obtained here</a><a class="footnote-reference brackets" href="#id2" id="id1">1</a>. Once this is obtained and activated, the setup involves a setup and update step.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># First run</span>
+conda env create -f symedocs.yml
+<span class="c1"># On pulls and syncs</span>
+conda env update -f symedocs.yml
+<span class="c1"># Activate</span>
+conda activate symedocs
+</pre></div>
+</div>
 <p>At this stage we can now load the Jupyter environment to run the tutorials.</p>
-<hr class="docutils" />
+<hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Note that due to a version mismatch with RabbitMQ, we can’t use Anaconda</p>
 </dd>
 </dl>
@@ -161,11 +174,11 @@
 
     </main>
     <nav class="related bottom" role="navigation">
-  <a class="prev" href="../design/style_guide.html" title="Previous">
-    &larr; C++ Style Guide
+  <a class="prev" href="index.html" title="Previous">
+    &larr; Installations and Integration
   </a>
-  <a class="next" href="../use/cpp/firststeps.html" title="Next">
-    First Steps &rarr;
+  <a class="next" href="../design/index.html" title="Next">
+    Design Details &rarr;
   </a>
   <div class="clear"></div>
     </nav>
