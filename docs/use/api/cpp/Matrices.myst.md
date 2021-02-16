@@ -28,6 +28,7 @@ The following header files will be necessary for this section.
 #include <symengine/pow.h>
 #include <symengine/symengine_exception.h>
 #include <symengine/visitor.h>
+#include <symengine/printers/strprinter.h>
 ```
 
 ## Base Elements
@@ -57,6 +58,10 @@ SymEngine::vec_basic elemsB{SymEngine::integer(5),
 SymEngine::DenseMatrix B = SymEngine::DenseMatrix(2, 2, elemsB);
 B.__str__()
 ```
+
+Note that the real utility of working with SymEngine is the ability to include free symbols as first class members of the matrix.
+
++++
 
 ## Basic Operations
 
@@ -154,6 +159,32 @@ For `SymEngine` this has been implemented recently as the `element_mul_matrix` f
 SymEngine::DenseMatrix D = SymEngine::DenseMatrix(2, 2);
 // B.elementwise_mul_matrix(A, D);
 ```
+
+# NumPY Convenience Functions
+A set of functions are provided to allow for `numpy`-esque generation of matrices.
+- `eye` for generating a 2-D matrix with ones on the diagonal and zeros elsewhere
+- `diag` for generating diagonal matrices
+- `ones` for generating a dense matrix of ones
+- `zeros` for generating a dense matrix of zeros
+
++++
+
+## Identity Matrices and Offsets
+The `eye` function is used to create 2D matrices with ones on the diagonal and zeros elsewhere; with an optional parameter to offset the position of the ones.
+
+```{code-cell}
+SymEngine::DenseMatrix npA = SymEngine::DenseMatrix(3, 3);
+SymEngine::eye(npA);
+npA.__str__()
+```
+
+```{code-cell}
+SymEngine::eye(npA,1);
+npA.__str__()
+```
+
+## Diagonal Matrix Helpers
+The `diag` function
 
 ```{bibliography} references.bib
 ```
