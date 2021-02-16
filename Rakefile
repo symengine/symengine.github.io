@@ -7,18 +7,15 @@ require "fileutils" # Cross Platform
 #############
 # Common
 CWD = File.expand_path(__dir__)
-DOXYFILE = "Doxyfile-syme.cfg"
-SYMESRC = File.join(CWD, "projects/symengine/symengine")
 OUTPUB = File.join(CWD, "public")
 # Site
 BASESITE = File.join(CWD, "docs")
 # Files
-docFiles = FileList['docs/**/*.md'] do |fl| 
+docFiles = FileList['docs/**/*.myst.md'] do |fl|
     fl.exclude do |f| 
       `git ls-files #{f}`.empty?
     end
 end
- 
 
 # Exception
 class RunnerException < StandardError
@@ -61,7 +58,13 @@ desc "Generate all the notebooks from markdown"
 task :genJup => docFiles.ext(".ipynb")
 
 rule ".ipynb" => ".md" do |t|
-  sh "jupytext --to ipynb #{File.join(CWD,t.source)}"
+  sh "jupytext --from myst --to ipynb #{File.join(CWD,t.source)}"
+end
+
+desc "Generate content for the notebooks branch"
+task :genNotebooks => ["genJup"] do |t|
+  FileUtils.mkdir_p("#{NBSITE}")
+  cp_r(Dir["#{BASESITE}/."], "#{NBSITE}")
 end
 
 # Generate notebooks <-> markdown

@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://symengine.org/sitemap.xml

@@ -1,11 +1,11 @@
 # -- Project information -----------------------------------------------------
 
-project = 'Symengine Documentation'
+project = 'Symengine'
 copyright = '2021, Symengine Development Team'
 author = 'Symengine Development Team'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = 'latest'
 
 
 # -- General configuration ---------------------------------------------------
@@ -26,18 +26,28 @@ extensions = [
     "sphinx_proof",  # Future proofing
     "sphinx_copybutton",  # Let there be plagiarism!
     "sphinxcontrib.bibtex", # References!
+    "sphinx_sitemap", # Sitemaps are not part of the theme
+    "sphinx_dust", # Review documentation
     "sphinx_togglebutton",  # Toggles reduce clutter
     "myst_nb" # All the myst we need
 ]
 
+# Allowed Files
+source_suffix = ['.md', '.rst']
+
 # Sitemap Config
 html_baseurl = "https://symengine.org/"
+html_extra_path = ['robots.txt']
 
 # MathJax Configuration
 mathjax_config = {
     "extensions": ["tex2jax.js"],
     "jax": ["input/TeX", "output/HTML-CSS"],
 }
+
+# Intersphinx Config
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None),
+                       'cpp_api': ('https://symengine.org/api-docs/',None)}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -48,7 +58,7 @@ bibtex_bibfiles = ["references.bib"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['*.ipynb']
 
 # -- Library Theme Settings ------------------------------------------
 # Sidebars
@@ -69,7 +79,7 @@ html_theme_options = {
     "reading_mode": "sepia",
     "typography": "book",
     "extra_links": {
-        "Github": "https://github.com/Symengine/symengine.github.io",
+        "Github": "https://github.com/Symengine",
     },
 }
 # -- MyST --------------------------------------------------------------
@@ -103,6 +113,9 @@ html_theme = 'library'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+language = 'en'
+html_js_files = ['language_data.js']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "monokai"

@@ -13,7 +13,7 @@ We will start with a discussion on replicating the Jupyter setup which is used f
 
 This is the simplest aspect of this guide, as it is automated and requires only [miniconda, which can be obtained here](https://docs.conda.io/en/latest/miniconda.html)[^1]. Once this is obtained and activated, the setup involves a setup and update step.
 
-```{code-cell} bash
+```bash
 # First run
 conda env create -f symedocs.yml
 # On pulls and syncs

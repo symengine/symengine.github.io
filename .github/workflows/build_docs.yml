@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ sources ]
   schedule:
-    - cron: "0 0 */1 * *"
+    - cron: "0 0 * * */6"
 
 jobs:
   build_docs:
@@ -19,6 +19,23 @@ jobs:
         with:
           submodules: "recursive" # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+      - name: Cache conda
+        uses: actions/cache@v1
+        env:
+          CACHE_NUMBER: 0
+        with:
+          path: ~/conda_pkgs_dir
+          key:
+            ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{
+            hashFiles('symedocs.yml') }}
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('symedocs.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
       - uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: symedocs
@@ -27,10 +44,17 @@ jobs:
           auto-activate-base: false
       - name: Build
         run: sphinx-build docs ./public
-      - name: Deploy
+      - name: Deploy Docs
         if: ${{ github.ref == 'refs/heads/sources' && github.repository == 'Symengine/symengine.github.io' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./public
+      - name: Deploy Notebooks
+        if: ${{ github.ref == 'refs/heads/sources' && github.repository == 'Symengine/symengine.github.io' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: notebooks
+          publish_dir: ./notebooks
