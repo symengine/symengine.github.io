@@ -94,6 +94,9 @@ Local Button [![Local Installation](https://img.shields.io/badge/Local-Instructi
 
 Furthermore, the tutorials **are to be proofread** every $60$ days, otherwise the `cron` builds will start to fail.
 
+#### Docs are Tests
+Each `.myst.md` is to be executed on the repository CI system when the API documentation is built. This is facilitated by [papermill](https://papermill.readthedocs.io/en/latest/index.html).
+
 ## Acknowledgments
 
 Apart from the tireless efforts of the core development team and volunteers; part of the documentation process was supported over the course of the 2020 Season of Docs.
