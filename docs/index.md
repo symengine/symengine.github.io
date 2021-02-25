@@ -18,6 +18,7 @@ To follow along, proceed to the [tutorial setup instructions](use/index).
 Tutorials <use/index>
 Production Usage <inst/index>
 Design and Core Principles <design/index>
+Frequently Asked Questions <misc/faq>
 ```
 
 ## API Documentation
