@@ -1,12 +1,6 @@
 name: Build Documentation
 
-on:
-  push:
-    branches: [ sources ]
-  pull_request:
-    branches: [ sources ]
-  schedule:
-    - cron: "0 0 * * */6"
+on: [push, pull_request]
 
 jobs:
   build_docs:
@@ -19,6 +13,8 @@ jobs:
         with:
           submodules: "recursive" # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+      - name: Get CPP Notebooks
+        run: scripts/genMyst.sh
       - name: Cache conda
         uses: actions/cache@v1
         env:
@@ -42,7 +38,19 @@ jobs:
           environment-file: symedocs.yml
           python-version: 3.9
           auto-activate-base: false
-      - name: Build
+      - name: Build SymEngine CPP core
+        run: |
+          git clone https://github.com/symengine/symengine symengine-cpp
+          cd symengine-cpp
+          mkdir build
+          cd build
+          export LDFLAGS="-Wl,-rpath,${NB_PYTHON_PREFIX}/lib -L${NB_PYTHON_PREFIX}/lib"
+          cmake -DWITH_COTIRE=no -DBUILD_SHARED_LIBS=yes -DWITH_MPC=yes -DWITH_ARB=yes -DINTEGER_CLASS=flint -DWITH_LLVM=yes -DCMAKE_PREFIX_PATH=${NB_PYTHON_PREFIX} -DCMAKE_INSTALL_PREFIX=${NB_PYTHON_PREFIX} -DBUILD_TESTS=off -DBUILD_BENCHMARKS=off -DCMAKE_INSTALL_LIBDIR=lib ..
+          make -j4
+          sudo make install
+          cd ..
+          rm -rf build
+      - name: Build Docs
         run: sphinx-build docs ./public
       - name: Deploy Docs
         if: ${{ github.ref == 'refs/heads/sources' && github.repository == 'Symengine/symengine.github.io' }}
