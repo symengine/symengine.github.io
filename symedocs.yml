@@ -3,7 +3,14 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - doxyrest
+  - xeus-cling
+  - llvmdev=5
+  - gmp
+  - mpfr
+  - mpc
+  - cmake
+  - arb
+  - libflint
   - ipykernel
   - ipywidgets
   - jupyter
@@ -15,7 +22,6 @@ dependencies:
   - numpy
   - pip
   - python=3.9.1
-  - python-symengine=0.6.1
   - ruby=2.5.7
   - sphinx=3.4.3
   - sphinx-autobuild
@@ -24,12 +30,9 @@ dependencies:
   - sphinx-thebe
   - sphinx-togglebutton
   - sphinxcontrib-bibtex
-  - symengine=0.6.0
   - xeus-cling=0.12.0
   - xtensor
   - pip:
-    - beautifulsoup4
-    - soupsieve
     - sphinx-dust
     - sphinx-proof
     - sphinx-library
