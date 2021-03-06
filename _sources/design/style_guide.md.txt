@@ -16,7 +16,7 @@ Use 4 spaces. Format ``if`` as follows:
 
 Never use raw C++ pointers and never use the raw `new` and `delete`. Always use
 the smart pointers provided by `symengine_rcp.h` (depending on
-WITH_SYMENGINE_RCP, those are either Teuchos::RCP, or our own, faster
+`WITH_SYMENGINE_RCP`, those are either Teuchos::RCP, or our own, faster
 implementation), i.e. `Ptr` and `RCP` (and do not use the `.get()` method, only
 the `.ptr()` method). In Debug mode, the pointers are 100% safe, i.e. no matter
 how you use them the code will not segfault, but instead raise a nice exception
@@ -104,7 +104,7 @@ Functions with one input and two output arguments are declared:
         ...
     }
 
-and used as follows:
+and these are used as follows:
 
     RCP<Integer> coef;
     RCP<Basic> t;

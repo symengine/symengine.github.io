@@ -17,6 +17,7 @@
     <link rel="canonical" href="https://symengine.org/design/style_guide.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Frequently Asked Questions" href="../misc/faq.html" />
     <link rel="prev" title="Documentation Design" href="doc_design.html" />
  
 
@@ -96,6 +97,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">C++ Style Guide</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/faq.html">Frequently Asked Questions</a></li>
 </ul>
 
 <h3>Page Contents</h3>
@@ -165,7 +167,7 @@
 <h2>Pointers<a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h2>
 <p>Never use raw C++ pointers and never use the raw <code class="docutils literal notranslate"><span class="pre">new</span></code> and <code class="docutils literal notranslate"><span class="pre">delete</span></code>. Always use
 the smart pointers provided by <code class="docutils literal notranslate"><span class="pre">symengine_rcp.h</span></code> (depending on
-WITH_SYMENGINE_RCP, those are either Teuchos::RCP, or our own, faster
+<code class="docutils literal notranslate"><span class="pre">WITH_SYMENGINE_RCP</span></code>, those are either Teuchos::RCP, or our own, faster
 implementation), i.e. <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> and <code class="docutils literal notranslate"><span class="pre">RCP</span></code> (and do not use the <code class="docutils literal notranslate"><span class="pre">.get()</span></code> method, only
 the <code class="docutils literal notranslate"><span class="pre">.ptr()</span></code> method). In Debug mode, the pointers are 100% safe, i.e. no matter
 how you use them the code will not segfault, but instead raise a nice exception
@@ -250,7 +252,7 @@ use <code class="docutils literal notranslate"><span class="pre">RCP</span></cod
 }
 </pre></div>
 </div>
-<p>and used as follows:</p>
+<p>and these are used as follows:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Integer&gt; coef;
 RCP&lt;Basic&gt; t;
 as_coef_term(b, outArg(coef), outArg(t));
@@ -285,6 +287,9 @@ or use “explicit import” as follows: <code class="docutils literal notransla
     <nav class="related bottom" role="navigation">
   <a class="prev" href="doc_design.html" title="Previous">
     &larr; Documentation Design
+  </a>
+  <a class="next" href="../misc/faq.html" title="Next">
+    Frequently Asked Questions &rarr;
   </a>
   <div class="clear"></div>
     </nav>

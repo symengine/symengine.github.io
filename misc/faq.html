@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Details &#8212; Symengine latest documentation</title>
+    <title>Frequently Asked Questions &#8212; Symengine latest documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
@@ -14,11 +14,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://symengine.org/design/index.html" />
+    <link rel="canonical" href="https://symengine.org/misc/faq.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Design" href="design.html" />
-    <link rel="prev" title="Installation" href="../inst/install.html" />
+    <link rel="prev" title="C++ Style Guide" href="../design/style_guide.html" />
  
 
 <link rel="stylesheet" id="sphinx-library-type" href="../_static/library/type-book.css" type="text/css" />
@@ -91,13 +90,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../use/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../inst/index.html">Production Usage</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Design and Core Principles</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="design.html">Library Design Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_design.html">Documentation Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="style_guide.html">C++ Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design and Core Principles</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently Asked Questions</a></li>
+</ul>
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">Frequently Asked Questions</a><ul>
+<li><a class="reference internal" href="#what-are-the-main-use-cases">What are the main use-cases?</a></li>
+<li><a class="reference internal" href="#what-does-this-have-to-do-with-sympy">What does this have to do with SymPy?</a></li>
+<li><a class="reference internal" href="#what-about-eigen-armadillo-xtensor">What about Eigen / Armadillo / XTensor?</a></li>
+<li><a class="reference internal" href="#how-do-i-convert-my-eigen-armadillo-xtensor-code">How do I convert my Eigen / Armadillo / Xtensor code?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/faq.html">Frequently Asked Questions</a></li>
 </ul>
 <script>
   function toggleMode(theme) {
@@ -124,49 +129,50 @@
     <nav class="related breadcrumbs" role="navigation">
   <a class="nav-item" href="../index.html">Index</a>
   <span class="delim"> &#187;</span>
-  <span class="nav-item">Design Details</span>
+  <span class="nav-item">Frequently Asked Questions</span>
     </nav>
     
 
     <main class="body" role="main" id="main">
       
-  <div class="section" id="design-details">
-<h1>Design Details<a class="headerlink" href="#design-details" title="Permalink to this headline">¶</a></h1>
-<p>The library design motivation and C++ style guide were initially imported from the main C++ repository.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Library Design Motivation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="design.html#symengine-is-used-in-different-languages">SymEngine is used in different languages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design.html#reference-counted-pointers">Reference Counted Pointers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design.html#object-creation-and-is-canonical">Object creation and <code class="docutils literal notranslate"><span class="pre">is_canonical()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="design.html#operator-overloading">Operator Overloading</a></li>
+  <div class="section" id="frequently-asked-questions">
+<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-are-the-main-use-cases">
+<h2>What are the main use-cases?<a class="headerlink" href="#what-are-the-main-use-cases" title="Permalink to this headline">¶</a></h2>
+<p>There are is a <a class="reference external" href="https://github.com/symengine/symengine/wiki/Projects-using-SymEngine">growing list of projects</a> which use SymEngine. However, mostly
+this is used for:</p>
+<ul class="simple">
+<li><p>Code Generation</p></li>
+<li><p>Optimization</p></li>
+<li><p>Providing an efficient backend for other languages</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_design.html">Documentation Design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_design.html#goals">Goals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_design.html#decisions">Decisions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_design.html#implementation">Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_design.html#acknowledgments">Acknowledgments</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="style_guide.html">C++ Style Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="style_guide.html#whitespace">Whitespace</a></li>
-<li class="toctree-l2"><a class="reference internal" href="style_guide.html#pointers">Pointers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="style_guide.html#namespaces">Namespaces</a></li>
-</ul>
-</li>
-</ul>
+</div>
+<div class="section" id="what-does-this-have-to-do-with-sympy">
+<h2>What does this have to do with SymPy?<a class="headerlink" href="#what-does-this-have-to-do-with-sympy" title="Permalink to this headline">¶</a></h2>
+<p>SymEngine has a different structure (organizational and financial). However,
+there are many developers in common, and <code class="docutils literal notranslate"><span class="pre">sympy</span></code> is able to use <code class="docutils literal notranslate"><span class="pre">symengine</span></code> as a
+back-end.</p>
+</div>
+<div class="section" id="what-about-eigen-armadillo-xtensor">
+<h2>What about Eigen / Armadillo / XTensor?<a class="headerlink" href="#what-about-eigen-armadillo-xtensor" title="Permalink to this headline">¶</a></h2>
+<p>These are numerical libraries, they require explicit formulation of equations,
+and due to the finite representation of digits on computers, they <a class="reference external" href="https://docs.microsoft.com/en-us/cpp/build/why-floating-point-numbers-may-lose-precision?view=msvc-160">are prone to
+numerical
+errors</a>.</p>
+</div>
+<div class="section" id="how-do-i-convert-my-eigen-armadillo-xtensor-code">
+<h2>How do I convert my Eigen / Armadillo / Xtensor code?<a class="headerlink" href="#how-do-i-convert-my-eigen-armadillo-xtensor-code" title="Permalink to this headline">¶</a></h2>
+<p>There should not be any need to do so. If a symbolic library is required it
+should be clear at the ideation phase. If inheriting legacy code which needs to
+be converted, it should be done in terms of the underlying C++ data structures.</p>
 </div>
 </div>
 
 
     </main>
     <nav class="related bottom" role="navigation">
-  <a class="prev" href="../inst/install.html" title="Previous">
-    &larr; Installation
-  </a>
-  <a class="next" href="design.html" title="Next">
-    Design &rarr;
+  <a class="prev" href="../design/style_guide.html" title="Previous">
+    &larr; C++ Style Guide
   </a>
   <div class="clear"></div>
     </nav>
@@ -182,7 +188,7 @@
   Created using <a href="http://sphinx-doc.org/">Sphinx</a> with
   <a href="https://github.com/vsalvino/sphinx-library">Library</a> theme.
   
-  <a href="../_sources/design/index.md.txt" rel="nofollow">Page source</a>
+  <a href="../_sources/misc/faq.md.txt" rel="nofollow">Page source</a>
 </footer>
   </body>
 </html>
