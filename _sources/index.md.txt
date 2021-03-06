@@ -22,10 +22,10 @@ Design and Core Principles <design/index>
 
 ## API Documentation
 
-- [C++ API Documentation](https://symengine.github.io/api-docs)
-- [Python Bindings](https://symengine.github.io/symengine.py)
-- [Julia Bindings](https://symengine.github.io/symengine.jl)
-- [R Bindings](https://symengine.github.io/symengine.R)
+- [C++ API Documentation](https://symengine.org/symengine)
+- [R Bindings](https://symengine.org/symengine.R)
+- [Julia Bindings](https://symengine.org/SymEngine.jl/)
+- [Python Bindings](https://symengine.org/symengine.py)
 
 ## Other Resources
 
