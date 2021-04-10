@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Documentation Design &#8212; Symengine latest documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
@@ -159,14 +160,14 @@
 
     <main class="body" role="main" id="main">
       
-  <div class="section" id="documentation-design">
+  <section id="documentation-design">
 <h1>Documentation Design<a class="headerlink" href="#documentation-design" title="Permalink to this headline">¶</a></h1>
 <p>As befitting a project of SymEngine’s scope, a discussion of the documentation design is appropriate. The overall design is spread across multiple repositories, but unified under a single domain.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Not covered in this design document are the <strong>manual</strong> benchmarking requirements, and the project todo strategy</p>
 </div>
-<div class="section" id="goals">
+<section id="goals">
 <h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
 <p>The documentation goals are:</p>
 <ul class="simple">
@@ -175,31 +176,31 @@
 <li><p>Supplement the existing channels of communication</p></li>
 </ul>
 <p>In particular, the third point means that there is to be a clear separation of content between the User Wiki, the API documentation, and the main site.</p>
-</div>
-<div class="section" id="decisions">
+</section>
+<section id="decisions">
 <h2>Decisions<a class="headerlink" href="#decisions" title="Permalink to this headline">¶</a></h2>
 <p>These decisions codify the guiding principles of the documentation.</p>
-<div class="section" id="no-versioning">
+<section id="no-versioning">
 <h3>No Versioning<a class="headerlink" href="#no-versioning" title="Permalink to this headline">¶</a></h3>
 <p>Search engines are typically thrown by versions, e.g. CMake and its documentation setup; and since backward compatibility is not necessarily guaranteed, there is no point hosting multiple versions.</p>
 <p>However, only the latest stable set of bindings are to be described here; that is; those published with the official distribution system, <code class="docutils literal notranslate"><span class="pre">conda</span></code>.</p>
-</div>
-<div class="section" id="review-tutorials">
+</section>
+<section id="review-tutorials">
 <h3>Review Tutorials<a class="headerlink" href="#review-tutorials" title="Permalink to this headline">¶</a></h3>
 <p>The contents of the tutorials (the ones linked from the <a class="reference external" href="https://symengine.org">organization site</a>) are built with sphinx-dust to ensure that they are checked routinely; every <span class="math notranslate nohighlight">\(60\)</span> days by default.</p>
-</div>
-<div class="section" id="doc-warnings-are-errors">
+</section>
+<section id="doc-warnings-are-errors">
 <h3>Doc Warnings are Errors<a class="headerlink" href="#doc-warnings-are-errors" title="Permalink to this headline">¶</a></h3>
 <p>The documentation is built weekly, as discussed in the next section; and all warnings are treated as errors.</p>
-</div>
-</div>
-<div class="section" id="implementation">
+</section>
+</section>
+<section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="ci-and-hosting">
+<section id="ci-and-hosting">
 <h3>CI and Hosting<a class="headerlink" href="#ci-and-hosting" title="Permalink to this headline">¶</a></h3>
 <p>All builds are through isolated <a class="reference external" href="https://github.com/features/actions">Github Actions</a> jobs and hosted with <a class="reference external" href="https://pages.github.com/">Github Pages</a>. The documentation is rebuilt weekly on a <code class="docutils literal notranslate"><span class="pre">cron</span></code> job, and also tested for each pull request and push for the API and the main site.</p>
-</div>
-<div class="section" id="api-bindings">
+</section>
+<section id="api-bindings">
 <h3>API Bindings<a class="headerlink" href="#api-bindings" title="Permalink to this headline">¶</a></h3>
 <p>Given the separation of concerns; each language binding is built in the most native fashion; currently this means the tools</p>
 <table class="colwidths-auto docutils align-default">
@@ -224,19 +225,19 @@
 </tbody>
 </table>
 <p>Additionally, to ensure cross-linking of references; the <code class="docutils literal notranslate"><span class="pre">C++</span></code> outputs are additionally parsed with parsed with <a class="reference external" href="https://www.sphinx-doc.org/en/master/">sphinx</a> using <a class="reference external" href="https://github.com/vovkos/doxyrest">doxyrest</a>.</p>
-</div>
-<div class="section" id="main-site">
+</section>
+<section id="main-site">
 <h3>Main Site<a class="headerlink" href="#main-site" title="Permalink to this headline">¶</a></h3>
 <p>The main site is meant to serve as an entry point to new users.</p>
-<div class="section" id="build-system">
+<section id="build-system">
 <h4>Build System<a class="headerlink" href="#build-system" title="Permalink to this headline">¶</a></h4>
 <p>The site is to be built in production with the <code class="docutils literal notranslate"><span class="pre">rake</span></code> tasks provided; though for local development other methods and helpers are provided.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Several common errors can be caught with the <code class="docutils literal notranslate"><span class="pre">prePub</span></code> task</p>
 </div>
-</div>
-<div class="section" id="content-and-syntax">
+</section>
+<section id="content-and-syntax">
 <h4>Content and Syntax<a class="headerlink" href="#content-and-syntax" title="Permalink to this headline">¶</a></h4>
 <p>The content is to be written in <a class="reference external" href="https://myst-parser.readthedocs.io/">Markedly Structured Text</a> or <code class="docutils literal notranslate"><span class="pre">myST</span></code>, which is a super-set of <a class="reference external" href="https://commonmark.org/">CommonMark markdown</a> and has additional extensions for Jupyter Notebooks (with <a class="reference external" href="https://myst-nb.readthedocs.io/en/latest/">myST-NB</a> and <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">jupytext</a>) and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructured Text</a>.</p>
 <p>Files which are meant to be <strong>executed</strong>; that is those which are tangled with <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> <strong>must have</strong> the <code class="docutils literal notranslate"><span class="pre">.myst.md</span></code> extension.</p>
@@ -244,8 +245,8 @@
 <p class="admonition-title">Warning</p>
 <p>Failure to specify the extension in the YAML headers in each <code class="docutils literal notranslate"><span class="pre">.myst.md</span></code> file <strong>will cause unexpected behavior</strong></p>
 </div>
-</div>
-<div class="section" id="interactivity">
+</section>
+<section id="interactivity">
 <h4>Interactivity<a class="headerlink" href="#interactivity" title="Permalink to this headline">¶</a></h4>
 <p>Every tutorial must be accompanied by the following:</p>
 <dl class="simple myst">
@@ -263,22 +264,22 @@
 </dd>
 </dl>
 <p>Furthermore, the tutorials <strong>are to be proofread</strong> every <span class="math notranslate nohighlight">\(60\)</span> days, otherwise the <code class="docutils literal notranslate"><span class="pre">cron</span></code> builds will start to fail.</p>
-</div>
-<div class="section" id="docs-are-tests">
+</section>
+<section id="docs-are-tests">
 <h4>Docs are Tests<a class="headerlink" href="#docs-are-tests" title="Permalink to this headline">¶</a></h4>
 <p>Each <code class="docutils literal notranslate"><span class="pre">.myst.md</span></code> is to be executed on the repository CI system when the API documentation is built. This is facilitated by <a class="reference external" href="https://papermill.readthedocs.io/en/latest/index.html">papermill</a>.</p>
-</div>
-</div>
-</div>
-<div class="section" id="acknowledgments">
+</section>
+</section>
+</section>
+<section id="acknowledgments">
 <h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
 <p>Apart from the tireless efforts of the core development team and volunteers; part of the documentation process was supported over the course of the 2020 Season of Docs.</p>
 <div class="note admonition">
 <p class="admonition-title">Review</p>
 <p>Written on 14 February 2021, proofread on 16 February 2021</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
     </main>

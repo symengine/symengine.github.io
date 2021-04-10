@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>C++ Style Guide &#8212; Symengine latest documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
@@ -149,10 +150,10 @@
 
     <main class="body" role="main" id="main">
       
-  <div class="section" id="c-style-guide">
+  <section id="c-style-guide">
 <h1>C++ Style Guide<a class="headerlink" href="#c-style-guide" title="Permalink to this headline">¶</a></h1>
 <p>Please follow these guidelines when submitting patches.</p>
-<div class="section" id="whitespace">
+<section id="whitespace">
 <h2>Whitespace<a class="headerlink" href="#whitespace" title="Permalink to this headline">¶</a></h2>
 <p>Use 4 spaces. Format <code class="docutils literal notranslate"><span class="pre">if</span></code> as follows:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if (d.find(t) == d.end()) {
@@ -162,8 +163,8 @@
 }
 </pre></div>
 </div>
-</div>
-<div class="section" id="pointers">
+</section>
+<section id="pointers">
 <h2>Pointers<a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h2>
 <p>Never use raw C++ pointers and never use the raw <code class="docutils literal notranslate"><span class="pre">new</span></code> and <code class="docutils literal notranslate"><span class="pre">delete</span></code>. Always use
 the smart pointers provided by <code class="docutils literal notranslate"><span class="pre">symengine_rcp.h</span></code> (depending on
@@ -174,7 +175,7 @@ how you use them the code will not segfault, but instead raise a nice exception
 if a pointer becomes dangling or null. In Release mode, the <code class="docutils literal notranslate"><span class="pre">Ptr</span></code> is as fast as
 a raw pointer and <code class="docutils literal notranslate"><span class="pre">RCP</span></code> is a lot faster, but no checks are done (so the code
 can segfault).</p>
-<div class="section" id="declaration">
+<section id="declaration">
 <h3>Declaration<a class="headerlink" href="#declaration" title="Permalink to this headline">¶</a></h3>
 <p>In the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> files you can declare:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>using SymEngine::RCP;
@@ -186,8 +187,8 @@ using SymEngine::rcp_dynamic_cast;
 </div>
 <p>and then just use <code class="docutils literal notranslate"><span class="pre">RCP</span></code> or <code class="docutils literal notranslate"><span class="pre">Ptr</span></code>.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">.h</span></code> header files use the full name like <code class="docutils literal notranslate"><span class="pre">SymEngine::RCP</span></code> or <code class="docutils literal notranslate"><span class="pre">SymEngine::Ptr</span></code>.</p>
-</div>
-<div class="section" id="initialization">
+</section>
+<section id="initialization">
 <h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
 <p>Initialize as follows:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Basic&gt; x  = make_rcp&lt;Symbol&gt;(&quot;x&quot;);
@@ -200,12 +201,12 @@ factory functions, e.g. in this case <code class="docutils literal notranslate">
 </div>
 <p>This does the same thing (internally it calls <code class="docutils literal notranslate"><span class="pre">make_rcp</span></code>), but it is easier to
 use.</p>
-</div>
-<div class="section" id="freeing">
+</section>
+<section id="freeing">
 <h3>Freeing<a class="headerlink" href="#freeing" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RCP</span></code> pointer is released automatically. You never call the naked <code class="docutils literal notranslate"><span class="pre">delete</span></code>.</p>
-</div>
-<div class="section" id="passing-to-from-functions">
+</section>
+<section id="passing-to-from-functions">
 <h3>Passing To/From Functions<a class="headerlink" href="#passing-to-from-functions" title="Permalink to this headline">¶</a></h3>
 <p>Use C++ references for objects that you are <strong>not</strong> passing around. If the object
 is <em>not</em> modified, use <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">A</span> <span class="pre">&amp;a</span></code>:</p>
@@ -262,8 +263,8 @@ as_coef_term(b, outArg(coef), outArg(t));
 And <code class="docutils literal notranslate"><span class="pre">RCP</span></code> is only used with <code class="docutils literal notranslate"><span class="pre">SymEngine</span></code>’s objects, so you always use <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">RCP&lt;const</span> <span class="pre">Integer&gt;</span> <span class="pre">&amp;i</span></code>. But if the <code class="docutils literal notranslate"><span class="pre">Integer</span></code> was somehow mutable (it’s not in
 <code class="docutils literal notranslate"><span class="pre">SymEngine</span></code>), you would use <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">RCP&lt;Integer&gt;</span> <span class="pre">&amp;i</span></code>.</p>
 <p>For returning objects from functions, simply declare the return type as <code class="docutils literal notranslate"><span class="pre">RCP&lt;const</span> <span class="pre">Basic&gt;</span></code> as shown above.</p>
-</div>
-<div class="section" id="casting">
+</section>
+<section id="casting">
 <h3>Casting<a class="headerlink" href="#casting" title="Permalink to this headline">¶</a></h3>
 <p>You can use dynamic cast as follows:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RCP&lt;Basic&gt; tmp;
@@ -271,16 +272,16 @@ RCP&lt;Integer&gt; coef;
 coef = rcp_dynamic_cast&lt;Integer&gt;(tmp);
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="namespaces">
+</section>
+</section>
+<section id="namespaces">
 <h2>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h2>
 <p>Never use “implicit imports”: <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">std;</span></code>.</p>
 <p>In cpp files, either use the full name of the symbol (e.g. <code class="docutils literal notranslate"><span class="pre">SymEngine::RCP</span></code>),
 or use “explicit import” as follows: <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">SymEngine::RCP;</span></code>.</p>
 <p>In header files, always use the full name (never import symbols there).</p>
-</div>
-</div>
+</section>
+</section>
 
 
     </main>
