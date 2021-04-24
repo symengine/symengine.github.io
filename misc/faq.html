@@ -4,8 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frequently Asked Questions &#8212; Symengine latest documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/library/library.css" type="text/css" />
@@ -136,9 +135,9 @@
 
     <main class="body" role="main" id="main">
       
-  <section id="frequently-asked-questions">
+  <div class="section" id="frequently-asked-questions">
 <h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
-<section id="what-are-the-main-use-cases">
+<div class="section" id="what-are-the-main-use-cases">
 <h2>What are the main use-cases?<a class="headerlink" href="#what-are-the-main-use-cases" title="Permalink to this headline">¶</a></h2>
 <p>There are is a <a class="reference external" href="https://github.com/symengine/symengine/wiki/Projects-using-SymEngine">growing list of projects</a> which use SymEngine. However, mostly
 this is used for:</p>
@@ -147,27 +146,27 @@ this is used for:</p>
 <li><p>Optimization</p></li>
 <li><p>Providing an efficient backend for other languages</p></li>
 </ul>
-</section>
-<section id="what-does-this-have-to-do-with-sympy">
+</div>
+<div class="section" id="what-does-this-have-to-do-with-sympy">
 <h2>What does this have to do with SymPy?<a class="headerlink" href="#what-does-this-have-to-do-with-sympy" title="Permalink to this headline">¶</a></h2>
 <p>SymEngine has a different structure (organizational and financial). However,
 there are many developers in common, and <code class="docutils literal notranslate"><span class="pre">sympy</span></code> is able to use <code class="docutils literal notranslate"><span class="pre">symengine</span></code> as a
 back-end.</p>
-</section>
-<section id="what-about-eigen-armadillo-xtensor">
+</div>
+<div class="section" id="what-about-eigen-armadillo-xtensor">
 <h2>What about Eigen / Armadillo / XTensor?<a class="headerlink" href="#what-about-eigen-armadillo-xtensor" title="Permalink to this headline">¶</a></h2>
 <p>These are numerical libraries, they require explicit formulation of equations,
 and due to the finite representation of digits on computers, they <a class="reference external" href="https://docs.microsoft.com/en-us/cpp/build/why-floating-point-numbers-may-lose-precision?view=msvc-160">are prone to
 numerical
 errors</a>.</p>
-</section>
-<section id="how-do-i-convert-my-eigen-armadillo-xtensor-code">
+</div>
+<div class="section" id="how-do-i-convert-my-eigen-armadillo-xtensor-code">
 <h2>How do I convert my Eigen / Armadillo / Xtensor code?<a class="headerlink" href="#how-do-i-convert-my-eigen-armadillo-xtensor-code" title="Permalink to this headline">¶</a></h2>
 <p>There should not be any need to do so. If a symbolic library is required it
 should be clear at the ideation phase. If inheriting legacy code which needs to
 be converted, it should be done in terms of the underlying C++ data structures.</p>
-</section>
-</section>
+</div>
+</div>
 
 
     </main>
