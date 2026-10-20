@@ -26,7 +26,7 @@ Frequently Asked Questions <misc/faq>
 - [C++ API Documentation](https://symengine.org/symengine)
 - [R Bindings](https://symengine.org/symengine.R)
 - [Julia Bindings](https://symengine.org/SymEngine.jl/)
-- [Python Bindings](https://symengine.org/symengine.py)
+- [Python Bindings](https://github.com/symengine/symengine.py)
 
 ## Other Resources
 
