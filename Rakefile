@@ -8,6 +8,7 @@ require "fileutils" # Cross Platform
 # Common
 CWD = File.expand_path(__dir__)
 OUTPUB = File.join(CWD, "public")
+NBSITE = File.join(CWD, "notebooks")
 # Site
 BASESITE = File.join(CWD, "docs")
 # Files

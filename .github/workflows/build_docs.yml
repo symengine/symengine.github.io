@@ -44,6 +44,10 @@ jobs:
           auto-activate-base: false
       - name: Build
         run: sphinx-build docs ./public
+      - name: Generate Notebooks
+        run: |
+          gem install rake --version 13.0.1 --no-document
+          rake genNotebooks
       - name: Deploy Docs
         if: ${{ github.ref == 'refs/heads/sources' && github.repository == 'Symengine/symengine.github.io' }}
         uses: peaceiris/actions-gh-pages@v3
