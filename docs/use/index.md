@@ -5,4 +5,5 @@ The reader is expected to engage with the material in the [API exploration](api/
 :titlesonly:
 Following Along <tutorial>
 API Exploration <api/index>
+Case Studies <case_studies/index>
 ```

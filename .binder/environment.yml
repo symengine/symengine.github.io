@@ -196,6 +196,7 @@ dependencies:
   - readline=8.0=he28a2e2_2
   - requests=2.25.1=pyhd3deb0d_0
   - ruby=2.5.7=he592edb_2
+  - scipy
   - send2trash=1.5.0=py_0
   - setuptools=49.6.0=py39hf3d152e_3
   - shellingham=1.4.0=pyh44b312d_0
